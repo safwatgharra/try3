@@ -11,7 +11,7 @@ public class LoginBAL
     LoginDBService loginDb = new LoginDBService();
     public LoginBAL()
     {
-        //STAM4
+        //STAM5
         // TODO: Add constructor logic here
         //
     }
