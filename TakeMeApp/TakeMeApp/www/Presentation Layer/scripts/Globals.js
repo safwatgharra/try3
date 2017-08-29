@@ -1,7 +1,7 @@
 ﻿var local = true;
 var WebServiceURL = "http://localhost:63926/UsersWS.asmx"; //the same as above. only with…
 if (!local) {
-    WebServiceURL = "http://ruppinmobile.ac.il.preview26.livedns.co.il/site???/UsersWS.asmx";
+    WebServiceURL = "http://ruppinmobile.ac.il.preview26.livedns.co.il/site11/UsersWS.asmx";
 }
 
 
