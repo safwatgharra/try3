@@ -5,9 +5,6 @@ using System.Data.SqlClient;
 using System.Web;
 using System.Web.Script.Serialization;
 
-/// <summary>
-/// Summary description for LoginDBService
-/// </summary>
 public class LoginDBService
 {
     string strCon;
@@ -28,29 +25,19 @@ public class LoginDBService
         com.Parameters.Add(new SqlParameter("@UserID", UserID));
         com.Parameters.Add(new SqlParameter("@UserPass", password));
 
-        try
-        {
-            con.Open();
-            SqlDataReader reader = com.ExecuteReader();
+        con.Open();
+        SqlDataReader reader = com.ExecuteReader();
+        com.Connection.Close();
 
-            if (reader.Read())
-            {
-                user = new User(Convert.ToInt16(reader["UserID"]), reader["UserFName"].ToString(), reader["UserLName"].ToString(), reader["PhoneNumber"].ToString(), reader["UDID"].ToString(), reader["CurrentLocation"].ToString(), Convert.ToChar(reader["TypeCode"]));
-                com.Connection.Close();
-                return serializer.Serialize(user);
-
-            }
-        }
-        catch
+        if (reader.Read())
         {
+            user = new User(Convert.ToInt16(reader["UserID"]), reader["UserFName"].ToString(), reader["UserLName"].ToString(), reader["PhoneNumber"].ToString(), reader["UDID"].ToString(), reader["CurrentLocation"].ToString(), Convert.ToChar(reader["TypeCode"]));
+            return serializer.Serialize(user);
 
         }
-        finally
+        else
         {
-            com.Connection.Close();
+            return serializer.Serialize("Faild");
         }
-
-
-        return serializer.Serialize(user);
     }
 }
