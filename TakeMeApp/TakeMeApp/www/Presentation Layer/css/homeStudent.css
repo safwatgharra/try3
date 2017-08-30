@@ -20,22 +20,6 @@ body {
   
 }
 
-.round-button {
-    width: 70%;
-}
-
-.round-button-circle {
-    margin-top: 40%;
-    margin-left: 20%;
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-    border-radius: 100%;
-    
-    overflow: hidden;
-    /*background: #3f8cff;*/
-  
-}
 
 #divImagCir 
 {
@@ -51,39 +35,7 @@ height:55%;
   border: 3px solid #ffd800;
 }
 
-/*.round-button image {
-    border-radius: 50%;
-    display: block;
-    float: left;
-    width: 100%;
-    padding-top: 50%;
-    padding-bottom: 50%;
-    line-height: 1em;
-    margin-top: -0.5em;
-    text-align: center;
-    color: #ffffff;
-    font-family: Verdana;
-    font-size: 2.8em;
-    font-weight: bold;
-    text-decoration: none;
-}*/
 
-/*button {
-    text-align: center;
-    color: #ffffff;
-    font-family: Verdana;
-    font-size: 2.6em;
-    font-weight: bold;
-    text-decoration: none;
-    display: block;
-
-   
-    background-color: #00D933;
-  
-    border: none;
-    border-radius: 20px;
-  
-}*/
 
 .myButton {
     background-color: #000000;
