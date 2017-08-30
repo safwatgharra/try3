@@ -1,10 +1,23 @@
-﻿
+﻿html {
+    height: 100%;
+    /*border: solid 1px black;*/
+
+}
+
+body {
+    background: url('../images/Background.gif') no-repeat fixed top center;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    margin:0px;
+}
+
 #Menu {
     width: 20%;
     height: 1%;
-
-    margin-left: 80%;
-    
+    margin-top: 2%;
+    margin-left: 78%;
+  
 }
 
 .round-button {
@@ -17,15 +30,29 @@
     width: 100%;
     height: 0;
     padding-bottom: 100%;
-    border-radius: 50%;
-    border: 10px solid none;
+    border-radius: 100%;
+    
     overflow: hidden;
-    background: #3f8cff;
+    /*background: #3f8cff;*/
   
 }
 
+#divImagCir 
+{
+height:55%;    
+} 
 
-.round-button a {
+.img-circle {
+    border-radius: 50%;
+    width: 85%;
+    height: 90%;
+    margin-top: 12%;
+    margin-left: 6.5%;
+  border: 3px solid #ffd800;
+}
+
+/*.round-button image {
+    border-radius: 50%;
     display: block;
     float: left;
     width: 100%;
@@ -39,9 +66,9 @@
     font-size: 2.8em;
     font-weight: bold;
     text-decoration: none;
-}
+}*/
 
-button {
+/*button {
     text-align: center;
     color: #ffffff;
     font-family: Verdana;
@@ -49,9 +76,40 @@ button {
     font-weight: bold;
     text-decoration: none;
     display: block;
-    width: 100%;
+
+   
     background-color: #00D933;
-    padding: 18px 20px;
+  
     border: none;
     border-radius: 20px;
+  
+}*/
+
+.myButton {
+    background-color: #000000;
+    -moz-border-radius: 42px;
+    -webkit-border-radius: 42px;
+    border-radius: 42px;
+    border: 3px solid #ffd900;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Georgia;
+    font-size: 28px;
+    font-weight: bold;
+    width: 96%;
+    padding: 18px 20px;
+    margin-left: 2%;
+    margin-top: 5%;
+    text-decoration: none;
+    text-shadow: 0px 0px 0px #2f6627;
 }
+
+    .myButton:hover {
+        background-color: #000000;
+    }
+
+    .myButton:active {
+        position: relative;
+        top: 1px;
+    }
