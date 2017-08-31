@@ -33,6 +33,7 @@ body {
 
 
 input[type=text], input[type=password] {
+   
     text-align: center;
     color: #000000;
     font-family: Verdana;
@@ -49,7 +50,7 @@ input[type=text], input[type=password] {
     text-align: center;
 }
 
-button {
+#BtnLogin {
     text-align: center;
     color: #000000;
     font-family: Verdana;
@@ -57,10 +58,15 @@ button {
     font-weight: bold;
     text-decoration: none;
     display: block;
-    width: 125%;
+    width: 110%;
     background-color: #ffd800;
     padding: 18px 20px;
     margin: 8px 0 0 1%;
     border: none;
     border-radius: 20px;
 }
+
+    #BtnLogin:active {
+        position: relative;
+        top: 4px;
+    }

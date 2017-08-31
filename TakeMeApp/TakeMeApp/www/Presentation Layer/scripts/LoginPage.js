@@ -1,4 +1,10 @@
-﻿$(document).ready(function () {
+﻿var local = true;
+var WebServiceURL = "http://localhost:63926/UsersWS.asmx"; //the same as above. only with…
+
+if (!local) {
+    WebServiceURL = "http://ruppinmobile.ac.il.preview26.livedns.co.il/site11/UsersWS.asmx";
+}
+$(document).ready(function () {
     $('#BtnLogin').click(function () {
 
         var UserID = $("#InputUserId").val();
@@ -9,15 +15,15 @@
                 userpass: UserPass
             };
 
-        alert("press 1-for student page or 2- for driver page");
-        //Currently
-        if (UserID==1) {
-  window.location.replace("homeStudent.html");
-        }
-        else if (UserID==2) {
-   window.location.replace("homeDriver.html");
-        }
-     
+  //      alert("press 1-for student page or 2- for driver page");
+  //      //Currently
+  //      if (UserID==1) {
+  //window.location.replace("homeStudent.html");
+  //      }
+  //      else if (UserID==2) {
+  // window.location.replace("homeDriver.html");
+  //      }
+        window.location.replace("homeStudent.html");
 
         $.ajax({
             async: true,
@@ -27,6 +33,7 @@
             method: "post",
             contentType: "application/json;charset=utf-8",
             success: function (data) {
+            
                 var res = data.d;
                 var resOutput = JSON.parse(res);
                 alert("res-", res);
