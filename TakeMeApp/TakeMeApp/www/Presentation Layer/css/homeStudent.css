@@ -31,29 +31,22 @@ body {
 
 
 .myButton {
-    background-color: #000000;
-    -moz-border-radius: 42px;
-    -webkit-border-radius: 42px;
-    border-radius: 42px;
-    overflow: hidden;
-    border: 3px solid #ffd900;
-    display: inline-block;
-    cursor: pointer;
     color: #ffffff;
-
+    background-color: #000000;
     text-align: center;
     font-family: Georgia;
     font-size: 28px;
     font-weight: bold;
-    width: 83%;
+    text-decoration: none;
+    display: block;
     padding: 18px 20px;
     margin-left: 2%;
     margin-top: 5%;
-    text-decoration: none;
-    text-shadow: 0px 0px 0px #2f6627;
+    width: 83%;
+    border: none;
+    border-radius: 42px;
+    border: 3px solid #ffd900;
 }
-
-   
 
     .myButton:active {
         position: relative;
@@ -81,7 +74,7 @@ body {
 
         #MenuClose:active {
             position: relative;
-            top: 2px;
+            top: 4px;
         }
 
 #divMenu  {
