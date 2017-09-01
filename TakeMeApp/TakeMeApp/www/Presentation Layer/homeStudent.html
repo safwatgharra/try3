@@ -12,44 +12,61 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
     <!-- jq link -->
-
     <script src="libraries/jquery-3.1.1.min.js"></script>
     <!-- css link -->
     <link href="css/homeStudent.css" rel="stylesheet" />
 </head>
 
-<body >
-   
+<body>
+
     <div>
-        <img src="images/Menu.png"  id="MenuOpen"/>
+        <img src="images/Menu.png" id="MenuOpen" />
     </div>
 
     <div id="divMenu">
 
-        <img src="images/close-circular.png" id="MenuClose"/>
-    
-        <ul >
+        <img src="images/close-circular.png" id="MenuClose" />
+
+        <ul>
             <li>ההזמנות שלי</li>
-            
+
             <li>יציאה</li>
         </ul>
 
 
     </div>
-    
+
     <div id="divImagCir">
 
-    <img src="images/TakeMeImage.gif" class="img-circle" />
+        <img src="images/TakeMeImage.gif" class="img-circle" />
 
-        </div>
+    </div>
 
     <br />
     <br />
     <br />
-   
+
     <div>
-        
-        <p class="myButton">הזמן נסיעה</p>
+        <p class="BtnOrder">הזמן נסיעה</p>
+    </div>
+
+    <div id="divOrder">
+
+        <img src="images/Backbutton.png" class="OrderClose" />
+        <br />
+
+        <center>
+            
+            <input type="date" id="OrderDateTimeTXT" readonly />
+           
+            <select id="streetSelector"></select>
+            <br />
+            
+            <textarea id="OrderDescription"></textarea>
+            <br />
+            <p class="addOrder">שלח הזמנה</p>
+
+        </center>
     </div>
 
     <!-- js link -->
