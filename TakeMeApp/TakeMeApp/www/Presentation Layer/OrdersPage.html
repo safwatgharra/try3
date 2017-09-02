@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <title>TakeMeApp</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <link href="css/OrdersPage.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="backOrders">
+        <img src="images/Backbutton.png" align="right" />
+    </div>
+
+    <br />
+
+    <center>
+        <div id="table">
+            <table>
+
+                <tr>
+
+                    <th>בטל</th>
+
+                    <th>תאריך ושעה</th>
+                    <th>מיקום</th>
+
+                </tr>
+                <tr>
+
+                    <td><img id="removeRow" src="images/minus.png" /></td>
+
+                    <td></td>
+                    <td></td>
+
+                </tr>
+
+            </table>
+        </div>
+    </center>
+
+
+    <br />
+
+    <center>
+        <img src="images/plus.png" class="btnPlus" />
+    </center>
+
+
+    <div id="divOrder">
+
+        <img src="images/Backbutton.png" class="OrderClose" />
+        <br />
+
+        <center>
+
+            <input type="date" id="OrderDateTimeTXT" readonly />
+
+            <select id="streetSelector"></select>
+            <br />
+
+            <textarea id="OrderDescription"></textarea>
+            <br />
+            <p class="addOrder">שלח הזמנה</p>
+
+        </center>
+    </div>
+
+    <script src="scripts/Globals.js"></script>
+    <script src="libraries/jquery-3.1.1.min.js"></script>
+    <script src="scripts/OrdersPage.js"></script>
+
+
+</body>
+</html>

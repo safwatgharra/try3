@@ -21,4 +21,11 @@
         $("#divOrder").css({ "height": "0px","width":"0px"});
         $("#divOrder").removeClass('borderOrder');       
     });  
+
+    $("#myOrders").click(function () {
+
+        window.location.replace("OrdersPage.html");
+    });  
+
+
 });

@@ -15,15 +15,8 @@ $(document).ready(function () {
                 userpass: UserPass
             };
 
-  //      alert("press 1-for student page or 2- for driver page");
-  //      //Currently
-  //      if (UserID==1) {
-  //window.location.replace("homeStudent.html");
-  //      }
-  //      else if (UserID==2) {
-  // window.location.replace("homeDriver.html");
-  //      }
-        window.location.replace("homeStudent.html");
+
+        window.location.replace("homeDriver.html");
 
         $.ajax({
             async: true,
