@@ -39,3 +39,19 @@ function showError(error) {
     alert("Error" + error);
 
 }
+
+$(document).ready(function myfunction() {
+
+    $("#MenuOpen").click(function () {
+        $("#divMenu").addClass('borderMenu');
+        $("#divMenu").css("width", "211px");
+    });
+
+    $("#MenuClose").click(function () {
+        $("#divMenu").removeClass('borderMenu');
+        $("#divMenu").css("width", "0px");
+
+    });
+
+
+});

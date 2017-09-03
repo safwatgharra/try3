@@ -174,7 +174,7 @@ body {
 .borderMenu {
     border-style: solid;
     border-left-color: #ffd800;
-    /*border-top-color: #ffd800;*/
+    border-top-color: #ffd800;
     border-bottom-color: #ffd800;
 }
 
