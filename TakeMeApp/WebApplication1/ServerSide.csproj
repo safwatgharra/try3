@@ -100,6 +100,8 @@
     <Content Include="App_Code\UsersWS.cs">
       <SubType>Component</SubType>
     </Content>
+    <Content Include="App_Code\BAL\RequestBAL.cs" />
+    <Content Include="App_Code\DAL\RequestDBService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
