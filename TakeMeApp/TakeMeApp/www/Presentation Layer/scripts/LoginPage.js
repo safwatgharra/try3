@@ -15,8 +15,12 @@ $(document).ready(function () {
                 userpass: UserPass
             };
 
-
-        window.location.replace("homeDriver.html");
+             if (UserID==1) {
+            window.location.replace("homeStudent.html");
+               }
+                else if (UserID==2) {
+           window.location.replace("homeDriver.html");
+               }
 
         $.ajax({
             async: true,
