@@ -1,7 +1,11 @@
-﻿using System.Data;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
 using System.Web.Script.Serialization;
-using System.Xml;
 
 namespace WebApplication1.App_Code.DAL
 {
@@ -10,13 +14,10 @@ namespace WebApplication1.App_Code.DAL
         string strCon;
         JavaScriptSerializer serializer = new JavaScriptSerializer();
 
-
         public RequestDBService()
         {
             strCon = DBGlobals.strCon;
         }
-
-        public object JsonConvert { get; private set; }
 
         public string RequestUser(int UserID)
         {
@@ -24,7 +25,6 @@ namespace WebApplication1.App_Code.DAL
             SqlDataAdapter adptr = new SqlDataAdapter(
                 " SELECT * " +
                 " FROM RequestTB WHERE UserID = '"+UserID+"' and UserPass = '2'", con);
-
 
             DataSet ds = new DataSet();
             adptr.Fill(ds, "Requests");
