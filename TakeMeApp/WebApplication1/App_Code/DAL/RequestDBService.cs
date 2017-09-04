@@ -1,22 +1,22 @@
-﻿using System.Data;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System.Web.Script.Serialization;
-using System.Xml;
+using System.Linq;
+using System.Web;
 
 namespace WebApplication1.App_Code.DAL
 {
     public class RequestDBService
     {
         string strCon;
-        JavaScriptSerializer serializer = new JavaScriptSerializer();
-
-
         public RequestDBService()
         {
             strCon = DBGlobals.strCon;
         }
 
-        public object JsonConvert { get; private set; }
+        
 
         public string RequestUser(int UserID)
         {
@@ -31,7 +31,7 @@ namespace WebApplication1.App_Code.DAL
             DataTable dt = ds.Tables["Requests"];
 
             //needs the newtonsoft.json from nuget packages!
-            string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            string json =JsonConvert.SerializeObject(dt, Formatting.Indented);
             return json;
         }
     }
