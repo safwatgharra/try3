@@ -11,7 +11,7 @@ static public class DBGlobals
 {
 
    static bool local = true;
-    static bool Ruppin = false;
+    static bool Ruppin = true;
     static public string strCon;
 
 

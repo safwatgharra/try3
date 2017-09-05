@@ -25,10 +25,16 @@ public class UsersWS : System.Web.Services.WebService
     
 
     [WebMethod]
-    public string LoginUserUsingClass(string name, string password)
+    public string LoginUserUsingClass(string userid, string userpass)
     {
         LoginBAL loginBal = new LoginBAL();
-        return loginBal.LoginUserUsingClass(name, password);
+        return loginBal.LoginUserUsingClass(userid, userpass);
+    }
+
+    [WebMethod]
+    public string HelloWorld()
+    {
+        return "hello";
     }
 
     [WebMethod]

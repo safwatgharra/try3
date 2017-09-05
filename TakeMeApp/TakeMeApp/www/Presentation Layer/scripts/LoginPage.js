@@ -1,9 +1,5 @@
-﻿var local = true;
-var WebServiceURL = "http://localhost:63926/UsersWS.asmx"; //the same as above. only with…
+﻿
 
-if (!local) {
-    WebServiceURL = "http://ruppinmobile.ac.il.preview26.livedns.co.il/site11/UsersWS.asmx";
-}
 $(document).ready(function () {
     $('#BtnLogin').click(function () {
 
@@ -15,36 +11,60 @@ $(document).ready(function () {
                 userpass: UserPass
             };
 
-             if (UserID==1) {
-            window.location.replace("homeStudent.html");
-               }
-                else if (UserID==2) {
-           window.location.replace("homeDriver.html");
-               }
+           //  if (UserID==1) {
+           // window.location.replace("homeStudent.html");
+           //    }
+           //     else if (UserID==2) {
+           //window.location.replace("homeDriver.html");
+           //    }
+        alert(WebServiceURL + "/LoginUserUsingClass");
 
         $.ajax({
-            async: true,
-            url: WebServiceURL + "/LoginUserUsingClass",
+           
+            url: WebServiceURL + "/HelloWorld",
             dataType: "json",
-            data: JSON.stringify(user),
-            method: "post",
+            data: "{}",
+            type: "post",
             contentType: "application/json;charset=utf-8",
+            error: function (jqXHR, exception) {
+                alert(formatErrorMessage(jqXHR, exception));
+            },
             success: function (data) {
-            
+
                 var res = data.d;
                 var resOutput = JSON.parse(res);
                 alert("res-", res);
                 alert("resOutput=", resOutput);
 
-                if (resOutput != "Faild") {
-                    addUserToLocalStorage();
-                    changePages(resOutput);
-                }
+                
             }
-            , error: function (jqXHR, exception) {
-                alert(formatErrorMessage(jqXHR, exception));
-            }
+
         });
+
+        //$.ajax({
+        //    async: true,
+        //    url: WebServiceURL + "/LoginUserUsingClass",
+        //    dataType: "json",
+        //    data: JSON.stringify(user),
+        //    method: "post",
+        //    contentType: "application/json;charset=utf-8",
+        //    error: function (jqXHR, exception) {
+        //        alert(formatErrorMessage(jqXHR, exception));
+        //    },
+        //    success: function (data) {
+
+        //        var res = data.d;
+        //        var resOutput = JSON.parse(res);
+        //        alert("res-", res);
+        //        alert("resOutput=", resOutput);
+
+        //        if (resOutput != null) {
+        //            addUserToLocalStorage();
+        //            changePages(resOutput);
+        //        }
+        //    }
+            
+        //});
     });
 });
 

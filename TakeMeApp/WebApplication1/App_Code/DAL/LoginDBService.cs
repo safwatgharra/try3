@@ -27,17 +27,20 @@ public class LoginDBService
 
         con.Open();
         SqlDataReader reader = com.ExecuteReader();
-        com.Connection.Close();
+       
 
         if (reader.Read())
         {
             user = new User(Convert.ToInt16(reader["UserID"]), reader["UserFName"].ToString(), reader["UserLName"].ToString(), reader["PhoneNumber"].ToString(), reader["UDID"].ToString(), reader["CurrentLocation"].ToString(), Convert.ToChar(reader["TypeCode"]));
-            return serializer.Serialize(user);
-
+           
         }
-        else
-        {
-            return serializer.Serialize("Faild");
-        }
+        com.Connection.Close();
+        return serializer.Serialize(user);
+        //else
+        //{
+        //    com.Connection.Close();
+        //    return serializer.Serialize("Failed");
+        //}
+       
     }
 }
