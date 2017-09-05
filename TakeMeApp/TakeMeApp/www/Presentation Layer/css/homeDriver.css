@@ -1,4 +1,13 @@
-﻿
+﻿html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px
+}
+
 #map {
     border: 0;
     width: 100%;
@@ -11,7 +20,6 @@
     margin-top: 2%;
     margin-left: 78%;
 }
-
 
     #MenuOpen:active {
         position: relative;
@@ -72,7 +80,6 @@ ul {
     background-color: #000000;
 }
 
-
 li {
     border: 3px solid #ffd900;
     display: block;
@@ -89,7 +96,6 @@ li {
     position: relative;
     top: 2px;
 }
-
 
 hr {
     display: block;
