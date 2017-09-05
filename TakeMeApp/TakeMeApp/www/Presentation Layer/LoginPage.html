@@ -4,8 +4,8 @@
 
     <title>TakeMeApp</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;**script-src 'self' http://onlineerp.solution.quebec 'unsafe-inline' 'unsafe-eval';** ">-->
+    <!--<meta http-equiv="content-type" content="text/html; charset=UTF-8" />-->
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -32,12 +32,13 @@
         </div>
 
     <!-- cordova link -->
-    <script type="text/javascript" src="cordova.js"></script>
-    <script src="Presentation Layer/scripts/platformOverrides.js"></script>
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+    <!--<script src="Presentation Layer/scripts/platformOverrides.js"></script>-->
 
     <!-- js link -->
-    <script src="scripts/LoginPage.js"></script>
     <script src="scripts/Globals.js"></script>
+    <script src="scripts/LoginPage.js"></script>
+    <script  src="../cordova.js"></script>
 
 </body>
 </html>
