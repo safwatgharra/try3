@@ -54,8 +54,4 @@ $(document).ready(function myfunction() {
     });
 
 
-    $("#BtnReport").click(function () {
-        window.location.replace("ReportDriver.html");
-    });
-    
 });

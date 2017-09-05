@@ -4,6 +4,7 @@
 
     <title>TakeMeApp</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -15,11 +16,26 @@
     <!-- css link -->
     <link href="css/homeDriver.css" rel="stylesheet" />
 
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+    </style>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAB8fhXk4J498YpIW8FlabQ5X-kTbjO0lY&callback=initMap" async defer></script>
+
+
 
 </head>
 
 <body>
+
 
     <div id="map" style="width:100%;height:100%;">
         <div>
@@ -30,6 +46,8 @@
 
             <img src="images/close-circular.png" id="MenuClose" />
 
+
+
             <ul>
                 <li id="PchangeStatus">:שינוי סטטוס</li>
                         <li class="active">יציאה להפסקה</li>
@@ -39,9 +57,10 @@
             <hr />
 
             <ul>
-                <li class="active" id="BtnReport">דווח על תקלה</li>
+                <li class="active">דווח על תקלה</li>
                 <li class="active">יציאה</li>
             </ul>
+
 
         </div>
     </div>

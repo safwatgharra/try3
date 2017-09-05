@@ -1,5 +1,12 @@
-﻿$(document).ready(function () {
+﻿var local = true;
+var WebServiceURL = "http://localhost:63926/UsersWS.asmx"; //the same as above. only with…
+
+if (!local) {
+    WebServiceURL = "http://ruppinmobile.ac.il.preview26.livedns.co.il/site11/UsersWS.asmx";
+}
+$(document).ready(function () {
     $('#BtnLogin').click(function () {
+
         var UserID = $("#InputUserId").val();
         var UserPass = $("#InputUserPassword").val();
         var user =
@@ -8,30 +15,35 @@
                 userpass: UserPass
             };
 
+             if (UserID==1) {
+            window.location.replace("homeStudent.html");
+               }
+                else if (UserID==2) {
+           window.location.replace("homeDriver.html");
+               }
+
         $.ajax({
+            async: true,
             url: WebServiceURL + "/LoginUserUsingClass",
             dataType: "json",
-            type: "POST", 
             data: JSON.stringify(user),
-            contentType: "application/json; charset=utf-8",
-            error: function (jqXHR, exception) {
-                alert(formatErrorMessage(jqXHR, exception));
-            },
+            method: "post",
+            contentType: "application/json;charset=utf-8",
             success: function (data) {
+            
                 var res = data.d;
                 var resOutput = JSON.parse(res);
-                alert("res-"+ res);
-                alert("resOutput="+ resOutput);
+                alert("res-", res);
+                alert("resOutput=", resOutput);
 
-                if (resOutput != null) {
-                    //addUserToLocalStorage();
+                if (resOutput != "Faild") {
+                    addUserToLocalStorage();
                     changePages(resOutput);
                 }
-                else {
-                    alert("error user");
-                }
             }
-            
+            , error: function (jqXHR, exception) {
+                alert(formatErrorMessage(jqXHR, exception));
+            }
         });
     });
 });
