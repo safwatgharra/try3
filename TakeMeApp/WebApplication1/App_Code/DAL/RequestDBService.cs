@@ -34,5 +34,19 @@ namespace WebApplication1.App_Code.DAL
             string json =JsonConvert.SerializeObject(dt, Formatting.Indented);
             return json;
         }
+        //public void InsertReqDB(string date, int locationID, int userID)
+        //{
+        //    User user = null;
+        //    SqlConnection con = new SqlConnection(strCon);
+        //    SqlCommand com = new SqlCommand("INSERT INTO [dbo].[RequestTB]" +
+        //                     "([RequestDate],[LocationID],[RequestTypeID],[UserID],[RequestStatus])" +
+        //                        "VALUES ("+, 2, 2, 1, 2)", con);
+        //    com.Parameters.Add(new SqlParameter("@UserID", userID));
+        //    com.Parameters.Add(new SqlParameter("@UserPass", password));
+
+        //    con.Open();
+        //    SqlDataReader reader = com.ExecuteReader();
+        //    com.Connection.Close();
+        //}
     }
 }
