@@ -1,11 +1,15 @@
-﻿var workerPosition = { lat: 0, lng: 0 };
+﻿var workerPosition = { lat: 43.47836101344629, lng: -80.53074049212657 };
 var map;
 var marker;
-function initMap() {
 
+function initMap() {
+    alert("wew");
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 20,
-        center: workerPosition
+        center: workerPosition,
+        mapTypeControl: false,
+        zoomControl: false,
+        disableDefaultUI: true
     });
 
     marker = new google.maps.Marker({
@@ -19,7 +23,7 @@ function initMap() {
 }
 
 function changePosition(position) {
-    if (marker != null) {
+    if (marker !== null) {
         marker.setMap(null);
     }
 
@@ -40,11 +44,15 @@ function showError(error) {
 
 }
 
-$(document).ready(function myfunction() {
+$(document).ready(function () {
 
     $("#MenuOpen").click(function () {
+        $("#divMenu").css("display", "block");
+        /*
         $("#divMenu").addClass('borderMenu');
-        $("#divMenu").css("width", "211px");
+        $("#divMenu").css("width", "60%");
+        $("#divMenu").css("visibility", "visible");
+        */
     });
 
     $("#MenuClose").click(function () {
@@ -52,7 +60,6 @@ $(document).ready(function myfunction() {
         $("#divMenu").css("width", "0px");
 
     });
-
 
     $("#BtnReport").click(function () {
         window.location.replace("ReportDriver.html");

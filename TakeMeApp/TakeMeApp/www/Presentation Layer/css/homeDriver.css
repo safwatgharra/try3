@@ -15,10 +15,14 @@ body {
 }
 
 #MenuOpen {
-    width: 20%;
-    height: 1%;
+    width: 15%;
+    /* height: 16%; */
     margin-top: 2%;
     margin-left: 78%;
+    position: fixed;
+    top: 0;
+    right: 2%;
+    z-index: 1001;
 }
 
     #MenuOpen:active {
@@ -41,14 +45,12 @@ body {
 #divMenu {
     background-color: #000000;
     height: 80%;
+    width: 60%;
     position: fixed;
-    width: 0%;
     top: 0;
     right: 0;
-    transition: 0.5s;
-    z-index: 1;
-    float: right;
-    overflow-x: hidden;
+    z-index: 1009;
+    display:none;
 }
 
 .borderMenu {
@@ -56,6 +58,7 @@ body {
     border-left-color: #ffd800;
     border-top-color: #ffd800;
     border-bottom-color: #ffd800;
+  
 }
 
 #PchangeStatus {
@@ -69,6 +72,7 @@ border-bottom:hidden;
     font-family: Georgia;
     font-size: 22px;
     font-weight: bold;
+
 }
 
 ul {

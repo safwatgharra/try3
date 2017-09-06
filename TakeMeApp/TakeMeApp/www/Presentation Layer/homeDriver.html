@@ -3,7 +3,7 @@
 <head>
 
     <title>TakeMeApp</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' https:; style-src 'self' 'unsafe-inline'; media-src *">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -15,18 +15,16 @@
     <!-- css link -->
     <link href="css/homeDriver.css" rel="stylesheet" />
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAB8fhXk4J498YpIW8FlabQ5X-kTbjO0lY&callback=initMap" async defer></script>
-
 </head>
 
 <body>
 
-    <div id="map" style="width:100%;height:100%;">
-        <div>
-            <img src="images/Menu.png" id="MenuOpen" />
-        </div>
+    <img src="images/Menu.png" id="MenuOpen" />
 
-        <div id="divMenu">
+    <div id="map" style="width:100%;height:100%;">
+    </div>
+        
+        <div  id="divMenu">
 
             <img src="images/close-circular.png" id="MenuClose" />
 
@@ -44,11 +42,14 @@
             </ul>
 
         </div>
-    </div>
+    
 
     <!-- js link -->
-    <script src="scripts/homeDriver.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCH3PdXAhWMYBCXp4pyLgEIeaEyrFbcdk&callback=initMap" async defer></script>
+    <script src="../cordova.js"></script>
     <script src="scripts/Globals.js"></script>
+    <script src="scripts/homeDriver.js"></script>
 
 </body>
 </html>
