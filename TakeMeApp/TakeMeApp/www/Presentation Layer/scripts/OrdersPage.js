@@ -20,7 +20,10 @@
         $("#divOrder").removeClass('borderOrder');
     });
 
-  
+    $("#myOrders").click(function () {
+
+        window.location.replace("OrdersPage.html");
+    });  
 
 
 });
