@@ -8,6 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
+using WebApplication1.App_Code.BAL;
 
 /// <summary>
 /// Summary description for UsersWS
@@ -22,7 +23,25 @@ public class UsersWS : System.Web.Services.WebService
     public UsersWS()
     {
     }
-    
+    [WebMethod]
+    public string LoadRequests(int userid)
+    {
+        RequestBAL reqBAL = new RequestBAL();
+        return reqBAL.LoadReguests(userid);
+    }
+    [WebMethod]
+    public string InsertRequest(string date, int locationID, int userID)
+    {
+        RequestBAL reqBAL = new RequestBAL();
+        return reqBAL.InsertRequest(date, locationID, userID);
+    }
+    [WebMethod]
+    public string UpdateRequest(string date, int locationID, int userID)
+    {
+        RequestBAL reqBAL = new RequestBAL();
+        return reqBAL.UpdateRequest(date, locationID, userID);
+    }
+
 
     [WebMethod]
     public string LoginUserUsingClass(string userid, string userpass)

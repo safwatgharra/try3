@@ -13,14 +13,15 @@ namespace WebApplication1.App_Code.BAL
         {
             return requestdb.RequestUser(userID);
         }
-        public void InsertRequest(string date, int locationID, int userID)
+        public string InsertRequest(string date, int locationID, int userID)
         {
             requestdb.InsertReqDB(date, locationID, userID);
-
+            return requestdb.RequestUser(userID);
         }
-        public void UpdateRequest(string date, int locationID, int userID)
+        public string UpdateRequest(string date, int locationID, int userID)
         {
             requestdb.RemoveReqDB(date, locationID, userID);
+            return requestdb.RequestUser(userID);
         }
     }
 }
