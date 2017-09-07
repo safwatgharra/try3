@@ -3,7 +3,6 @@ var map;
 var marker;
 
 function initMap() {
-    alert("wew");
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 20,
         center: workerPosition,
@@ -47,12 +46,9 @@ function showError(error) {
 $(document).ready(function () {
 
     $("#MenuOpen").click(function () {
-        $("#divMenu").css("display", "block");
-        /*
+
         $("#divMenu").addClass('borderMenu');
-        $("#divMenu").css("width", "60%");
-        $("#divMenu").css("visibility", "visible");
-        */
+        $("#divMenu").css({ "width": "60%","z-index":"1012"});        
     });
 
     $("#MenuClose").click(function () {

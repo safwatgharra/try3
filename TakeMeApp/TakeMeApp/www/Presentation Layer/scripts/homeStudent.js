@@ -2,23 +2,23 @@
 
     $("#MenuOpen").click(function () {
         $("#divMenu").addClass('borderMenu');
-        $("#divMenu").css("width", "211px");
+        $("#divMenu").css("width", "50%");
     });
 
     $("#MenuClose").click(function () {
         $("#divMenu").removeClass('borderMenu');
-      $("#divMenu").css("width", "0px");
+      $("#divMenu").css("width", "0%");
 
     });
 
     $(".BtnOrder").click(function () {
         $("#divOrder").addClass('borderOrder');
-        $("#divOrder").css({ "height": "63%", "width": "78%"});
+        $("#divOrder").css({ "height": "65%", "width": "78%"});
     });
 
     $(".OrderClose , .addOrder").click(function () {
 
-        $("#divOrder").css({ "height": "0px","width":"0px"});
+        $("#divOrder").css({ "height": "0%","width":"0%"});
         $("#divOrder").removeClass('borderOrder');       
     });  
 

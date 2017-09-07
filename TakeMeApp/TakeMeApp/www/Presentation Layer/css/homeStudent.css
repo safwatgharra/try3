@@ -1,6 +1,5 @@
 ﻿html {
     height: 100%;
-   
 }
 
 body {
@@ -8,8 +7,7 @@ body {
     width: 100%;
     height: 100%;
     background-size: cover;
-    margin: 0px;
-  
+    margin: 0%;
 }
 
 #divImagCir {
@@ -18,7 +16,7 @@ body {
 
     #divImagCir:active {
         position: relative;
-        top: 5px;
+        top: 6px;
     }
 
 .img-circle {
@@ -39,14 +37,13 @@ body {
     font-weight: bold;
     text-decoration: none;
     display: block;
-    padding: 18px 20px;
+    padding: 4% 5.5%;
     margin-left: 2%;
     margin-top: 5%;
     width: 83%;
     border: none;
     border-radius: 42px;
     border: 3px solid #ffd900;
-    
 }
 
     .BtnOrder:active {
@@ -60,15 +57,11 @@ body {
     width: 78%;
     position: fixed;
     top: 0;
-    margin-left: 35px;
     margin-top: 42%;
     border-radius: 20px;
     transition: 1s;
-    z-index: 1;
     overflow-x: hidden;
-    top: 0;
-    right: 35px;
-    float: right
+    right: 10%;
 }
 
 #OrderDateTimeTXT, #streetSelector {
@@ -80,12 +73,10 @@ body {
     width: 85%;
     margin-top: 15%;
     height: 15%;
-
 }
 
 #OrderDescription {
     display: block;
-   
     font-size: 18px;
     text-align: center;
     width: 85%;
@@ -102,7 +93,7 @@ body {
     font-weight: bold;
     text-decoration: none;
     display: block;
-    padding: 18px 20px;
+    padding: 5% 10%;
     margin-left: 2%;
     margin-top: 5%;
     width: 70%;
@@ -112,10 +103,10 @@ body {
     border: 3px solid #ffd900;
 }
 
-.addOrder:active {
-    position: relative;
-    top: 4px;
-}
+    .addOrder:active {
+        position: relative;
+        top: 5px;
+    }
 
 .borderOrder {
     border: 5px solid #ffd800;
@@ -128,10 +119,10 @@ body {
     margin-left: 75%;
 }
 
-.OrderClose:active {
-    position: relative;
-    top: 4px;
-}
+    .OrderClose:active {
+        position: relative;
+        top: 5px;
+    }
 
 #MenuOpen {
     width: 20%;
@@ -140,34 +131,26 @@ body {
     margin-left: 78%;
 }
 
-#MenuOpen:active {
-    position: relative;
-    top: 1px;
+#MenuClose {
+    max-width: 35%;
+    height: auto;
+    margin-top: 2%;
+    margin-left: 64%;
 }
 
-    #MenuClose {
-        max-width: 35%;
-        height: auto;
-        margin-top: 2%;
-        margin-left: 64%;
+    #MenuClose:active {
+        position: relative;
+        top: 5px;
     }
 
-        #MenuClose:active {
-            position: relative;
-            top: 4px;
-        }
-
 #divMenu {
-  
     background-color: #000000;
     height: 60%;
     position: fixed;
     width: 0%;
-    top: 0;
-    right: 0;
-    transition: 0.5s;
-    z-index: 1;
-    float: right;
+    top: 0%;
+    right: 0%;
+    transition: 0.8s;
     overflow-x: hidden;
 }
 
@@ -179,20 +162,16 @@ body {
 }
 
 ul {
-    margin-left:8px;
-    list-style-type: none;
-    margin-top:5px; 
-    padding: 0;
-    width: 200px;
+    padding-left: 3%;
+    width: 95%;
     background-color: #000000;
-   
 }
 
 li {
     border: 3px solid #ffd900;
     display: block;
     color: #ffffff;
-    padding: 8px 16px;
+    padding: 3% 6%;
     text-align: center;
     text-decoration: none;
     font-family: Georgia;
@@ -200,8 +179,7 @@ li {
     font-weight: bold;
 }
 
-li:active {
-    position: relative;
-    top: 2px;
-}
-
+    li:active {
+        position: relative;
+        top: 5px;
+    }

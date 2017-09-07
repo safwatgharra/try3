@@ -11,12 +11,12 @@
 
     $(".btnPlus").click(function () {
         $("#divOrder").addClass('borderOrder');
-        $("#divOrder").css({ "height": "63%", "width": "78%" });
+        $("#divOrder").css({ "height": "65%", "width": "78%" });
     });
 
     $(".OrderClose , .addOrder").click(function () {
 
-        $("#divOrder").css({ "height": "0px", "width": "0px" });
+        $("#divOrder").css({ "height": "0%", "width": "0%" });
         $("#divOrder").removeClass('borderOrder');
     });
 
