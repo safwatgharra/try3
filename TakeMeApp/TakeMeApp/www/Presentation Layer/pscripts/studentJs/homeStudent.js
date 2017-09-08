@@ -1,5 +1,5 @@
 ﻿$(document).ready(function myfunction() {
-
+   
     $("#MenuOpen").click(function () {
         $("#divMenu").addClass('borderMenu');
         $("#divMenu").css("width", "50%");
@@ -25,7 +25,6 @@
     $("#myOrders").click(function () {
 
         window.location.replace("OrdersPage.html");
-    });  
-
+    });   
 
 });

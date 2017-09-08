@@ -24,7 +24,7 @@ body {
     border-radius: 50%;
     width: 85%;
     height: 90%;
-    margin-top: 12%;
+    margin-top: 20%;
     margin-left: 6.5%;
     border: 3px solid #ffd800;
 }
@@ -192,4 +192,3 @@ li:active {
     position: relative;
     top: 2px;
 }
-
