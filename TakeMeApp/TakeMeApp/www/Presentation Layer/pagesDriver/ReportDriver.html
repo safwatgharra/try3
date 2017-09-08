@@ -16,14 +16,8 @@
 
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
-    <!-- jq link -->
-
-    <script src="libraries/jquery-3.1.1.min.js"></script>
-
     <!-- css link -->
-
-    <link href="css/ReportDriver.css" rel="stylesheet" />
-
+    <link href="../pcss/driverCss/ReportDriver.css" rel="stylesheet" />
 
 </head>
 
@@ -32,14 +26,11 @@
 
 
     <div id="divReport">
-
-        <img src="images/Backbutton.png" class="ReportBack" />
+        <img src="../images/Backbutton.png" class="ReportBack" />
         <br />
-        
 
-      
         <center>
-            <img src="images/camera.png" id="ReportImage" />
+            <img src="../images/camera.png" id="ReportImage" />
             <input type="date" id="ReportDateTimeTXT" readonly />
 
             <select id="ReportSelector"></select>
@@ -47,17 +38,15 @@
             <textarea id="ReportDescription"></textarea>
 
             <p class="addReport">שלח הזמנה</p>
-
-
         </center>
 
     </div>
-
+    <script src="../libraries/jquery-3.1.1.min.js"></script>
     <!-- js link -->
+    <script src="../pscripts/Globals.js"></script>
+    <script src="../pscripts/driverJs/ReportDriver.js"></script>
 
-    <script src="scripts/ReportDriver.js"></script>
 
-    <script src="scripts/Globals.js"></script>
 
 </body>
 
