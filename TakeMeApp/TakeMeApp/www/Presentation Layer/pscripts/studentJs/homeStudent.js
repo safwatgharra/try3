@@ -27,4 +27,10 @@
         window.location.replace("OrdersPage.html");
     });   
 
+    $("#divImagCir").click(function () {
+
+        window.location.replace("mapStudent.html");
+    });   
+
+
 });
