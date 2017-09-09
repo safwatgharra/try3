@@ -64,23 +64,24 @@ body {
     transition: 1s;
     overflow-x: hidden;
     right: 10%;
+    
 }
 
-#OrderDateTimeTXT, #streetSelector {
+#OrderDateTimeTXT,#streetSelector {
+    text-align:right;
     display: block;
     border: none;
     border-radius: 10px;
-    font-size: 18px;
-    text-align: center;
+    font-size: 25px;
     width: 85%;
-    margin-top: 15%;
+    margin-top: 10%;
     height: 15%;
-
 }
+
+
 
 #OrderDescription {
     display: block;
-   
     font-size: 18px;
     text-align: center;
     width: 85%;
