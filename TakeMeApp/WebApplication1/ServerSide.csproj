@@ -100,8 +100,10 @@
     <Content Include="App_Code\UsersWS.cs">
       <SubType>Component</SubType>
     </Content>
-    <Content Include="App_Code\BAL\RequestBAL.cs" />
+    <Content Include="App_Code\BAL\StudentBAL.cs" />
     <Content Include="App_Code\DAL\RequestDBService.cs" />
+    <Content Include="App_Code\BAL\DriverBAL.cs" />
+    <Content Include="App_Code\DAL\DriverDBService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

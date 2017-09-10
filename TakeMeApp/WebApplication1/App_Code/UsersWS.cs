@@ -26,19 +26,19 @@ public class UsersWS : System.Web.Services.WebService
     [WebMethod]
     public string LoadRequests(int userid)
     {
-        RequestBAL reqBAL = new RequestBAL();
+        StudentBAL reqBAL = new StudentBAL();
         return reqBAL.LoadReguests(userid);
     }
     [WebMethod]
-    public string InsertRequest(string date, int locationID, int userID)
+    public string InsertRequest(string date, int locationID, int userID,int requestType)
     {
-        RequestBAL reqBAL = new RequestBAL();
-        return reqBAL.InsertRequest(date, locationID, userID);
+        StudentBAL reqBAL = new StudentBAL();
+        return reqBAL.InsertRequest(date, locationID, userID, requestType);
     }
     [WebMethod]
     public string UpdateRequest(string date, int locationID, int userID)
     {
-        RequestBAL reqBAL = new RequestBAL();
+        StudentBAL reqBAL = new StudentBAL();
         return reqBAL.UpdateRequest(date, locationID, userID);
     }
 
@@ -48,6 +48,19 @@ public class UsersWS : System.Web.Services.WebService
     {
         LoginBAL loginBal = new LoginBAL();
         return loginBal.LoginUserUsingClass(userid, userpass);
+    }
+
+    [WebMethod]
+    public void StartWorking(string date, string time, int userID)
+    {
+        DriverBAL driverBAL = new DriverBAL();
+        driverBAL.StartWorking(date, time, userID);
+    }
+    [WebMethod]
+    public void EndtWorking(string date, string time, int userID)
+    {
+        DriverBAL driverBAL = new DriverBAL();
+        driverBAL.EndtWorking(date, time, userID); 
     }
 
     [WebMethod]
