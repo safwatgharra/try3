@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,22 @@ namespace WebApplication1.App_Code.DAL
         public DriverDBService()
         {
             strCon = DBGlobals.strCon;
+        }
+        public string GetRequests()
+        {
+            SqlConnection con = new SqlConnection(strCon);
+            SqlDataAdapter adptr = new SqlDataAdapter("SELECT dbo.RequestTB.RequestDate, dbo.LocationTB.LocationName, dbo.RequestTB.UserID " +
+                "FROM  dbo.LocationTB INNER JOIN dbo.RequestTB ON dbo.LocationTB.LocationID = dbo.RequestTB.LocationID " +
+                "WHERE(dbo.RequestTB.RequestTypeID = '2') order by RequestDate ", con);
+
+
+            DataSet ds = new DataSet();
+            adptr.Fill(ds, "pre-order");
+            DataTable dt = ds.Tables["pre-order"];
+
+            //needs the newtonsoft.json from nuget packages!
+            string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            return json;
         }
         public void StartWorking(string date,string time,int userID)
         {
@@ -26,7 +44,7 @@ namespace WebApplication1.App_Code.DAL
             com.Connection.Close();
         }
 
-        internal void EndtWorking(string date, string time, int userID)
+        public void EndtWorking(string date, string time, int userID)
         {
             SqlConnection con = new SqlConnection(strCon);
 

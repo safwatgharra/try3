@@ -64,11 +64,17 @@ public class UsersWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string HelloWorld()
+    public string LoadLocations()
     {
-        return "hello";
+        StudentBAL load = new StudentBAL();
+        return load.LoadLocations();
     }
-
+    [WebMethod]
+    public string GetRequests()
+    {
+        DriverBAL loadreq = new DriverBAL();
+        return loadreq.GetRequests();
+    }
     [WebMethod]
     public string GetAllUsers()
     {

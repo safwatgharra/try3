@@ -18,9 +18,13 @@ namespace WebApplication1.App_Code.BAL
             driverdb.StartWorking(date, time, userID);
         }
 
-        internal void EndtWorking(string date, string time, int userID)
+        public void EndtWorking(string date, string time, int userID)
         {
             driverdb.EndtWorking(date, time, userID);
+        }
+        public string GetRequests()
+        {
+            return driverdb.GetRequests();
         }
     }
 }

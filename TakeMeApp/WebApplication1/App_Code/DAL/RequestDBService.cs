@@ -34,6 +34,21 @@ namespace WebApplication1.App_Code.DAL
             return json;
         }
 
+        internal string LoadLocatins()
+        {
+            SqlConnection con = new SqlConnection(strCon);
+            SqlDataAdapter adptr = new SqlDataAdapter(" SELECT * FROM [LocationTB]", con);
+
+
+            DataSet ds = new DataSet();
+            adptr.Fill(ds, "locations");
+            DataTable dt = ds.Tables["locations"];
+
+            //needs the newtonsoft.json from nuget packages!
+            string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            return json;
+        }
+
         public void RemoveReqDB(string date, int locationID, int userID)
         {
             SqlConnection con = new SqlConnection(strCon);

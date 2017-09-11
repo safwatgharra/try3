@@ -1,4 +1,7 @@
-﻿using WebApplication1.App_Code.DAL;
+﻿using Newtonsoft.Json;
+using System.Data;
+using System.Data.SqlClient;
+using WebApplication1.App_Code.DAL;
 
 namespace WebApplication1.App_Code.BAL
 {
@@ -8,6 +11,10 @@ namespace WebApplication1.App_Code.BAL
         public StudentBAL()
         {
             
+        }
+        public string LoadLocations()
+        {
+            return studentdb.LoadLocatins();
         }
         public string LoadReguests(int userID)
         {
