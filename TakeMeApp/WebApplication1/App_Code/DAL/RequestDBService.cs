@@ -17,7 +17,7 @@ namespace WebApplication1.App_Code.DAL
         public RequestDBService()
         {
             strCon = DBGlobals.strCon;
-            
+
         }
 
         public string RequestUser(int UserID)
@@ -34,23 +34,33 @@ namespace WebApplication1.App_Code.DAL
             DataTable dt = ds.Tables["Requests"];
 
             //needs the newtonsoft.json from nuget packages!
-            string json =JsonConvert.SerializeObject(dt, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
             return json;
         }
 
-        internal string LoadLocatins()
+        public string LoadLocatins()
         {
             SqlConnection con = new SqlConnection(strCon);
-            SqlDataAdapter adptr = new SqlDataAdapter(" SELECT * FROM [LocationTB]", con);
+            List<Location> loc = new List<Location>();
+            SqlCommand com = new SqlCommand(" SELECT * FROM [LocationTB]", con);
+            con.Open();
+            SqlDataReader reader = com.ExecuteReader();
 
+            while (reader.Read())
+            {
+                Location location = new Location
+                {
+                    LocationID = Convert.ToInt16(reader["LocationID"]),
+                    LocationName = reader["LocationName"].ToString(),
+                    WayPoint = reader["WayPoint"].ToString()
+                };
+                loc.Add(location);
+            }
+            return serializer.Serialize(loc);
 
-            DataSet ds = new DataSet();
-            adptr.Fill(ds, "locations");
-            DataTable dt = ds.Tables["locations"];
 
             //needs the newtonsoft.json from nuget packages!
-            string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
-            return json;
+            
         }
 
         public void RemoveReqDB(string date, int locationID, int userID)
@@ -58,21 +68,21 @@ namespace WebApplication1.App_Code.DAL
             SqlConnection con = new SqlConnection(strCon);
 
             SqlCommand com = new SqlCommand("DELETE FROM [dbo].[RequestTB]" +
-                                            " WHERE UserID ="+ userID+" and LocationID =" + locationID +
-                                            "and RequestDate='"+ date+"'", con);//we have to check if the string date is working 
+                                            " WHERE UserID =" + userID + " and LocationID =" + locationID +
+                                            "and RequestDate='" + date + "'", con);//we have to check if the string date is working 
 
             con.Open();
             SqlDataReader reader = com.ExecuteReader();
             com.Connection.Close();
         }
 
-        public void InsertReqDB(string date, int locationID, int userID,int requestType)//type : 1- immediatly , 2- pre-order
+        public void InsertReqDB(string date, int locationID, int userID, int requestType)//type : 1- immediatly , 2- pre-order
         {
             SqlConnection con = new SqlConnection(strCon);
 
             SqlCommand com = new SqlCommand("INSERT INTO [dbo].[RequestTB]" +
                              "([RequestDate],[LocationID],[RequestTypeID],[UserID],[RequestStatus])" +
-                                "VALUES ('"+date+"',"+locationID+","+ requestType+"," +userID+",1)", con);//we have to check if the string date is working 
+                                "VALUES ('" + date + "'," + locationID + "," + requestType + "," + userID + ",1)", con);//we have to check if the string date is working 
 
             con.Open();
             SqlDataReader reader = com.ExecuteReader();
