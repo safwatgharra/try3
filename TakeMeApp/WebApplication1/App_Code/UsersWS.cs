@@ -49,7 +49,18 @@ public class UsersWS : System.Web.Services.WebService
         LoginBAL loginBal = new LoginBAL();
         return loginBal.LoginUserUsingClass(userid, userpass);
     }
-
+    [WebMethod]
+    public void StartBreak(int userID,string date)
+    {
+        DriverBAL driver = new DriverBAL();
+        driver.StartBreak(userID,date);
+    }
+    [WebMethod]
+    public void EndtBreak(int userID, string date)
+    {
+        DriverBAL driver = new DriverBAL();
+        driver.EndtBreak(userID, date);
+    }
     [WebMethod]
     public void StartWorking(string date, string time, int userID)
     {
@@ -84,5 +95,3 @@ public class UsersWS : System.Web.Services.WebService
 
    
 }
-
-

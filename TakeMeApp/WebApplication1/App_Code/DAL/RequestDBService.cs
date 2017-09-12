@@ -5,12 +5,15 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using WebApplication1.App_Code.BAL;
+using System.Web.Script.Serialization;
 
 namespace WebApplication1.App_Code.DAL
 {
     public class RequestDBService
     {
         string strCon;
+        JavaScriptSerializer serializer = new JavaScriptSerializer();
         public RequestDBService()
         {
             strCon = DBGlobals.strCon;
@@ -34,19 +37,32 @@ namespace WebApplication1.App_Code.DAL
             return json;
         }
 
-        internal string LoadLocatins()
+        public string LoadLocatins()
         {
             SqlConnection con = new SqlConnection(strCon);
-            SqlDataAdapter adptr = new SqlDataAdapter(" SELECT * FROM [LocationTB]", con);
-
-
-            DataSet ds = new DataSet();
-            adptr.Fill(ds, "locations");
-            DataTable dt = ds.Tables["locations"];
+            //SqlDataAdapter adptr = new SqlDataAdapter(" SELECT * FROM [LocationTB]", con);
+            List<Location> loc = new List<Location>();
+            SqlCommand com = new SqlCommand(" SELECT * FROM [LocationTB]", con);
+            //DataSet ds = new DataSet();
+            //adptr.Fill(ds, "locations");
+            //DataTable dt = ds.Tables["locations"];
 
             //needs the newtonsoft.json from nuget packages!
-            string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
-            return json;
+            con.Open();
+            SqlDataReader reader = com.ExecuteReader();
+            while (reader.Read())
+            {
+                Location location = new Location
+                {
+                    LocationID = Convert.ToInt16(reader["LocationID"]),
+                    LocationName = reader["LocationName"].ToString(),
+                    WayPoint = reader["WayPoint"].ToString()
+                };
+                loc.Add(location);
+            }
+            return serializer.Serialize(loc);
+            //string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            //return json;
         }
 
         public void RemoveReqDB(string date, int locationID, int userID)
@@ -59,6 +75,7 @@ namespace WebApplication1.App_Code.DAL
 
             con.Open();
             SqlDataReader reader = com.ExecuteReader();
+
             com.Connection.Close();
         }
 

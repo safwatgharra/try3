@@ -104,6 +104,7 @@
     <Content Include="App_Code\DAL\RequestDBService.cs" />
     <Content Include="App_Code\BAL\DriverBAL.cs" />
     <Content Include="App_Code\DAL\DriverDBService.cs" />
+    <Content Include="App_Code\BAL\Location.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

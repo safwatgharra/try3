@@ -31,6 +31,32 @@ namespace WebApplication1.App_Code.DAL
             string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
             return json;
         }
+
+        public void StartBreak(int userID,string date)
+        {
+            SqlConnection con = new SqlConnection(strCon);
+
+            SqlCommand com = new SqlCommand("UPDATE [dbo].[AttindanceReportDB]" +
+                                            " SET[IsAvaible] = 1" +
+                                            " WHERE[UserID] = "+userID+ "and[WorkDayDate] = '"+date+"'", con);//we have to check if the string date is working 
+
+            con.Open();
+            SqlDataReader reader = com.ExecuteReader();
+            com.Connection.Close();
+        }
+        public void EndtBreak(int userID, string date)
+        {
+            SqlConnection con = new SqlConnection(strCon);
+
+            SqlCommand com = new SqlCommand("UPDATE [dbo].[AttindanceReportDB]" +
+                                            " SET[IsAvaible] = 0" +
+                                            " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'", con);//we have to check if the string date is working 
+
+            con.Open();
+            SqlDataReader reader = com.ExecuteReader();
+            com.Connection.Close();
+        }
+
         public void StartWorking(string date,string time,int userID)
         {
             SqlConnection con = new SqlConnection(strCon);
