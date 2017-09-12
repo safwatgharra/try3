@@ -3,16 +3,12 @@
 <head>
 
     <title>TakeMeApp</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' https:; style-src 'self' 'unsafe-inline'; media-src *">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-
-    <!-- css link -->
-    <link href="../pcss/studentCss/OrdersPage.css" rel="stylesheet" />
-
+    <link href="../pcss/driverCss/Requests.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -25,59 +21,24 @@
     <center>
         <div id="table">
             <table>
-
                 <tr>
-
-                    <th>בטל</th>
-
+                    <th>לוקח</th>
                     <th>תאריך ושעה</th>
                     <th>מיקום</th>
-
                 </tr>
                 <tr>
-
                     <td>
-                        <img src="../images/minus.png"  id="removeRow" />
+                        <input type="checkbox" checked id="checkbox">
                     </td>
-
                     <td></td>
                     <td></td>
-
                 </tr>
-
             </table>
         </div>
     </center>
-
-
-    <br />
-
-    <center>
-        <img src="../images/plus.png"  class="btnPlus"/>
-    </center>
-
-
-    <div id="divOrder">
-        <img src="../images/Backbutton.png" class="OrderClose"/>
-        <br />
-
-        <center>
-
-            <input type="date" id="OrderDateTimeTXT" readonly />
-
-            <select id="streetSelector"></select>
-            <br />
-
-          
-            <p class="addOrder">שלח הזמנה</p>
-
-        </center>
-    </div>
-
-    <script src="../pscripts/Globals.js"></script>
     <script src="../libraries/jquery-3.1.1.min.js"></script>
-    <script src="../pscripts/studentJs/OrdersPage.js"></script>
-
-
+    <script src="../cordova.js"></script>
+    <script src="../pscripts/Globals.js"></script>
+    <script src="../pscripts/driverJs/Requests.js"></script>
 </body>
 </html>

@@ -14,6 +14,7 @@ namespace WebApplication1.App_Code.BAL
         }
         public string LoadLocations()
         {
+            //return "ayoub";
             return studentdb.LoadLocatins();
         }
         public string LoadReguests(int userID)

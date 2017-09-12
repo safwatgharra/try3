@@ -15,39 +15,39 @@
     //__________________order view____________________
     $(".BtnOrder").click(function () {
         $("#divOrder").addClass('borderOrder');
-        $("#divOrder").css({ "height": "65%", "width": "78%" });
-        //fillStreetLocationSelect();
+        $("#divOrder").css({ "height": "50%", "width": "78%" });
+        fillStreetLocationSelect();
     });
 
-    $(".addOrder").click(function () {
-        //creatOrderObj();
-        //$.ajax({
-        //    url: "",
-        //    dataType: "json",
-        //    type: "POST",
-        //    data: JSON.stringify(order),
-        //    contentType: "application/json; charset=utf-8",
-        //    error: function (jqXHR, exception) {
-        //        alert(formatErrorMessage(jqXHR, exception));
-        //    },
-        //    success: function (data) {
-        //        var res = data.d;
-        //        var resOutput = JSON.parse(res);
-        //        alert("res-" + res);
+    //$(".addOrder").click(function () {
+    //    creatOrderObj();
+    //    $.ajax({
+    //        url: "",
+    //        dataType: "json",
+    //        type: "POST",
+    //        data: JSON.stringify(order),
+    //        contentType: "application/json; charset=utf-8",
+    //        error: function (jqXHR, exception) {
+    //            alert(formatErrorMessage(jqXHR, exception));
+    //        },
+    //        success: function (data) {
+    //            var res = data.d;
+    //            var resOutput = JSON.parse(res);
+    //            alert("res-" + res);
 
-        //        if (resOutput != null) {
-        //            alert("ההזמנה נשלחה");
-        //         
-        //        }
-        //        else {
-        //            alert("קיימת תקלת קלט נא לבדוק את אחד הנתונים");
-        //        }
-        //    }
-        //});
+    //            if (resOutput != null) {
+    //                alert("ההזמנה נשלחה");
+                 
+    //            }
+    //            else {
+    //                alert("קיימת תקלת קלט נא לבדוק את אחד הנתונים");
+    //            }
+    //        }
+    //    });
 
-        $("#divOrder").css({ "height": "0%", "width": "0%" });
-        $("#divOrder").removeClass('borderOrder');
-    });
+    //    $("#divOrder").css({ "height": "0%", "width": "0%" });
+    //    $("#divOrder").removeClass('borderOrder');
+    //});
 
     $(".OrderClose").click(function () {
 
@@ -76,32 +76,25 @@
 
 //order view function
 function fillStreetLocationSelect() {
+ 
     $.ajax({
-        url: "",
+        //async: true,
+        url: WebServiceURL + "/LoadLocations",
         dataType: "json",
-        type: "POST",
-        data: {},
+        type: 'POST',
         contentType: "application/json; charset=utf-8",
-        error: function (jqXHR, exception) {
-            alert(formatErrorMessage(jqXHR, exception));
-        },
         success: function (data) {
 
-            if (resOutput != null) {
-                var x = document.getElementById("streetSelector");
-                var lenenenene = x.length;
-                while (lenenenene >= 0) {
-                    x.remove(lenenenene--);
-                }
-                var result = data.d;
-                var i;
-                for (i = 0; result[i] != null; i++) {
-                    $("#streetSelector").append('<option value="' + i + '">' + result[i].substring(1, result[i].length - 1) + '</option>');
-                }
+            var res = data.d;
+            alert(res);
+            var result = JSON.parse(res);
+            alert(result[0].LocatinName);
+            for (var i = 0; i < result.length; i++) {
+                document.getElementById('streetSelector').innerHTML += result[i].location;
             }
-            else {
-                alert("קיימת תקלת בהעלאת הנתונים");
-            }
+        },
+        fail: function () {
+            alert("error");
         }
     });
 }
@@ -116,8 +109,8 @@ function creatOrderObj() {
         dt: newDate,
         strid: newStreet,
         des: newDes,
-        lat: newLat,
-        lng: newLng
+        //lat: newLat,
+        //lng: newLng
     }
 }
 

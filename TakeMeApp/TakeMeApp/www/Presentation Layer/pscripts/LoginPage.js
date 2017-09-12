@@ -1,7 +1,5 @@
 ﻿$(document).ready(function () {
     $('#BtnLogin').click(function () {
-
-
         var UserID = $("#InputUserId").val();
         var UserPass = $("#InputUserPassword").val();
         var user =
@@ -23,14 +21,12 @@
                 var res = data.d;
                 var resOutput = JSON.parse(res);
                 alert("res-" + res);
-                alert("resO-" + resOutput);
-
                 if (resOutput != null) {
                     addUserToLocalStorage(resOutput);
                     changePages(resOutput);
                 }
                 else {
-                    alert("error user");
+                    alert("User Not Found!");
                 }
             }
 

@@ -73,14 +73,6 @@ td {
     height: 15%;
 }
 
-#OrderDescription {
-    display: block;
-    font-size: 18px;
-    text-align: center;
-    width: 85%;
-    margin-top: 3%;
-    height: 30%;
-}
 
 .addOrder {
     color: #ffffff;

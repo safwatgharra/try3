@@ -24,8 +24,6 @@ body {
     z-index: 1006;
 }
 
-
-
 #MenuClose {
     max-width: 35%;
     height: auto;
@@ -40,8 +38,7 @@ body {
 
 #divMenu {
     background-color: #000000;
-    height: 60%;
-     height: 65%;
+     height: 70%;
     position: fixed;
     width: 0%;
     top: 0%;

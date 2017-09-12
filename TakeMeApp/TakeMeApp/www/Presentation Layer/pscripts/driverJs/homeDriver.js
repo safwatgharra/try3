@@ -39,8 +39,23 @@ function changePosition(position) {
 
 
 function showError(error) {
-    alert("Error" + error);
-
+    switch (error.code) {
+        case error.PERMISSION_DENIED:
+            alert("נא לשאר את השימוש בשירות המיקום.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            alert("Location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            alert("The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.");
+            break;
+        default:
+            alert("An unknown error occurred.(default)");
+            break;
+    }
 }
 
 $(document).ready(function () {
@@ -60,5 +75,8 @@ $(document).ready(function () {
     $("#BtnReport").click(function () {
         window.location.replace("ReportDriver.html");
     });
-    
+
+    $("#BtnRequests").click(function () {
+        window.location.replace("Requests.html");
+    });
 });
