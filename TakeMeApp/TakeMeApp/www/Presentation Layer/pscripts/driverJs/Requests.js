@@ -1,7 +1,7 @@
 ﻿$(document).ready(function myfunction() {
 
     $("#backOrders").click(function () {
-        window.location.replace("homeDriver.html");
+        window.location.replace("mapDriver.html");
     });
 
     $("#removeRow").click(function () {

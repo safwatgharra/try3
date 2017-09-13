@@ -1,56 +1,45 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-
     <title>TakeMeApp</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' https:; style-src 'self' 'unsafe-inline'; media-src *">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-   
-    <!-- css link -->
-  <link href="../pcss/driverCss/homeDriver.css" rel="stylesheet" />
 
+    <link href="../pcss/driverCss/homeDriver.css" rel="stylesheet" />
 </head>
-
 <body>
-    <img src="../images/Menu.png" id="MenuOpen" />
-    
+    <div>
+        <img src="../images/Menu.png" id="MenuOpen" />
+
+    </div>
+
     <div id="divMenu">
-        <img src="../images/close-circular.png" id="MenuClose"/>
 
+        <img src="../images/close-circular.png" id="MenuClose" />
         <ul>
-            <li id="PchangeStatus">:שינוי סטטוס</li>
-            <li class="active">יציאה להפסקה</li>
-            <li class="active">המשך עבודה</li>
+            <li id="BtnReport">דווח על תקלה</li>
+
+            <li id="logoutBtn">יציאה</li>
         </ul>
 
-        <hr />
-        <ul>
-            <li class="active" id="BtnRequests">הזמנות</li>
-        </ul>
-        <hr />
-        <ul>
-            <li class="active" id="BtnReport">דווח על תקלה</li>
-            <li class="active">יציאה</li>
-        </ul>
 
     </div>
 
-    <div id="map">
+    <div id="divCir">
+        <p id="entryWork">  
+        כניסה 
+        לעבודה   
+        </p>
     </div>
-        
-      
-    
 
-    <!-- js link -->
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCH3PdXAhWMYBCXp4pyLgEIeaEyrFbcdk&callback=initMap" async defer></script>
+
     <script src="../libraries/jquery-3.1.1.min.js"></script>
-    <script src="../cordova.js"></script>
+    <script src="../../../cordova.js"></script>
     <script src="../pscripts/Globals.js"></script>
     <script src="../pscripts/driverJs/homeDriver.js"></script>
-
 </body>
 </html>

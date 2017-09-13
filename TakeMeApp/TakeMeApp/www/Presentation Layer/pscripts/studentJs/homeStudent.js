@@ -1,5 +1,5 @@
 ﻿$(document).ready(function myfunction() {
-    
+
     //____________________menu view______________________
     $("#MenuOpen").click(function () {
         $("#divMenu").addClass('borderMenu');
@@ -37,7 +37,7 @@
 
     //            if (resOutput != null) {
     //                alert("ההזמנה נשלחה");
-                 
+
     //            }
     //            else {
     //                alert("קיימת תקלת קלט נא לבדוק את אחד הנתונים");
@@ -76,7 +76,7 @@
 
 //order view function
 function fillStreetLocationSelect() {
- 
+
     $.ajax({
         //async: true,
         url: WebServiceURL + "/LoadLocations",
@@ -88,9 +88,13 @@ function fillStreetLocationSelect() {
             var res = data.d;
             alert(res);
             var result = JSON.parse(res);
-            alert(result[0].LocatinName);
-            for (var i = 0; i < result.length; i++) {
-                document.getElementById('streetSelector').innerHTML += result[i].location;
+            var x = document.getElementById("streetSelector");
+            var lenenenene = x.length;
+            while (lenenenene >= 0) {
+                x.remove(lenenenene--);
+            }
+            for (var i = 0; result[i] != null; i++) {
+                $("#streetSelector").append('<option value="' + i + '">' + result[i].LocationName + '</option>');
             }
         },
         fail: function () {
