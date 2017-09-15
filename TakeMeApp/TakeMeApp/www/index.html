@@ -5,7 +5,8 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' https:; style-src 'self' 'unsafe-inline'; media-src *">
+
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -33,7 +34,7 @@
     <img src="Presentation Layer/images/LoadingImage.gif" />
 
     <!-- scripts -->
-    <script src="../cordova.js"></script>
+    <script src="../../../cordova.js"></script>
     <script src="Presentation Layer/pscripts/Globals.js"></script>
     <script src="Presentation Layer/pscripts/LoginPage.js"></script>
 

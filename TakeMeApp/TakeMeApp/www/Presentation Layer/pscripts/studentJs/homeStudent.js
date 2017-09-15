@@ -19,35 +19,35 @@
         fillStreetLocationSelect();
     });
 
-    //$(".addOrder").click(function () {
-    //    creatOrderObj();
-    //    $.ajax({
-    //        url: "",
-    //        dataType: "json",
-    //        type: "POST",
-    //        data: JSON.stringify(order),
-    //        contentType: "application/json; charset=utf-8",
-    //        error: function (jqXHR, exception) {
-    //            alert(formatErrorMessage(jqXHR, exception));
-    //        },
-    //        success: function (data) {
-    //            var res = data.d;
-    //            var resOutput = JSON.parse(res);
-    //            alert("res-" + res);
+    $(".addOrder").click(function () {
+        //creatOrderObj();
+        //$.ajax({
+        //    url: "",
+        //    dataType: "json",
+        //    type: "POST",
+        //    data: JSON.stringify(order),
+        //    contentType: "application/json; charset=utf-8",
+        //    error: function (jqXHR, exception) {
+        //        alert(formatErrorMessage(jqXHR, exception));
+        //    },
+        //    success: function (data) {
+        //        var res = data.d;
+        //        var resOutput = JSON.parse(res);
+        //        alert("res-" + res);
 
-    //            if (resOutput != null) {
-    //                alert("ההזמנה נשלחה");
+        //        if (resOutput != null) {
+        //            alert("ההזמנה נשלחה");
 
-    //            }
-    //            else {
-    //                alert("קיימת תקלת קלט נא לבדוק את אחד הנתונים");
-    //            }
-    //        }
-    //    });
+        //        }
+        //        else {
+        //            alert("קיימת תקלת קלט נא לבדוק את אחד הנתונים");
+        //        }
+        //    }
+        //});
 
-    //    $("#divOrder").css({ "height": "0%", "width": "0%" });
-    //    $("#divOrder").removeClass('borderOrder');
-    //});
+        $("#divOrder").css({ "height": "0%", "width": "0%" });
+        $("#divOrder").removeClass('borderOrder');
+    });
 
     $(".OrderClose").click(function () {
 
@@ -73,13 +73,11 @@
     });
 });
 
-
 //order view function
 function fillStreetLocationSelect() {
 
     $.ajax({
-        //async: true,
-        url: WebServiceURL + "/LoadLocations",
+        url: WebServiceURL +"/LoadLocations",
         dataType: "json",
         type: 'POST',
         contentType: "application/json; charset=utf-8",
@@ -106,15 +104,12 @@ function fillStreetLocationSelect() {
 function creatOrderObj() {
     var newDate = $('#OrderDateTimeTXT').val();
     var newStreet = $("#streetSelector").val();
-    var newDes = $("#OrderDescription").val();
-
     var order = {
         uid: localStorage.uid,
         dt: newDate,
         strid: newStreet,
-        des: newDes,
-        //lat: newLat,
-        //lng: newLng
+        lat: newLat,
+        lng: newLng
     }
 }
 

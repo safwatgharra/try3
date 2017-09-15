@@ -72,6 +72,89 @@ $(document).ready(function () {
 
     });
 
+    $("#StartBreak").click(function () {
+        var d = new Date();
+
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+
+        var date = d.getFullYear() + '/' +
+            (month < 10 ? '0' : '') + month + '/' +
+            (day < 10 ? '0' : '') + day;
+
+        UserSB =
+            {
+            userID: localStorage.userid,
+            date: date
+            };
+
+        //$.ajax({
+        //    url: WebServiceURL + "/StartBreak",
+        //    dataType: "json",
+        //    type: "POST",
+        //    data: JSON.stringify(UserSB),
+        //    contentType: "application/json; charset=utf-8",
+        //    error: function (jqXHR, exception) {
+        //        alert(formatErrorMessage(jqXHR, exception));
+        //    },
+        //    success: function (data) {
+        //        var res = data.d;
+        //        var resOutput = JSON.parse(res);
+        //        alert("res-" + res);
+
+        //        //if (resOutput != null) {
+
+        //        //}
+        //        //else {
+        //        //    alert("User Not Found!");
+        //        //}
+        //    }
+
+        //});
+    });
+
+    $("#EndtBreak").click(function () {
+        var d = new Date();
+
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+
+        var date = d.getFullYear() + '/' +
+            (month < 10 ? '0' : '') + month + '/' +
+            (day < 10 ? '0' : '') + day;
+
+        UserEB =
+            {
+                userID: localStorage.userid,
+                date: date
+            };
+
+        //$.ajax({
+        //    url: WebServiceURL + "/EndtBreak",
+        //    dataType: "json",
+        //    type: "POST",
+        //    data: JSON.stringify(UserSB),
+        //    contentType: "application/json; charset=utf-8",
+        //    error: function (jqXHR, exception) {
+        //        alert(formatErrorMessage(jqXHR, exception));
+        //    },
+        //    success: function (data) {
+        //        var res = data.d;
+        //        var resOutput = JSON.parse(res);
+        //        alert("res-" + res);
+
+        //        //if (resOutput != null) {
+
+        //        //}
+        //        //else {
+        //        //    alert("User Not Found!");
+        //        //}
+        //    }
+
+        //});
+    });
+    
+
     $("#BtnReport").click(function () {
         window.location.replace("ReportDriver.html");
     });
@@ -79,4 +162,56 @@ $(document).ready(function () {
     $("#BtnRequests").click(function () {
         window.location.replace("Requests.html");
     });
+
+    $("#EndtWorking").click(function () {
+        //EndtWorking
+        var d = new Date();
+
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+
+        var date = d.getFullYear() + '/' +
+            (month < 10 ? '0' : '') + month + '/' +
+            (day < 10 ? '0' : '') + day;
+           
+        var dt = new Date();
+        var time = (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() + ":" + (dt.getSeconds() < 10 ? '0' : '') + dt.getSeconds();
+        UserEW =
+            {
+            date: date,
+            time: time
+            , userID: localStorage.userid
+            };
+
+        //$.ajax({
+        //    url: WebServiceURL + "/EndtWorking",
+        //    dataType: "json",
+        //    type: "POST",
+        //    data: JSON.stringify(UserEW),
+        //    contentType: "application/json; charset=utf-8",
+        //    error: function (jqXHR, exception) {
+        //        alert(formatErrorMessage(jqXHR, exception));
+        //    },
+        //    success: function (data) {
+        //        var res = data.d;
+        //        var resOutput = JSON.parse(res);
+        //        alert("res-" + res);
+
+        //        //if (resOutput != null) {
+                 
+        //        //}
+        //        //else {
+        //        //    alert("User Not Found!");
+        //        //}
+        //    }
+
+        //});
+
+    });
+
+    $("#logoutBtn").click(function () {
+        localStorage.clear();
+        window.location.replace("../pageLogin/LoginPage.html");
+    });
+
 });
