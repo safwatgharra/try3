@@ -36,5 +36,9 @@ namespace WebApplication1.App_Code.BAL
         {
             driverdb.EndtBreak(userID, date);
         }
+        public string LoadImmediateOrders()
+        {
+            return driverdb.LoadImmediateOrders();
+        }
     }
 }

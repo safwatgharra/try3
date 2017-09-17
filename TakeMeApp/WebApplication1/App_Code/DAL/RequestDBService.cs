@@ -52,7 +52,8 @@ namespace WebApplication1.App_Code.DAL
                 {
                     LocationID = Convert.ToInt16(reader["LocationID"]),
                     LocationName = reader["LocationName"].ToString(),
-                    WayPoint = reader["WayPoint"].ToString()
+                    Longi = reader["Long"].ToString(),
+                    Lati=reader["lat"].ToString()
                 };
                 loc.Add(location);
             }

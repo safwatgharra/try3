@@ -93,6 +93,12 @@ public class UsersWS : System.Web.Services.WebService
         UsersBAL users = new UsersBAL();
         return users.GetAllUsers();
     }
+    [WebMethod]
+    public string LoadImmediateOrders()
+    {
+        DriverBAL loadim = new DriverBAL();
+        return loadim.LoadImmediateOrders();
+    }
 
     [WebMethod]
     public string helloWorld()
