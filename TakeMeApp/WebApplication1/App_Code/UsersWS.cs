@@ -24,16 +24,23 @@ public class UsersWS : System.Web.Services.WebService
     {
     }
     [WebMethod]
+    public void TakeMe(string date, int userID, string longi, string lati)
+    {
+        StudentBAL req = new StudentBAL();
+        req.TakeMe(date, userID, longi, lati);
+    }
+
+    [WebMethod]
     public string LoadRequests(int userid)
     {
         StudentBAL reqBAL = new StudentBAL();
         return reqBAL.LoadReguests(userid);
     }
     [WebMethod]
-    public string InsertRequest(string date, int locationID, int userID,int requestType)
+    public string InsertRequest(string date, int locationID, int userID)
     {
         StudentBAL reqBAL = new StudentBAL();
-        return reqBAL.InsertRequest(date, locationID, userID, requestType);
+        return reqBAL.InsertRequest(date, locationID, userID);
     }
     [WebMethod]
     public string UpdateRequest(string date, int locationID, int userID)
@@ -99,7 +106,12 @@ public class UsersWS : System.Web.Services.WebService
         DriverBAL loadim = new DriverBAL();
         return loadim.LoadImmediateOrders();
     }
-
+    [WebMethod]
+    public string LoadPreOrders(string todaydate)
+    {
+        DriverBAL loadPre = new DriverBAL();
+        return loadPre.LoadPreOrders(todaydate);
+    }
     [WebMethod]
     public string helloWorld()
     {

@@ -21,15 +21,19 @@ namespace WebApplication1.App_Code.BAL
         {
             return studentdb.RequestUser(userID);
         }
-        public string InsertRequest(string date, int locationID, int userID,int requestType)
+        public string InsertRequest(string date, int locationID, int userID)
         {
-            studentdb.InsertReqDB(date, locationID, userID,requestType);
+            studentdb.InsertReqDB(date, locationID, userID);
             return studentdb.RequestUser(userID);
         }
         public string UpdateRequest(string date, int locationID, int userID)
         {
             studentdb.RemoveReqDB(date, locationID, userID);
             return studentdb.RequestUser(userID);
+        }
+        public void TakeMe(string date, int userID, string longi, string lati)
+        {
+            studentdb.TakeMe(date, userID, longi, lati);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace WebApplication1.App_Code.DAL
             SqlDataAdapter adptr = new SqlDataAdapter(
                 "  SELECT dbo.RequestTB.RequestDate, dbo.LocationTB.LocationName " +
                 " FROM dbo.RequestTB INNER JOIN  dbo.LocationTB ON dbo.RequestTB.LocationID = dbo.LocationTB.LocationID" +
-                " WHERE UserID = '" + UserID + "' and RequestTypeID = 2", con);
+                " WHERE UserID = '" + UserID + "' and RequestTypeID = 2 and [RequestStatus]=1", con);
 
 
             DataSet ds = new DataSet();
@@ -88,13 +88,26 @@ namespace WebApplication1.App_Code.DAL
             com.Connection.Close();
         }
 
-        public void InsertReqDB(string date, int locationID, int userID, int requestType)//type : 1- immediatly , 2- pre-order
+        public void InsertReqDB(string date, int locationID, int userID)//type : 1- immediatly , 2- pre-order
         {
             SqlConnection con = new SqlConnection(strCon);
 
             SqlCommand com = new SqlCommand("INSERT INTO [dbo].[RequestTB]" +
                              "([RequestDate],[LocationID],[RequestTypeID],[UserID],[RequestStatus])" +
-                                "VALUES ('" + date + "'," + locationID + "," + requestType + "," + userID + ",1)", con);//we have to check if the string date is working 
+                                "VALUES ('" + date + "'," + locationID + ",2," + userID + ",1)", con);//we have to check if the string date is working 
+
+            con.Open();
+            SqlDataReader reader = com.ExecuteReader();
+            com.Connection.Close();
+        }
+
+        public void TakeMe(string date,int userID,string longi,string lati)
+        {
+            SqlConnection con = new SqlConnection(strCon);
+
+            SqlCommand com = new SqlCommand("INSERT INTO [dbo].[RequestTB]" +
+                             "([RequestDate],[LocationID],[RequestTypeID],[UserID],[RequestStatus],[long],[lat])" +
+                                "VALUES ('" + date + "' ,99, 1 ," + userID + ",1,"+longi +","+lati+")", con);//we have to check if the string date is working 
 
             con.Open();
             SqlDataReader reader = com.ExecuteReader();

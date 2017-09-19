@@ -40,5 +40,10 @@ namespace WebApplication1.App_Code.BAL
         {
             return driverdb.LoadImmediateOrders();
         }
+        public string LoadPreOrders(string todaydate)
+        {
+            return driverdb.LoadPreOrders(todaydate);
+        }
+
     }
 }

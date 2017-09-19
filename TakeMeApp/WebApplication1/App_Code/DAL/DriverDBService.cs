@@ -32,25 +32,27 @@ namespace WebApplication1.App_Code.DAL
         //    return json;
         //}
 
-        public string LoadPreOrders()
+        public string LoadPreOrders(string todaydate)
         {
             SqlConnection con = new SqlConnection(strCon);
             SqlDataAdapter adptr = new SqlDataAdapter("SELECT  dbo.RequestTB.UserID, dbo.LocationTB.long, dbo.LocationTB.lat " +
                                                       "FROM    dbo.LocationTB INNER JOIN dbo.RequestTB ON dbo.LocationTB.LocationID = dbo.RequestTB.LocationID " +
-                                                      "WHERE(dbo.RequestTB.RequestTypeID = '2')", con);
+                                                      "WHERE(dbo.RequestTB.RequestTypeID = '2' and [RequestStatus]=1 and cast([RequestDate] as date)='" + todaydate + "')", con);
 
             DataSet ds = new DataSet();
-            adptr.Fill(ds, "immidiate");
-            DataTable dt = ds.Tables["immidiate"];
+            adptr.Fill(ds, "preOrder");
+            DataTable dt = ds.Tables["preOrder"];
 
             //needs the newtonsoft.json from nuget packages!
             string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
             return json;
         }
+
         public string LoadImmediateOrders()
         {
             SqlConnection con = new SqlConnection(strCon);
-            SqlDataAdapter adptr = new SqlDataAdapter("SELECT [UserID],[long],[lat] FROM [RequestTB] where[RequestTypeID] = 1", con);
+            SqlDataAdapter adptr = new SqlDataAdapter("SELECT [UserID],[long],[lat] FROM [RequestTB] " +
+                                                        "where[RequestTypeID] = 1 and [RequestStatus]=1 ", con);
 
             DataSet ds = new DataSet();
             adptr.Fill(ds, "immidiate");
