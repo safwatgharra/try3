@@ -25,7 +25,7 @@
         var output = d.getFullYear() + '/' +
             (month < 10 ? '0' : '') + month + '/' +
             (day < 10 ? '0' : '') + day;
- 
+
         var dt = new Date();
         var time = (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() + ":" + (dt.getSeconds() < 10 ? '0' : '') + dt.getSeconds();
         UserEW =
@@ -34,7 +34,8 @@
                 time: time
                 , userID: localStorage.userid
             };
-
+        alert(output);
+        alert(time);
         //$.ajax({
         //    url: WebServiceURL + "/StartWorking",
         //    dataType: "json",

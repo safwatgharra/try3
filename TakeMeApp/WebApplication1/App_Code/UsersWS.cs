@@ -81,12 +81,12 @@ public class UsersWS : System.Web.Services.WebService
         StudentBAL load = new StudentBAL();
         return load.LoadLocations();
     }
-    [WebMethod]
-    public string GetRequests()
-    {
-        DriverBAL loadreq = new DriverBAL();
-        return loadreq.GetRequests();
-    }
+    //[WebMethod]
+    //public string GetRequests()
+    //{
+    //    DriverBAL loadreq = new DriverBAL();
+    //    return loadreq.GetRequests();
+    //}
     [WebMethod]
     public string GetAllUsers()
     {
