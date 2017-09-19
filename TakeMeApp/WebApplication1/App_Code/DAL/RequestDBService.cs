@@ -41,27 +41,38 @@ namespace WebApplication1.App_Code.DAL
         public string LoadLocatins()
         {
             SqlConnection con = new SqlConnection(strCon);
-            List<Location> loc = new List<Location>();
-            SqlCommand com = new SqlCommand(" SELECT * FROM [LocationTB]", con);
-            con.Open();
-            SqlDataReader reader = com.ExecuteReader();
+            SqlDataAdapter adptr = new SqlDataAdapter("SELECT * FROM [LocationTB]", con);
 
-            while (reader.Read())
-            {
-                Location location = new Location
-                {
-                    LocationID = Convert.ToInt16(reader["LocationID"]),
-                    LocationName = reader["LocationName"].ToString(),
-                    Longi = reader["Long"].ToString(),
-                    Lati=reader["lat"].ToString()
-                };
-                loc.Add(location);
-            }
-            return serializer.Serialize(loc);
+            DataSet ds = new DataSet();
+            adptr.Fill(ds, "locations");
+            DataTable dt = ds.Tables["locations"];
+
+            //needs the newtonsoft.json from nuget packages!
+            string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            return json;
+
+            //SqlConnection con = new SqlConnection(strCon);
+            //List<Location> loc = new List<Location>();
+            //SqlCommand com = new SqlCommand(" SELECT * FROM [LocationTB]", con);
+            //con.Open();
+            //SqlDataReader reader = com.ExecuteReader();
+
+            //while (reader.Read())
+            //{
+            //    Location location = new Location
+            //    {
+            //        LocationID = Convert.ToInt16(reader["LocationID"]),
+            //        LocationName = reader["LocationName"].ToString(),
+            //        Longi = reader["Long"].ToString(),
+            //        Lati=reader["lat"].ToString()
+            //    };
+            //    loc.Add(location);
+            //}
+            //return serializer.Serialize(loc);
 
 
             //needs the newtonsoft.json from nuget packages!
-            
+
         }
 
         public void RemoveReqDB(string date, int locationID, int userID)
