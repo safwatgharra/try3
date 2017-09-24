@@ -25,7 +25,7 @@ public class User
         this.PhoneNumber = PhoneNumber;
         this.UDID = UDID;
         this.CurrentLong = CurrentLong;
-        this.CurrentLong = CurrentLat;
+        this.CurrentLat = CurrentLat;
         this.TypeCode = TypeCode;
 
     }
