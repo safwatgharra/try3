@@ -14,16 +14,18 @@ public class User
     public string UserLName { get; set; }
     public string PhoneNumber { get; set; }
     public string UDID { get; set; }
-    public string CurrentLocation { get; set; }
+    public string CurrentLong { get; set; }
+    public string CurrentLat { get; set; }
     public char TypeCode { get; set; }
-    public User(int UserID, string UserFName, string UserLName, string PhoneNumber, string UDID, string CurrentLocation, char TypeCode)
+    public User(int UserID, string UserFName, string UserLName, string PhoneNumber, string UDID, string CurrentLong, string CurrentLat, char TypeCode)
     {
         this.UserID = UserID;
         this.UserFName = UserFName;
         this.UserLName = UserLName;
         this.PhoneNumber = PhoneNumber;
         this.UDID = UDID;
-        this.CurrentLocation = CurrentLocation;
+        this.CurrentLong = CurrentLong;
+        this.CurrentLong = CurrentLat;
         this.TypeCode = TypeCode;
 
     }

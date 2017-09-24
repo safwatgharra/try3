@@ -31,7 +31,7 @@ public class LoginDBService
 
         if (reader.Read())
         {
-            user = new User(Convert.ToInt16(reader["UserID"]), reader["UserFName"].ToString(), reader["UserLName"].ToString(), reader["PhoneNumber"].ToString(), reader["UDID"].ToString(), reader["CurrentLocation"].ToString(), Convert.ToChar(reader["TypeCode"]));
+            user = new User(Convert.ToInt16(reader["UserID"]), reader["UserFName"].ToString(), reader["UserLName"].ToString(), reader["PhoneNumber"].ToString(), reader["UDID"].ToString(), reader["CurrentLong"].ToString(), reader["CurrentLat"].ToString(), Convert.ToChar(reader["TypeCode"]));
            
         }
         com.Connection.Close();
