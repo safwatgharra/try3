@@ -13,28 +13,28 @@ namespace WebApplication1.App_Code.BAL
         {
 
         }
-        public void StartWorking (string date,string time,int userID)
+        public string StartWorking (string date,string time,int userID)
         {
-            driverdb.StartWorking(date, time, userID);
+            return driverdb.StartWorking(date, time, userID);
         }
 
-        public void EndtWorking(string date, string time, int userID)
+        public string  EndtWorking(string date, string time, int userID)
         {
-            driverdb.EndtWorking(date, time, userID);
+            return driverdb.EndtWorking(date, time, userID);
         }
         //public string GetRequests()
         //{
         //    return driverdb.GetRequests();
         //}
 
-        public void StartBreak(int userID, string date)
+        public string StartBreak(int userID, string date)
         {
-            driverdb.StartBreak(userID, date);
+            return driverdb.StartBreak(userID, date);
         }
 
-        public void EndtBreak(int userID, string date)
+        public string EndtBreak(int userID, string date)
         {
-            driverdb.EndtBreak(userID, date);
+            return driverdb.EndtBreak(userID, date);
         }
         public string LoadImmediateOrders()
         {

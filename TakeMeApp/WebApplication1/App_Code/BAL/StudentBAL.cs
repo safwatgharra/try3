@@ -31,9 +31,9 @@ namespace WebApplication1.App_Code.BAL
             studentdb.RemoveReqDB(date, locationID, userID);
             return studentdb.RequestUser(userID);
         }
-        public void TakeMe(string date, int userID, string longi, string lati)
+        public string TakeMe(string date, int userID, string longi, string lati)
         {
-            studentdb.TakeMe(date, userID, longi, lati);
+            return studentdb.TakeMe(date, userID, longi, lati);
         }
     }
 }

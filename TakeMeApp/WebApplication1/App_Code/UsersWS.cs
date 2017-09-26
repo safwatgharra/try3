@@ -24,10 +24,10 @@ public class UsersWS : System.Web.Services.WebService
     {
     }
     [WebMethod]
-    public void TakeMe(string date, int userID, string longi, string lati)
+    public string TakeMe(string date, int userID, string longi, string lati)
     {
         StudentBAL req = new StudentBAL();
-        req.TakeMe(date, userID, longi, lati);
+        return req.TakeMe(date, userID, longi, lati);
     }
 
     [WebMethod]
@@ -59,28 +59,28 @@ public class UsersWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void StartBreak(int userID, string date)
+    public string  StartBreak(int userID, string date)
     {
         DriverBAL driver = new DriverBAL();
-        driver.StartBreak(userID, date);
+        return driver.StartBreak(userID, date);
     }
     [WebMethod]
-    public void EndtBreak(int userID, string date)
+    public string  EndtBreak(int userID, string date)
     {
         DriverBAL driver = new DriverBAL();
-        driver.EndtBreak(userID, date);
+        return driver.EndtBreak(userID, date);
     }
     [WebMethod]
-    public void StartWorking(string date, string time, int userID)
+    public string  StartWorking(string date, string time, int userID)
     {
         DriverBAL driverBAL = new DriverBAL();
-        driverBAL.StartWorking(date, time, userID);
+        return driverBAL.StartWorking(date, time, userID);
     }
     [WebMethod]
-    public void EndtWorking(string date, string time, int userID)
+    public string EndtWorking(string date, string time, int userID)
     {
         DriverBAL driverBAL = new DriverBAL();
-        driverBAL.EndtWorking(date, time, userID); 
+        return driverBAL.EndtWorking(date, time, userID); 
     }
 
     [WebMethod]

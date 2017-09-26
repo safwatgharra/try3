@@ -10,11 +10,15 @@ namespace WebApplication1.App_Code.DAL
 {
     public class DriverDBService
     {
-        string strCon;
+        static string strCon;
+        SqlConnection con;
+
         public DriverDBService()
         {
             strCon = DBGlobals.strCon;
+            con = new SqlConnection(strCon);
         }
+        
         //public string GetRequests()
         //{
         //    SqlConnection con = new SqlConnection(strCon);
@@ -34,83 +38,171 @@ namespace WebApplication1.App_Code.DAL
 
         public string LoadPreOrders(string todaydate)
         {
-            SqlConnection con = new SqlConnection(strCon);
-            SqlDataAdapter adptr = new SqlDataAdapter("SELECT  dbo.RequestTB.UserID, dbo.LocationTB.long, dbo.LocationTB.lat " +
-                                                      "FROM    dbo.LocationTB INNER JOIN dbo.RequestTB ON dbo.LocationTB.LocationID = dbo.RequestTB.LocationID " +
-                                                      "WHERE(dbo.RequestTB.RequestTypeID = '2' and [RequestStatus]=1 and cast([RequestDate] as date)='" + todaydate + "')", con);
+            try
+            {
+                
+                SqlDataAdapter adptr = new SqlDataAdapter("SELECT  dbo.RequestTB.UserID, dbo.LocationTB.long, dbo.LocationTB.lat " +
+                                                          "FROM    dbo.LocationTB INNER JOIN dbo.RequestTB ON dbo.LocationTB.LocationID = dbo.RequestTB.LocationID " +
+                                                          "WHERE(dbo.RequestTB.RequestTypeID = '2' and [RequestStatus]=1 and cast([RequestDate] as date)='" + todaydate + "')", con);
 
-            DataSet ds = new DataSet();
-            adptr.Fill(ds, "preOrder");
-            DataTable dt = ds.Tables["preOrder"];
+                DataSet ds = new DataSet();
+                adptr.Fill(ds, "preOrder");
+                DataTable dt = ds.Tables["preOrder"];
 
-            //needs the newtonsoft.json from nuget packages!
-            string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
-            return json;
+                //needs the newtonsoft.json from nuget packages!
+                string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
+                con.Close();
+                return json;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         public string LoadImmediateOrders()
         {
-            SqlConnection con = new SqlConnection(strCon);
-            SqlDataAdapter adptr = new SqlDataAdapter("SELECT [UserID],[long],[lat] FROM [RequestTB] " +
-                                                        "where[RequestTypeID] = 1 and [RequestStatus]=1 ", con);
+            try
+            {
+               
+                SqlDataAdapter adptr = new SqlDataAdapter("SELECT [UserID],[long],[lat] FROM [RequestTB] " +
+                                                            "where[RequestTypeID] = 1 and [RequestStatus]=1 ", con);
 
-            DataSet ds = new DataSet();
-            adptr.Fill(ds, "immidiate");
-            DataTable dt = ds.Tables["immidiate"];
+                DataSet ds = new DataSet();
+                adptr.Fill(ds, "immidiate");
+                DataTable dt = ds.Tables["immidiate"];
 
-            //needs the newtonsoft.json from nuget packages!
-            string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
-            return json;
+                //needs the newtonsoft.json from nuget packages!
+                string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
+                con.Close();
+                return json;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
-        public void StartBreak(int userID, string date)
+        public string StartBreak(int userID, string date)
         {
-            SqlConnection con = new SqlConnection(strCon);
+            try
+            {
+                con.Open();
 
-            SqlCommand com = new SqlCommand("UPDATE [dbo].[AttindanceReportDB]" +
-                                            " SET[IsAvaible] = 1" +
-                                            " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'", con);//we have to check if the string date is working 
+                SqlCommand com = new SqlCommand("UPDATE [dbo].[AttindanceReportDB]" +
+                                                " SET[IsAvaible] = 0" +
+                                                " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'", con);
 
-            con.Open();
-            SqlDataReader reader = com.ExecuteReader();
-            com.Connection.Close();
+
+                if (com.ExecuteNonQuery() != 0)
+                {
+                    con.Close();
+                    return "start break";
+                }
+                else
+                {
+                    con.Close();
+                    return "try again";
+
+                }
+            }
+            catch (Exception e)
+            {
+                con.Close();
+                return e.Message;
+            }
+
         }
-        public void EndtBreak(int userID, string date)
+        public string EndtBreak(int userID, string date)
         {
-            SqlConnection con = new SqlConnection(strCon);
 
-            SqlCommand com = new SqlCommand("UPDATE [dbo].[AttindanceReportDB]" +
-                                            " SET[IsAvaible] = 0" +
-                                            " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'", con);//we have to check if the string date is working 
+            try
+            {
+                con.Open();
+                SqlCommand com = new SqlCommand("UPDATE [dbo].[AttindanceReportDB]" +
+                                                " SET[IsAvaible] = 1" +
+                                                " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'", con);
 
-            con.Open();
-            SqlDataReader reader = com.ExecuteReader();
-            com.Connection.Close();
+
+                if (com.ExecuteNonQuery() != 0)
+                {
+                    con.Close();
+                    return "end break";
+                }
+                else
+                {
+                    con.Close();
+                    return "try again";
+
+                }
+            }
+
+            catch (Exception e)
+            {
+                con.Close();
+                return e.Message;
+            }
         }
-        public void StartWorking(string date,string time,int userID)
+
+
+        public string StartWorking(string date, string time, int userID)
         {
-            SqlConnection con = new SqlConnection(strCon);
 
-            SqlCommand com = new SqlCommand("INSERT INTO [dbo].[AttindanceReportDB]" +
-                " ([WorkDayDate],[WorkStart],[WorkEnd],[UserID],[IsAvaible])" +
-                " VALUES ('" + date + "' ,'" + time +"','',"+userID+",1)", con);//we have to check if the string date is working 
+            try
+            {
+                con.Open();
+                SqlCommand com = new SqlCommand("INSERT INTO [dbo].[AttindanceReportDB]" +
+                    " ([WorkDayDate],[WorkStart],[WorkEnd],[UserID],[IsAvaible])" +
+                    " VALUES ('" + date + "' ,'" + time + "',''," + userID + ",1)", con);
 
-            con.Open();
-            SqlDataReader reader = com.ExecuteReader();
-            com.Connection.Close();
+
+                if (com.ExecuteNonQuery() != 0)
+                {
+                    con.Close();
+                    return "end break";
+                }
+                else
+                {
+                    con.Close();
+                    return "try again";
+
+                }
+            }
+            catch (Exception e)
+            {
+                con.Close();
+                return e.Message;
+            }
         }
 
 
-        public void EndtWorking(string date, string time, int userID)
+        public string EndtWorking(string date, string time, int userID)
         {
-            SqlConnection con = new SqlConnection(strCon);
+            try
+            {
+                con.Open();
 
-            SqlCommand com = new SqlCommand("UPDATE[dbo].[AttindanceReportDB] SET  [WorkEnd] = '" + time + "',[IsAvaible] = 0" +
-                " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date +"'", con); 
-            con.Open();
-            SqlDataReader reader = com.ExecuteReader();
-            com.Connection.Close();
+                SqlCommand com = new SqlCommand("UPDATE[dbo].[AttindanceReportDB] SET  [WorkEnd] = '" + time + "',[IsAvaible] = 0" +
+                    " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'", con);
+
+                if (com.ExecuteNonQuery() > 0)
+                {
+                    con.Close();
+                    return "end working";
+                }
+                else
+                {
+                    con.Close();
+                    return "try again";
+
+                }
+            }
+            catch (Exception e)
+            {
+                con.Close();
+                return e.Message;
+            }
 
         }
-}
+    }
 }

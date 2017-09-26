@@ -7,35 +7,45 @@ namespace WebApplication1.App_Code.DAL
 {
     public class LoginDBService
     {
-        string strCon;
+        static string strCon;
         JavaScriptSerializer serializer = new JavaScriptSerializer();
+        SqlConnection con;
 
 
         public LoginDBService()
         {
             strCon = DBGlobals.strCon;
+            con = new SqlConnection(strCon);
         }
-
+        
         public string LoginUserUsingClass(string userid, string userpass)
         {
 
             User user = null;
-            SqlConnection con = new SqlConnection(strCon);
-            SqlCommand com = new SqlCommand("select * from UsersTB where UserID = @UserID and UserPass = @UserPass", con);
-            com.Parameters.Add(new SqlParameter("@UserID", userid));
-            com.Parameters.Add(new SqlParameter("@UserPass", userpass));
-
-            con.Open();
-            SqlDataReader reader = com.ExecuteReader();
-
-
-            if (reader.Read())
+            try
             {
-                user = new User(Convert.ToInt16(reader["UserID"]), reader["UserFName"].ToString(), reader["UserLName"].ToString(), reader["PhoneNumber"].ToString(), reader["UDID"].ToString(), reader["CurrentLong"].ToString(), reader["CurrentLat"].ToString(), Convert.ToChar(reader["TypeCode"]));
+                con.Open();
+                SqlCommand com = new SqlCommand("select * from UsersTB where UserID = @UserID and UserPass = @UserPass", con);
+                com.Parameters.Add(new SqlParameter("@UserID", userid));
+                com.Parameters.Add(new SqlParameter("@UserPass", userpass));
 
+                
+                SqlDataReader reader = com.ExecuteReader();
+
+
+                if (reader.Read())
+                {
+                    user = new User(Convert.ToInt16(reader["UserID"]), reader["UserFName"].ToString(), reader["UserLName"].ToString(), reader["PhoneNumber"].ToString(), reader["UDID"].ToString(), reader["CurrentLong"].ToString(), reader["CurrentLat"].ToString(), Convert.ToChar(reader["TypeCode"]));
+
+                }
+                con.Close();
+                return serializer.Serialize(user);
             }
-            com.Connection.Close();
-            return serializer.Serialize(user);
+            catch(Exception e)
+            {
+                con.Close();
+                return e.Message;
+            }
             //else
             //{
             //    com.Connection.Close();
