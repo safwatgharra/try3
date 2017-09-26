@@ -1,13 +1,14 @@
 ﻿$(document).ready(function () {
     $('#BtnLogin').click(function () {
+
         var UserID = $("#InputUserId").val();
         var UserPass = $("#InputUserPassword").val();
         var user =
             {
-                userid: UserID,
-                userpass: UserPass
+                userid:UserID,
+                userpass:UserPass
             };
-
+   
         $.ajax({
             url: WebServiceURL + "/LoginUserUsingClass",
             dataType: "json",

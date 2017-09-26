@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebApplication1.App_Code.DAL;
 
 /// <summary>
 /// Summary description for Login
@@ -16,8 +17,8 @@ public class LoginBAL
         //
     }
 
-    public string LoginUserUsingClass(string name, string password)
+    public string LoginUserUsingClass(string userid, string userpass)
     {
-        return loginDb.LoginUserUsingClass(name, password);
+        return loginDb.LoginUserUsingClass(userid, userpass);
     }
 }

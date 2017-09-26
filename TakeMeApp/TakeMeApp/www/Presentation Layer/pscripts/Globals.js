@@ -1,4 +1,4 @@
-﻿var local =false;
+﻿var local =true;
 var WebServiceURL = "http://localhost:63926/UsersWS.asmx"; //the same as above. only with…
 
 if (!local) {

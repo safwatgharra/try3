@@ -1,4 +1,14 @@
-﻿$(document).ready(function myfunction() {
+﻿
+var coordsLat = 1;
+var coordsLng = 1;
+
+var TakeMe = {
+    date: 0,
+    userID: localStorage.userid,
+    longi: coordsLng,
+    lati: coordsLat
+};
+$(document).ready(function myfunction() {
 
     //____________________menu view______________________
     $("#MenuOpen").click(function () {
@@ -62,8 +72,46 @@
 
     //______________________Take me___________________
     $("#divImagCir").click(function () {
+        
 
-        window.location.replace("mapStudent.html");
+        var dt = new Date();
+        var Time = (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() + ":" + (dt.getSeconds() < 10 ? '0' : '') + dt.getSeconds();
+        var d = new Date();
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+        var date = month + "/" + day + "/" + d.getFullYear();
+        var DateTime = date + " " + Time;
+        TakeMe.date = DateTime;
+
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(function (pos) {
+                alert(pos.coords.latitude);
+                TakeMe.longi = pos.coords.longitude;
+                TakeMe.lati = pos.coords.latitude;
+                TakeMe.date = DateTime;
+                $.ajax({
+                    url: WebServiceURL + "/TakeMe",
+                    data: JSON.stringify(TakeMe),
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    error: function (jqXHR, exception) {
+                        alert(formatErrorMessage(jqXHR, exception));
+                    },
+                    success: function (data) {
+                        var res = data.d;
+                        alert(res+"!");
+                        window.location.replace("mapStudent.html");
+                    }
+                });
+            },
+                function (error) {
+                alert("Error");
+                },
+            {});
+        }
+       
     });
 
     //_____________________________log out____________
@@ -77,12 +125,14 @@
 function fillStreetLocationSelect() {
 
     $.ajax({
-        url: WebServiceURL +"/LoadLocations",
+        url: WebServiceURL + "/LoadLocations",
         dataType: "json",
-        type: 'POST',
+        type: "POST",
         contentType: "application/json; charset=utf-8",
+        error: function (jqXHR, exception) {
+            alert(formatErrorMessage(jqXHR, exception));
+        },
         success: function (data) {
-
             var res = data.d;
             alert(res);
             var result = JSON.parse(res);
@@ -94,9 +144,6 @@ function fillStreetLocationSelect() {
             for (var i = 0; result[i] != null; i++) {
                 $("#streetSelector").append('<option value="' + i + '">' + result[i].LocationName + '</option>');
             }
-        },
-        fail: function () {
-            alert("error");
         }
     });
 }

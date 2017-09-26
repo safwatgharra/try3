@@ -107,10 +107,10 @@ namespace WebApplication1.App_Code.DAL
 
             SqlCommand com = new SqlCommand("INSERT INTO [dbo].[RequestTB]" +
                              "([RequestDate],[LocationID],[RequestTypeID],[UserID],[RequestStatus],[long],[lat])" +
-                                "VALUES ('" + date + "' ,99, 1 ," + userID + ",1,"+longi +","+lati+")", con);//we have to check if the string date is working 
+                                "VALUES ('" + date + "' ,'99', 1 ," + userID + ",'1','"+longi +"','"+lati+"')", con);//we have to check if the string date is working 
 
             con.Open();
-            SqlDataReader reader = com.ExecuteReader();
+            com.ExecuteNonQuery();
             com.Connection.Close();
         }
     }

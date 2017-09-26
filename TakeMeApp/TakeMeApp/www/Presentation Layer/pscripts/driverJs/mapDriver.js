@@ -75,13 +75,10 @@ $(document).ready(function () {
 
     $("#StartBreak").click(function () {
         var d = new Date();
-
         var month = d.getMonth() + 1;
         var day = d.getDate();
+        var Date = month + "/" + day + "/" + d.getFullYear();
 
-        var date = d.getFullYear() + '/' +
-            (month < 10 ? '0' : '') + month + '/' +
-            (day < 10 ? '0' : '') + day;
 
         UserSB =
             {
@@ -115,14 +112,14 @@ $(document).ready(function () {
     });
 
     $("#EndtBreak").click(function () {
+        var dt = new Date();
+        var Time = (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() + ":" + (dt.getSeconds() < 10 ? '0' : '') + dt.getSeconds();
         var d = new Date();
-
         var month = d.getMonth() + 1;
         var day = d.getDate();
+        var date = month + "/" + day + "/" + d.getFullYear();
+        var DateTime = date + " " + Time;
 
-        var date = d.getFullYear() + '/' +
-            (month < 10 ? '0' : '') + month + '/' +
-            (day < 10 ? '0' : '') + day;
 
         UserEB =
             {
