@@ -3,8 +3,8 @@
 <head>
 
     <title>TakeMeApp</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
 
+    <meta content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;script-src 'self' http://onlineerp.solution.quebec 'unsafe-inline' 'unsafe-eval';script-src 'self' http://xxxx 'unsafe-inline' 'unsafe-eval'; Access-Control-Allow-Origin:* ">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -12,7 +12,8 @@
 
     <!-- css link -->
     <link href="../pcss/studentCss/OrdersPage.css" rel="stylesheet" />
-
+    <script src="../libraries/jquery-3.1.1.min.js"></script>
+    <script src="../../cordova.js"></script>
 </head>
 <body>
 
@@ -75,7 +76,6 @@
     </div>
 
     <script src="../pscripts/Globals.js"></script>
-    <script src="../libraries/jquery-3.1.1.min.js"></script>
     <script src="../pscripts/studentJs/OrdersPage.js"></script>
 
 

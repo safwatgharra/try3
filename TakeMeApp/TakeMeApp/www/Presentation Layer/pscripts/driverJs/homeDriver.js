@@ -17,48 +17,49 @@
     });
 
     $("#divCir").click(function () {
-        var d = new Date();
+    //    var d = new Date();
 
-        var month = d.getMonth() + 1;
-        var day = d.getDate();
+    //    var month = d.getMonth() + 1;
+    //    var day = d.getDate();
 
-        var output = d.getFullYear() + '/' +
-            (month < 10 ? '0' : '') + month + '/' +
-            (day < 10 ? '0' : '') + day;
+    //    var output = d.getFullYear() + '/' +
+    //        (month < 10 ? '0' : '') + month + '/' +
+    //        (day < 10 ? '0' : '') + day;
 
-        var dt = new Date();
-        var time = (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() + ":" + (dt.getSeconds() < 10 ? '0' : '') + dt.getSeconds();
-        UserEW =
-            {
-                date: Date,
-                time: time
-                , userID: localStorage.userid
-            };
-        alert(output);
-        alert(time);
-        //$.ajax({
-        //    url: WebServiceURL + "/StartWorking",
-        //    dataType: "json",
-        //    type: "POST",
-        //    data: JSON.stringify(UserEW),
-        //    contentType: "application/json; charset=utf-8",
-        //    error: function (jqXHR, exception) {
-        //        alert(formatErrorMessage(jqXHR, exception));
-        //    },
-        //    success: function (data) {
-        //        var res = data.d;
-        //        var resOutput = JSON.parse(res);
-        //        alert("res-" + res);
+    //    var dt = new Date();
+    //    var time = (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() + ":" + (dt.getSeconds() < 10 ? '0' : '') + dt.getSeconds();
+    //    UserEW =
+    //        {
+    //            date: Date,
+    //            time: time
+    //            , userID: localStorage.userid
+    //        };
+        /*
+        $.ajax({
+            url: WebServiceURL + "/StartWorking",
+            dataType: "json",
+            type: "POST",
+            data: JSON.stringify(UserEW),
+            contentType: "application/json; charset=utf-8",
+            error: function (jqXHR, exception) {
+                alert(formatErrorMessage(jqXHR, exception));
+            },
+            success: function (data) {
+                var res = data.d;
+                var resOutput = JSON.parse(res);
+                alert("res-" + res);
 
-        //        if (resOutput != null) {
+                if (resOutput != null) {
 
-        //        }
-        //        else {
-        //            alert("User Not Found!");
-        //        }
-        //    }
+                }
+                else {
+                    alert("User Not Found!");
+                }
+            }
 
-        //});
+        });
+        */
+        //loadOrders();
         window.location.replace("mapDriver.html");
     });
 

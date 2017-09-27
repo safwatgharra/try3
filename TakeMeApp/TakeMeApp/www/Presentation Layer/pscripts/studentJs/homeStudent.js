@@ -8,8 +8,11 @@ var TakeMe = {
     longi: coordsLng,
     lati: coordsLat
 };
-$(document).ready(function myfunction() {
 
+
+
+$(document).ready(function myfunction() {
+   
     //____________________menu view______________________
     $("#MenuOpen").click(function () {
         $("#divMenu").addClass('borderMenu');
@@ -24,36 +27,47 @@ $(document).ready(function myfunction() {
 
     //__________________order view____________________
     $(".BtnOrder").click(function () {
-        $("#divOrder").addClass('borderOrder');
-        $("#divOrder").css({ "height": "50%", "width": "78%" });
+  $("#divOrder").addClass('borderOrder');
+        $("#divOrder").css({ "height": "65%", "width": "78%" });
         fillStreetLocationSelect();
     });
 
     $(".addOrder").click(function () {
-        //creatOrderObj();
-        //$.ajax({
-        //    url: "",
-        //    dataType: "json",
-        //    type: "POST",
-        //    data: JSON.stringify(order),
-        //    contentType: "application/json; charset=utf-8",
-        //    error: function (jqXHR, exception) {
-        //        alert(formatErrorMessage(jqXHR, exception));
-        //    },
-        //    success: function (data) {
-        //        var res = data.d;
-        //        var resOutput = JSON.parse(res);
-        //        alert("res-" + res);
+        var street = $("#streetSelector").val()*1+1;
+      
+        var date = new Date($('#OrderDateTXT').val());
+        day = date.getDate();
+        month = date.getMonth() + 1;
+        year = date.getFullYear();
+        var fullDate = [month, day, year].join('/');
+        var time = $("#OrderTimeTXT").val();
+        var dateTime = fullDate + " " + time;
 
-        //        if (resOutput != null) {
-        //            alert("ההזמנה נשלחה");
 
-        //        }
-        //        else {
-        //            alert("קיימת תקלת קלט נא לבדוק את אחד הנתונים");
-        //        }
-        //    }
-        //});
+        
+
+        var order = {
+            date: dateTime,
+            locationID: street,
+            userID: localStorage.userid
+        };
+
+
+        $.ajax({
+            url: WebServiceURL + "/InsertRequest",
+            dataType: "json",
+            type: "POST",
+            data: JSON.stringify(order),
+            contentType: "application/json; charset=utf-8",
+            error: function (jqXHR, exception) {
+                alert(formatErrorMessage(jqXHR, exception));
+            },
+            success: function (data) {
+                var res = data.d;
+                var resOutput = JSON.parse(res);
+                alert("res-" + res);
+            }
+        });
 
         $("#divOrder").css({ "height": "0%", "width": "0%" });
         $("#divOrder").removeClass('borderOrder');
@@ -66,7 +80,6 @@ $(document).ready(function myfunction() {
     });
 
     $("#myOrders").click(function () {
-
         window.location.replace("OrdersPage.html");
     });
 
@@ -87,6 +100,7 @@ $(document).ready(function myfunction() {
         {
             navigator.geolocation.getCurrentPosition(function (pos) {
                 alert(pos.coords.latitude);
+                alert(pos.coords.longitude);
                 TakeMe.longi = pos.coords.longitude;
                 TakeMe.lati = pos.coords.latitude;
                 TakeMe.date = DateTime;
@@ -101,7 +115,7 @@ $(document).ready(function myfunction() {
                     },
                     success: function (data) {
                         var res = data.d;
-                        alert(res+"!");
+                       
                         window.location.replace("mapStudent.html");
                     }
                 });
@@ -134,29 +148,18 @@ function fillStreetLocationSelect() {
         },
         success: function (data) {
             var res = data.d;
-            alert(res);
             var result = JSON.parse(res);
             var x = document.getElementById("streetSelector");
             var lenenenene = x.length;
             while (lenenenene >= 0) {
                 x.remove(lenenenene--);
             }
-            for (var i = 0; result[i] != null; i++) {
+            for (var i = 0; result[i].LocationName != 'מיידי'; i++) {
                 $("#streetSelector").append('<option value="' + i + '">' + result[i].LocationName + '</option>');
             }
         }
     });
 }
 
-function creatOrderObj() {
-    var newDate = $('#OrderDateTimeTXT').val();
-    var newStreet = $("#streetSelector").val();
-    var order = {
-        uid: localStorage.uid,
-        dt: newDate,
-        strid: newStreet,
-        lat: newLat,
-        lng: newLng
-    }
-}
+
 

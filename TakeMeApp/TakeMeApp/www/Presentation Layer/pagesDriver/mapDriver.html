@@ -3,15 +3,12 @@
 <head>
 
     <title>TakeMeApp</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' https:; style-src 'self' 'unsafe-inline'; media-src *">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
+    <meta content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;script-src 'self' http://onlineerp.solution.quebec 'unsafe-inline' 'unsafe-eval';script-src 'self' http://xxxx 'unsafe-inline' 'unsafe-eval';  ">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <script src="../libraries/jquery-3.1.1.min.js"></script>
    
     <!-- css link -->
   <link href="../pcss/driverCss/mapDriver.css" rel="stylesheet" />
-
 </head>
 
 <body>
@@ -42,14 +39,14 @@
     <div id="map">
     </div>
         
-      
+      <!--<button id="asd">asd</button>-->
     
 
     <!-- js link -->
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCH3PdXAhWMYBCXp4pyLgEIeaEyrFbcdk&callback=initMap" async defer></script>
-    <script src="../../../cordova.js"></script>
-    <script src="../libraries/jquery-3.1.1.min.js"></script>
+
+    <script src="../../cordova.js"></script>
     <script src="../pscripts/Globals.js"></script>
     <script src="../pscripts/driverJs/mapDriver.js"></script>
 

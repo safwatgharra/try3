@@ -3,7 +3,7 @@ var map;
 var marker;
 
 $(document).ready(function () {
-    //loadOrders();
+   
 
     $("#MenuOpen").click(function () {
 
@@ -79,54 +79,4 @@ function showError(error) {
     }
 
 }
-
-function loadOrders() {
-    $.ajax({
-        url: "",
-        dataType: "json",
-        type: "POST",
-        data: {},
-        contentType: "application/json; charset=utf-8",
-        error: function (jqXHR, exception) {
-            alert(formatErrorMessage(jqXHR, exception));
-        },
-        success: function (data) {
-            var res = data.d;
-            var resOutput = JSON.parse(res);
-            alert("res-" + res);
-
-            if (resOutput != null) {
-                alert("succesfuly loading orders");
-                //showOrdersOnMap(result);
-            }
-            else {
-                alert("Failed Loading Orders");
-            }
-        }
-    });
-}
-
-function showOrdersOnMap(hazards) {
-    var img = {
-        url: "images/hazardPointer.png", // url
-        scaledSize: new google.maps.Size(60, 60), // scaled size
-        origin: new google.maps.Point(0, 0), // origin
-        anchor: new google.maps.Point(0, 0)
-    };
-    //navigator.geolocation.clearWatch(watchId);
-    for (var i = 0; i < hazards.length; i++) {
-        var imgSTR = hazards[i].Hazard_Image;
-        //imgSTR = imgSTR.substring(23);
-
-        var marker = new google.maps.Marker({
-            position: { lat: hazards[i].Hazard_Lat, lng: hazards[i].Hazard_Long },
-            map: map,
-            icon: img,
-            animation: google.maps.Animation.DROP
-        });
-
-        showHazardDetails(marker, hazards[i]);
-    }
-}
-
 

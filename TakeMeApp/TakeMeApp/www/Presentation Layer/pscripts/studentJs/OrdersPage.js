@@ -1,4 +1,5 @@
 ﻿$(document).ready(function myfunction() {
+    LoadRequests();
 
     $("#backOrders").click(function () {
         window.location.replace("homeStudent.html");
@@ -26,3 +27,25 @@
     });
 
 });
+
+function LoadRequests() {
+
+    var userid = localStorage.userid;
+
+    $.ajax({
+        url: WebServiceURL + "/InsertRequest",
+        dataType: "json",
+        type: "POST",
+        data: JSON.stringify(userid),
+        contentType: "application/json; charset=utf-8",
+        error: function (jqXHR, exception) {
+            alert(formatErrorMessage(jqXHR, exception));
+        },
+        success: function (data) {
+            var res = data.d;
+            var resOutput = JSON.parse(res);
+            alert("res-" + res);
+        }
+    });
+
+}

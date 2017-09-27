@@ -10,7 +10,7 @@ using System.Web;
 static public class DBGlobals
 {
 
-   static bool local = true ;
+   static bool local = true;
     static bool Ruppin = true;
     static public string strCon;
 
