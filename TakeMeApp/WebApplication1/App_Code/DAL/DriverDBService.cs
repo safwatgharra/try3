@@ -18,7 +18,49 @@ namespace WebApplication1.App_Code.DAL
             strCon = DBGlobals.strCon;
             con = new SqlConnection(strCon);
         }
-        
+
+        public string Table(string query, string TableName)
+        {
+            try
+            {
+                SqlDataAdapter adptr = new SqlDataAdapter(query, con);
+                DataSet ds = new DataSet();
+                adptr.Fill(ds, TableName);
+                DataTable dt = ds.Tables[TableName];
+                string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
+                con.Close();
+                return json;
+            }
+            catch (Exception e)
+            {
+                con.Close();
+                return e.Message;
+            }
+        }
+        public string Execute(string query, string msg)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand com = new SqlCommand(query, con);
+                if (com.ExecuteNonQuery() > 0)
+                {
+                    com.Connection.Close();
+                    return msg;
+                }
+                else
+                {
+                    com.Connection.Close();
+                    return "try again";
+                }
+
+            }
+            catch (Exception e)
+            {
+                con.Close();
+                return e.Message;
+            }
+        }
         //public string GetRequests()
         //{
         //    SqlConnection con = new SqlConnection(strCon);
@@ -38,171 +80,60 @@ namespace WebApplication1.App_Code.DAL
 
         public string LoadPreOrders(string todaydate)
         {
-            try
-            {
-                
-                SqlDataAdapter adptr = new SqlDataAdapter("SELECT  dbo.RequestTB.UserID, dbo.LocationTB.long, dbo.LocationTB.lat " +
-                                                          "FROM    dbo.LocationTB INNER JOIN dbo.RequestTB ON dbo.LocationTB.LocationID = dbo.RequestTB.LocationID " +
-                                                          "WHERE(dbo.RequestTB.RequestTypeID = '2' and [RequestStatus]=1 and cast([RequestDate] as date)='" + todaydate + "')", con);
-
-                DataSet ds = new DataSet();
-                adptr.Fill(ds, "preOrder");
-                DataTable dt = ds.Tables["preOrder"];
-
-                //needs the newtonsoft.json from nuget packages!
-                string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
-                con.Close();
-                return json;
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
+            string query = "SELECT  dbo.RequestTB.UserID, dbo.LocationTB.long, dbo.LocationTB.lat " +
+                          "FROM    dbo.LocationTB INNER JOIN dbo.RequestTB ON dbo.LocationTB.LocationID = dbo.RequestTB.LocationID " +
+                          "WHERE(dbo.RequestTB.RequestTypeID = '2' and [RequestStatus]=1 and cast([RequestDate] as date)='" + todaydate + "')";
+            string tblname = "preOrder";
+            return Table(query, tblname);
         }
 
         public string LoadImmediateOrders()
         {
-            try
-            {
-               
-                SqlDataAdapter adptr = new SqlDataAdapter("SELECT [UserID],[long],[lat] FROM [RequestTB] " +
-                                                            "where[RequestTypeID] = 1 and [RequestStatus]=1 ", con);
-
-                DataSet ds = new DataSet();
-                adptr.Fill(ds, "immidiate");
-                DataTable dt = ds.Tables["immidiate"];
-
-                //needs the newtonsoft.json from nuget packages!
-                string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
-                con.Close();
-                return json;
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
+            string query = "SELECT [UserID],[long],[lat] FROM [RequestTB] " +
+                           "where[RequestTypeID] = 1 and [RequestStatus]=1";
+            string tblname = "immidiate";
+            return Table(query, tblname);
+           
         }
 
         public string StartBreak(int userID, string date)
         {
-            try
-            {
-                con.Open();
-
-                SqlCommand com = new SqlCommand("UPDATE [dbo].[AttindanceReportDB]" +
-                                                " SET[IsAvaible] = 0" +
-                                                " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'", con);
-
-
-                if (com.ExecuteNonQuery() != 0)
-                {
-                    con.Close();
-                    return "start break";
-                }
-                else
-                {
-                    con.Close();
-                    return "try again";
-
-                }
-            }
-            catch (Exception e)
-            {
-                con.Close();
-                return e.Message;
-            }
-
+            string query = "UPDATE [dbo].[AttindanceReportDB]" +
+                           " SET[IsAvaible] = 0" +
+                           " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'";
+            string msg = "start break";
+            return Execute(query, msg);
+            
         }
+
         public string EndtBreak(int userID, string date)
         {
+            string query = "UPDATE [dbo].[AttindanceReportDB]" +
+                           " SET[IsAvaible] = 1" +
+                           " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'";
+            string msg = "end break";
+            return Execute(query, msg);
 
-            try
-            {
-                con.Open();
-                SqlCommand com = new SqlCommand("UPDATE [dbo].[AttindanceReportDB]" +
-                                                " SET[IsAvaible] = 1" +
-                                                " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'", con);
-
-
-                if (com.ExecuteNonQuery() != 0)
-                {
-                    con.Close();
-                    return "end break";
-                }
-                else
-                {
-                    con.Close();
-                    return "try again";
-
-                }
-            }
-
-            catch (Exception e)
-            {
-                con.Close();
-                return e.Message;
-            }
+           
         }
-
 
         public string StartWorking(string date, string time, int userID)
         {
-
-            try
-            {
-                con.Open();
-                SqlCommand com = new SqlCommand("INSERT INTO [dbo].[AttindanceReportDB]" +
-                    " ([WorkDayDate],[WorkStart],[WorkEnd],[UserID],[IsAvaible])" +
-                    " VALUES ('" + date + "' ,'" + time + "',''," + userID + ",1)", con);
-
-
-                if (com.ExecuteNonQuery() != 0)
-                {
-                    con.Close();
-                    return "end break";
-                }
-                else
-                {
-                    con.Close();
-                    return "try again";
-
-                }
-            }
-            catch (Exception e)
-            {
-                con.Close();
-                return e.Message;
-            }
+            string query = "INSERT INTO [dbo].[AttindanceReportDB]" +
+                           " ([WorkDayDate],[WorkStart],[WorkEnd],[UserID],[IsAvaible])" +
+                           " VALUES ('" + date + "' ,'" + time + "',''," + userID + ",1)";
+            string msg = "start working";
+            return Execute(query, msg);
+           
         }
 
 
         public string EndtWorking(string date, string time, int userID)
         {
-            try
-            {
-                con.Open();
-
-                SqlCommand com = new SqlCommand("UPDATE[dbo].[AttindanceReportDB] SET  [WorkEnd] = '" + time + "',[IsAvaible] = 0" +
-                    " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'", con);
-
-                if (com.ExecuteNonQuery() > 0)
-                {
-                    con.Close();
-                    return "end working";
-                }
-                else
-                {
-                    con.Close();
-                    return "try again";
-
-                }
-            }
-            catch (Exception e)
-            {
-                con.Close();
-                return e.Message;
-            }
-
+            string query = "UPDATE[dbo].[AttindanceReportDB] SET  [WorkEnd] = '" + time + "',[IsAvaible] = 0" +
+                           " WHERE[UserID] = " + userID + "and[WorkDayDate] = '" + date + "'";
+            string msg = "End woeking";
+            return Execute(query, msg);
         }
     }
 }

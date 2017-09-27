@@ -67,52 +67,20 @@ namespace WebApplication1.App_Code.DAL
 
         public string RequestUser(int UserID)
         {
-            try
-            {
-                
-                SqlDataAdapter adptr = new SqlDataAdapter(
-                    "  SELECT dbo.RequestTB.RequestDate, dbo.LocationTB.LocationName " +
+            string query = "  SELECT dbo.RequestTB.RequestDate, dbo.LocationTB.LocationName " +
                     " FROM dbo.RequestTB INNER JOIN  dbo.LocationTB ON dbo.RequestTB.LocationID = dbo.LocationTB.LocationID" +
-                    " WHERE UserID = '" + UserID + "' and RequestTypeID = 2 and [RequestStatus]=1", con);
-                
-
-                DataSet ds = new DataSet();
-                adptr.Fill(ds, "Requests");
-                DataTable dt = ds.Tables["Requests"];
-
-                //needs the newtonsoft.json from nuget packages!
-                string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
-                con.Close();
-                return json;
-            }
-            catch (Exception e)
-            {
-                con.Close();
-                return e.Message;
-            }
+                    " WHERE UserID = '" + UserID + "' and RequestTypeID = 2 and [RequestStatus]=1";
+            string tblname = "Requests";
+            return Table(query, tblname);
+            
         }
 
         public string LoadLocatins()
         {
-            try
-            {
-                SqlDataAdapter adptr = new SqlDataAdapter("SELECT * FROM [LocationTB]", con);
-
-                DataSet ds = new DataSet();
-                adptr.Fill(ds, "locations");
-                DataTable dt = ds.Tables["locations"];
-
-                //needs the newtonsoft.json from nuget packages!
-                string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
-                con.Close();
-                return json;
-            }
-            catch (Exception e)
-            {
-                con.Close();
-                return e.Message;
-            }
-
+            string query = "SELECT * FROM[LocationTB]";
+            string tblname = "locations";
+            return Table(query, tblname);
+            
             //SqlConnection con = new SqlConnection(strCon);
             //List<Location> loc = new List<Location>();
             //SqlCommand com = new SqlCommand(" SELECT * FROM [LocationTB]", con);
@@ -139,92 +107,30 @@ namespace WebApplication1.App_Code.DAL
 
         public string  RemoveReqDB(string date, int locationID, int userID)
         {
-            try
-            {
-                con.Open();
-
-                SqlCommand com = new SqlCommand("DELETE FROM [dbo].[RequestTB]" +
-                                                " WHERE UserID =" + userID + " and LocationID =" + locationID +
-                                                "and RequestDate='" + date + "'", con);//we have to check if the string date is working 
-
-
-                if(com.ExecuteNonQuery()>0)
-                {
-                    com.Connection.Close();
-                    return "your requset removed";
-                }
-                else
-                {
-                    com.Connection.Close();
-                    return "try again";
-                }
-
-            }
-            catch (Exception e)
-            {
-                con.Close();
-                return e.Message;
-            }
-
+            string query = "DELETE FROM [dbo].[RequestTB]" +
+                           " WHERE UserID =" + userID + " and LocationID =" + locationID +   "and RequestDate='" + date + "'";
+            string msg = "your requset removed";
+            return Execute(query, msg);
+           
         }
 
         public string InsertReqDB(string date, int locationID, int userID)//type : 1- immediatly , 2- pre-order
         {
-            try
-            {
-                con.Open();
-                SqlCommand com = new SqlCommand("INSERT INTO [dbo].[RequestTB]" +
-                                 "([RequestDate],[LocationID],[RequestTypeID],[UserID],[RequestStatus])" +
-                                    "VALUES ('" + date + "'," + locationID + ",2," + userID + ",1)", con);//we have to check if the string date is working 
-
-
-                if(com.ExecuteNonQuery()>0)
-                {
-                    com.Connection.Close();
-                    return "Your request has been received";
-                }
-                else
-                {
-                    com.Connection.Close();
-                    return "try again";
-                }
-
-            }
-            catch (Exception e)
-            {
-                con.Close();
-                return e.Message;
-            }
+            string query = "INSERT INTO [dbo].[RequestTB]" +
+                           "([RequestDate],[LocationID],[RequestTypeID],[UserID],[RequestStatus])" +
+                           "VALUES ('" + date + "'," + locationID + ",2," + userID + ",1)";
+            string msg = "Your request has been received";
+            return Execute(query, msg);
+         
         }
 
         public string TakeMe(string date, int userID, string longi, string lati)
         {
-            try
-            {
-                con.Open();
-
-                SqlCommand com = new SqlCommand("INSERT INTO [dbo].[RequestTB]" +
+            string query = "INSERT INTO [dbo].[RequestTB]" +
                                  "([RequestDate],[LocationID],[RequestTypeID],[UserID],[RequestStatus],[long],[lat])" +
-                                    "VALUES ('" + date + "' ,'99', 1 ," + userID + ",'1','" + longi + "','" + lati + "')", con);//we have to check if the string date is working 
-
-
-                if (com.ExecuteNonQuery() > 0)
-                {
-                    com.Connection.Close();
-                    return "Your request has been received";
-                }
-                else
-                {
-                    com.Connection.Close();
-                    return "try again";
-                }
-
-            }
-            catch (Exception e)
-            {
-                con.Close();
-                return e.Message;
-            }
+                                    "VALUES ('" + date + "' ,'99', 1 ," + userID + ",'1','" + longi + "','" + lati + "')";
+            string msg = "Your request has been received";
+            return Execute(query, msg);
         }
     }
 }

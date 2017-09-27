@@ -10,7 +10,7 @@ namespace WebApplication1.App_Code.BAL
         RequestDBService studentdb = new RequestDBService();
         public StudentBAL()
         {
-            
+
         }
         public string LoadLocations()
         {
@@ -23,13 +23,20 @@ namespace WebApplication1.App_Code.BAL
         }
         public string InsertRequest(string date, int locationID, int userID)
         {
-            studentdb.InsertReqDB(date, locationID, userID);
-            return studentdb.RequestUser(userID);
+            string msg = studentdb.InsertReqDB(date, locationID, userID);
+            if (msg == "Your request has been received")
+                return studentdb.RequestUser(userID);
+            else
+                return msg;
+
         }
         public string UpdateRequest(string date, int locationID, int userID)
         {
-            studentdb.RemoveReqDB(date, locationID, userID);
-            return studentdb.RequestUser(userID);
+            string msg = studentdb.RemoveReqDB(date, locationID, userID);
+            if (msg == "your requset removed")
+                return studentdb.RequestUser(userID);
+            else
+                return msg;
         }
         public string TakeMe(string date, int userID, string longi, string lati)
         {
