@@ -65,7 +65,7 @@ $(document).ready(function myfunction() {
             success: function (data) {
                 var res = data.d;
                 var resOutput = JSON.parse(res);
-                alert("res-" + res);
+                alert("ההזמנה נשלחה");
             }
         });
 
