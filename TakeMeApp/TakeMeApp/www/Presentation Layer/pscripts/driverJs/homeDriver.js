@@ -48,7 +48,7 @@
 
         });
         
-        //window.location.replace("mapDriver.html");
+        window.location.replace("mapDriver.html");
     });
 
     $("#logoutBtn").click(function () {

@@ -1,6 +1,10 @@
 ﻿var workerPosition = { lat: 43.47836101344629, lng: -80.53074049212657 };
 var map;
 var marker;
+var d = new Date();
+var month = d.getMonth() + 1;
+var day = d.getDate();
+var date = month + '/' + (day < 10 ? '0' : '') + day + '/' + d.getFullYear();
 
 function initMap() {
 
@@ -60,10 +64,8 @@ function showError(error) {
 
 $(document).ready(function () {
 
-    loadOrders();
-    $("#asd").click(function () {
-        loadOrders();
-    });
+    //loadOrders();
+
     $("#MenuOpen").click(function () {
 
         $("#divMenu").addClass('borderMenu');
@@ -77,82 +79,54 @@ $(document).ready(function () {
     });
 
     $("#StartBreak").click(function () {
-        var d = new Date();
-        var month = d.getMonth() + 1;
-        var day = d.getDate();
-        var Date = month + "/" + day + "/" + d.getFullYear();
-
-
+ 
         UserSB =
             {
                 userID: localStorage.userid,
                 date: date
             };
 
-        //$.ajax({
-        //    url: WebServiceURL + "/StartBreak",
-        //    dataType: "json",
-        //    type: "POST",
-        //    data: JSON.stringify(UserSB),
-        //    contentType: "application/json; charset=utf-8",
-        //    error: function (jqXHR, exception) {
-        //        alert(formatErrorMessage(jqXHR, exception));
-        //    },
-        //    success: function (data) {
-        //        var res = data.d;
-        //        var resOutput = JSON.parse(res);
-        //        alert("res-" + res);
-
-        //        //if (resOutput != null) {
-
-        //        //}
-        //        //else {
-        //        //    alert("User Not Found!");
-        //        //}
-        //    }
-
-        //});
+        $.ajax({
+            url: WebServiceURL + "/StartBreak",
+            dataType: "json",
+            type: "POST",
+            data: JSON.stringify(UserSB),
+            contentType: "application/json; charset=utf-8",
+            error: function (jqXHR, exception) {
+                alert(formatErrorMessage(jqXHR, exception));
+            },
+            success: function (data) {
+                var res = data.d;
+                var resOutput = JSON.parse(res);
+                alert("res-" + res);
+            }
+        });
     });
 
     $("#EndtBreak").click(function () {
-        var dt = new Date();
-        var Time = (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() + ":" + (dt.getSeconds() < 10 ? '0' : '') + dt.getSeconds();
-        var d = new Date();
-        var month = d.getMonth() + 1;
-        var day = d.getDate();
-        var date = month + "/" + day + "/" + d.getFullYear();
-        var DateTime = date + " " + Time;
-
 
         UserEB =
             {
-                userID: localStorage.userid,
-                date: date
+            userID: localStorage.userid,
+            date: date
             };
 
-        //$.ajax({
-        //    url: WebServiceURL + "/EndtBreak",
-        //    dataType: "json",
-        //    type: "POST",
-        //    data: JSON.stringify(UserSB),
-        //    contentType: "application/json; charset=utf-8",
-        //    error: function (jqXHR, exception) {
-        //        alert(formatErrorMessage(jqXHR, exception));
-        //    },
-        //    success: function (data) {
-        //        var res = data.d;
-        //        var resOutput = JSON.parse(res);
-        //        alert("res-" + res);
+        $.ajax({
+            url: WebServiceURL + "/EndtBreak",
+            dataType: "json",
+            type: "POST",
+            data: JSON.stringify(UserEB),
+            contentType: "application/json; charset=utf-8",
+            error: function (jqXHR, exception) {
+                alert(formatErrorMessage(jqXHR, exception));
+            },
+            success: function (data) {
+                var res = data.d;
+                var resOutput = JSON.parse(res);
+                alert("res-" + res);
+            }
 
-        //        //if (resOutput != null) {
-
-        //        //}
-        //        //else {
-        //        //    alert("User Not Found!");
-        //        //}
-        //    }
-
-        //});
+        });
     });
 
     $("#BtnReport").click(function () {
@@ -164,49 +138,36 @@ $(document).ready(function () {
     });
 
     $("#EndtWorking").click(function () {
-        //EndtWorking
         var d = new Date();
-
         var month = d.getMonth() + 1;
         var day = d.getDate();
-
-        var date = d.getFullYear() + '/' +
-            (month < 10 ? '0' : '') + month + '/' +
-            (day < 10 ? '0' : '') + day;
+        var date = month + '/' + (day < 10 ? '0' : '') + day + '/' + d.getFullYear();
 
         var dt = new Date();
         var time = (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() + ":" + (dt.getSeconds() < 10 ? '0' : '') + dt.getSeconds();
+
         UserEW =
             {
                 date: date,
-                time: time
-                , userID: localStorage.userid
+                time: time,
+                userID: localStorage.userid
             };
 
-        //$.ajax({
-        //    url: WebServiceURL + "/EndtWorking",
-        //    dataType: "json",
-        //    type: "POST",
-        //    data: JSON.stringify(UserEW),
-        //    contentType: "application/json; charset=utf-8",
-        //    error: function (jqXHR, exception) {
-        //        alert(formatErrorMessage(jqXHR, exception));
-        //    },
-        //    success: function (data) {
-        //        var res = data.d;
-        //        var resOutput = JSON.parse(res);
-        //        alert("res-" + res);
+        $.ajax({
+            url: WebServiceURL + "/EndtWorking",
+            dataType: "json",
+            type: "POST",
+            data: JSON.stringify(UserEW),
+            contentType: "application/json; charset=utf-8",
+            error: function (jqXHR, exception) {
+                alert(formatErrorMessage(jqXHR, exception));
+            },
+            success: function (data) {
+                var res = data.d;
+                alert("res-" + res);
+            }
 
-        //        //if (resOutput != null) {
-
-        //        //}
-        //        //else {
-        //        //    alert("User Not Found!");
-        //        //}
-        //    }
-
-        //});
-
+        });
     });
 
     $("#logoutBtn").click(function () {
@@ -217,69 +178,22 @@ $(document).ready(function () {
 });
 
 function loadOrders() {
+
     $.ajax({
-
-        // The 'type' property sets the HTTP method.
-        // A value of 'PUT' or 'DELETE' will trigger a preflight request.
-        type: 'GET',
-
-        // The URL to make the request to.
         url: WebServiceURL + "/LoadImmediateOrders",
-
-        // The 'contentType' property sets the 'Content-Type' header.
-        // The JQuery default for this property is
-        // 'application/x-www-form-urlencoded; charset=UTF-8', which does not trigger
-        // a preflight. If you set this value to anything other than
-        // application/x-www-form-urlencoded, multipart/form-data, or text/plain,
-        // you will trigger a preflight request.
-        contentType: 'text/plain',
-
-        xhrFields: {
-            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-            // This can be used to set the 'withCredentials' property.
-            // Set the value to 'true' if you'd like to pass cookies to the server.
-            // If this is enabled, your server must respond with the header
-            // 'Access-Control-Allow-Credentials: true'.
-            withCredentials: false
-        },
-
-        headers: {
-            // Set any custom headers here.
-            // If you set any non-simple headers, your server must include these
-            // headers in the 'Access-Control-Allow-Headers' response header.
-        },
-
-        success: function (data) {
-            // Here's where you handle a successful response.
-            var res = data.d;
-            var result = JSON.parse(res);
-            alert(res);
-            showOrdersOnMap(res);
-        },
-
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
         error: function (jqXHR, exception) {
-            // Here's where you handle an error response.
-            // Note that if the error was due to a CORS issue,
-            // this function will still fire, but there won't be any additional
-            // information about the error.
-            alert(formatErrorMessage(jqXHR, exception) + "!!!");
+            alert(formatErrorMessage(jqXHR, exception));
+        },
+        success: function (data) {
+            var res = data.d;
+            alert("res-" + res);
         }
+
     });
-    //$.ajax({
-    //    url: ,
-    //    //dataType: "json",
-    //    type: "POST",
-    //    contentType: "application/json; charset=utf-8",
-    //    success: function (data) {
-    //        var res = data.d;
-    //        var result = JSON.parse(res);
-    //        alert(res);
-    //        showOrdersOnMap(res);
-    //    },
-    //    error: function (jqXHR, exception) {
-    //        alert(formatErrorMessage(jqXHR, exception) + "!!!");
-    //    }
-    //});
+
 }
 
 function showOrdersOnMap(Orders) {

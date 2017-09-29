@@ -3,10 +3,9 @@
 <head>
 
     <title>TakeMeApp</title>
-    <meta content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;script-src 'self' http://onlineerp.solution.quebec 'unsafe-inline' 'unsafe-eval';script-src 'self' http://xxxx 'unsafe-inline' 'unsafe-eval';  ">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <script src="../libraries/jquery-3.1.1.min.js"></script>
-   
+    <script src="../../cordova.js"></script>
     <!-- css link -->
   <link href="../pcss/driverCss/mapDriver.css" rel="stylesheet" />
 </head>
@@ -20,7 +19,7 @@
         <ul>
             <li id="PchangeStatus">:שינוי סטטוס</li>
             <li class="active" id="StartBreak">יציאה להפסקה</li>
-            <li class="active">חזרה מהפסקה</li>
+            <li class="active" id="EndtBreak">חזרה מהפסקה</li>
         </ul>
 
         <hr />
@@ -39,14 +38,14 @@
     <div id="map">
     </div>
         
-      <!--<button id="asd">asd</button>-->
+   
     
 
     <!-- js link -->
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCH3PdXAhWMYBCXp4pyLgEIeaEyrFbcdk&callback=initMap" async defer></script>
 
-    <script src="../../cordova.js"></script>
+  
     <script src="../pscripts/Globals.js"></script>
     <script src="../pscripts/driverJs/mapDriver.js"></script>
 
