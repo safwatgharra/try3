@@ -97,9 +97,9 @@ $(document).ready(function () {
             },
             success: function (data) {
                 var res = data.d;
-                var resOutput = JSON.parse(res);
                 alert("res-" + res);
             }
+
         });
     });
 
@@ -122,7 +122,6 @@ $(document).ready(function () {
             },
             success: function (data) {
                 var res = data.d;
-                var resOutput = JSON.parse(res);
                 alert("res-" + res);
             }
 
@@ -138,11 +137,7 @@ $(document).ready(function () {
     });
 
     $("#EndtWorking").click(function () {
-        var d = new Date();
-        var month = d.getMonth() + 1;
-        var day = d.getDate();
-        var date = month + '/' + (day < 10 ? '0' : '') + day + '/' + d.getFullYear();
-
+   
         var dt = new Date();
         var time = (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() + ":" + (dt.getSeconds() < 10 ? '0' : '') + dt.getSeconds();
 
@@ -179,20 +174,42 @@ $(document).ready(function () {
 
 function loadOrders() {
 
-    $.ajax({
-        url: WebServiceURL + "/LoadImmediateOrders",
-        dataType: "json",
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        error: function (jqXHR, exception) {
-            alert(formatErrorMessage(jqXHR, exception));
-        },
-        success: function (data) {
-            var res = data.d;
-            alert("res-" + res);
-        }
+    UserOR =
+        {
+        todaydate: date
+        };
 
-    });
+    //$.ajax({
+    //    url: WebServiceURL + "/LoadImmediateOrders",
+    //    dataType: "json",
+    //    type: "POST",
+    //    contentType: "application/json; charset=utf-8",
+    //    error: function (jqXHR, exception) {
+    //        alert(formatErrorMessage(jqXHR, exception));
+    //    },
+    //    success: function (data) {
+    //        var res = data.d;
+    //        alert("res-הצלחת טעינה" + res);
+    //    }
+
+    //});
+
+    //$.ajax({
+    //    url: WebServiceURL + "/LoadPreOrders",
+    //    dataType: "json",
+    //    type: "POST",
+    //    data: JSON.stringify(UserOR),
+    //    contentType: "application/json; charset=utf-8",
+    //    error: function (jqXHR, exception) {
+    //        alert(formatErrorMessage(jqXHR, exception));
+    //    },
+    //    success: function (data) {
+    //        var res = data.d;
+    //        alert("res-" + res);
+    //    }
+
+    //});
+    
 
 }
 
