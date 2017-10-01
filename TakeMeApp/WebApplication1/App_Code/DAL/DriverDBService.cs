@@ -95,6 +95,14 @@ namespace WebApplication1.App_Code.DAL
             return Table(query, tblname);
            
         }
+        public string HazardReport(int userID,string date,string type,string description,string path)
+        {
+            string query= "INSERT INTO [dbo].[ReportsTB]"+
+                          "([UserID],[ReportDate],[ReportType],[ReportDescription],[img])"+
+                          " VALUES('"+userID+"','"+date+"','"+type+"','"+description+"','"+path+"')";
+            string msg = "successfully reported";
+            return Execute(query, msg);
+        }
 
         public string StartBreak(int userID, string date)
         {

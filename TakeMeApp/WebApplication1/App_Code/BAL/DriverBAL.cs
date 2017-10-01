@@ -44,6 +44,10 @@ namespace WebApplication1.App_Code.BAL
         {
             return driverdb.LoadPreOrders(todaydate);
         }
+        public string HazardReport(int userID, string date, string type, string description, string path)
+        {
+            return driverdb.HazardReport(userID, date, type, description, path);
+        }
 
     }
 }

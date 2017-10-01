@@ -57,7 +57,12 @@ public class UsersWS : System.Web.Services.WebService
         LoginBAL loginBal = new LoginBAL();
         return loginBal.LoginUserUsingClass(userid, userpass);
     }
-
+    [WebMethod]
+    public string HazardReport(int userID, string date, string type, string description, string path)
+    {
+        DriverBAL driver = new DriverBAL();
+        return driver.HazardReport(userID,date,type,description,path);
+    }
     [WebMethod]
     public string  StartBreak(int userID, string date)
     {
