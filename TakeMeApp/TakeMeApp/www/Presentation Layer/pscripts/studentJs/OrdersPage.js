@@ -30,10 +30,11 @@
 
 function LoadRequests() {
 
-    var userid = localStorage.userid;
-
-    $.ajax({
-        url: WebServiceURL + "/InsertRequest",
+    var userid = {
+        userid: localStorage.userid
+    };
+     $.ajax({
+         url: WebServiceURL + "/LoadRequests",
         dataType: "json",
         type: "POST",
         data: JSON.stringify(userid),
@@ -43,9 +44,9 @@ function LoadRequests() {
         },
         success: function (data) {
             var res = data.d;
-            var resOutput = JSON.parse(res);
             alert("res-" + res);
         }
+
     });
 
 }

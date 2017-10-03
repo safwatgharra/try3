@@ -4,7 +4,7 @@ var marker;
 
 $(document).ready(function () {
    
-
+    
     $("#MenuOpen").click(function () {
 
         $("#divMenu").addClass('borderMenu');
