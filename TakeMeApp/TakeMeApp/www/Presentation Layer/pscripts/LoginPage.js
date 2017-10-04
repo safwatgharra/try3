@@ -21,7 +21,6 @@
             success: function (data) {
                 var res = data.d;
                 var resOutput = JSON.parse(res);
-                alert("res-" + res);
                 if (resOutput != null) {
                     addUserToLocalStorage(resOutput);
                     changePages(resOutput);

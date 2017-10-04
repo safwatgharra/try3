@@ -16,7 +16,7 @@
     <script src="../../cordova.js"></script>
 </head>
 <body>
-
+    <button id="btn"></button>
     <div id="backOrders">
         <img src="../images/Backbutton.png" />
     </div>
@@ -24,28 +24,13 @@
     <br />
 
     <center>
-        <div id="table">
-            <table>
-
-                <tr>
-
-                    <th>בטל</th>
-
-                    <th>תאריך ושעה</th>
-                    <th>מיקום</th>
-
-                </tr>
-                <tr>
-
-                    <td>
-                        <img src="../images/minus.png"  id="removeRow" />
-                    </td>
-
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
+        <div>
+            <table id="table">
+                    <tr>
+                        <th>בטל</th>
+                        <th>תאריך ושעה</th>
+                        <th>מיקום</th>
+                    </tr>               
             </table>
         </div>
     </center>
@@ -54,12 +39,12 @@
     <br />
 
     <center>
-        <img src="../images/plus.png"  class="btnPlus"/>
+        <img src="../images/plus.png" class="btnPlus" />
     </center>
 
 
     <div id="divOrder">
-        <img src="../images/Backbutton.png" class="OrderClose"/>
+        <img src="../images/Backbutton.png" class="OrderClose" />
         <br />
 
         <center>
@@ -69,7 +54,7 @@
             <select id="streetSelector"></select>
             <br />
 
-          
+
             <p class="addOrder">שלח הזמנה</p>
 
         </center>
