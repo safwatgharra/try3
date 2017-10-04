@@ -95,6 +95,24 @@ namespace WebApplication1.App_Code.DAL
             return Table(query, tblname);
            
         }
+        public string NextHazard()
+        {
+            string stmt = "select count (*) from [ReportsTB]";
+            try
+            {
+                con.Open();
+                SqlCommand com = new SqlCommand(stmt, con);
+                string i = ((int)com.ExecuteScalar()+1).ToString();
+                con.Close();
+                return i;
+            }
+            catch (Exception e)
+            {
+                con.Close();
+                return e.Message;
+            }
+
+        }
         public string HazardReport(int userID,string date,string type,string description,string path)
         {
             string query= "INSERT INTO [dbo].[ReportsTB]"+
