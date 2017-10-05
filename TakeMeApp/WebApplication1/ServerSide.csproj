@@ -74,6 +74,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="bin\Newtonsoft.Json.dll.refresh" />
+    <Content Include="images\ReturnValue.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

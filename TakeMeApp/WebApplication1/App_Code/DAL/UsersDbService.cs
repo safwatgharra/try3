@@ -23,7 +23,7 @@ public class UsersDbService
         SqlConnection con = new SqlConnection(strCon);
         SqlDataAdapter adptr = new SqlDataAdapter(
             " SELECT * " +
-            " FROM UsersTB ", con);
+            " FROM NewUsersTB ", con);
 
         DataSet ds = new DataSet();
         adptr.Fill(ds, "Users");

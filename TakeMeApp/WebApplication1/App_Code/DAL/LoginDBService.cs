@@ -25,7 +25,7 @@ namespace WebApplication1.App_Code.DAL
             try
             {
                 con.Open();
-                SqlCommand com = new SqlCommand("select * from UsersTB where UserID = @UserID and UserPass = @UserPass", con);
+                SqlCommand com = new SqlCommand("select * from NewUsersTB where UserID = @UserID and UserPass = @UserPass", con);
                 com.Parameters.Add(new SqlParameter("@UserID", userid));
                 com.Parameters.Add(new SqlParameter("@UserPass", userpass));
 
