@@ -1,4 +1,4 @@
-﻿var workerPosition = { lat: 43.47836101344629, lng: -80.53074049212657 };
+﻿var workerPosition = { lat: 32.341441920300006, lng: 34.9123955 };
 var map;
 var marker;
 var d = new Date();
@@ -9,7 +9,7 @@ var date = month + '/' + (day < 10 ? '0' : '') + day + '/' + d.getFullYear();
 function initMap() {
 
     map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 20,
+        zoom: 16,
         center: workerPosition,
         mapTypeControl: false,
         zoomControl: false,
@@ -21,9 +21,9 @@ function initMap() {
         map: map
     });
 
-    if (navigator.geolocation) {
-        watchId = navigator.geolocation.watchPosition(changePosition, showError, {});
-    }
+    //if (navigator.geolocation) {
+    //    watchId = navigator.geolocation.watchPosition(changePosition, showError, {});
+    //}
 }
 
 function changePosition(position) {
@@ -175,7 +175,7 @@ $(document).ready(function () {
 });
 
 function loadOrders() {
-    var todaydate = { todaydate:date };
+    var todaydate = { todaydate: date };
     $.ajax({
         url: WebServiceURL + "/LoadImmediateOrders",
         dataType: "json",
@@ -186,7 +186,19 @@ function loadOrders() {
         },
         success: function (data) {
             var res = data.d;
-            alert("ImmediateOrders-הצלחת טעינה");
+            var resOutput = JSON.parse(res);
+            for (var i = 0; i < resOutput.length; i++) {
+                var marker = new google.maps.Marker({
+                    position: { lat: resOutput[i].lat * 1, lng: resOutput[i].long * 1 },
+                    map: map,
+                });
+                //marker.addListener("click", function () {
+                //    var strpos = this.position.lat() + "+" + (this.position.lng());
+                //    removeUserMarker(strpos);
+                //    window.location = window.location;
+                //});
+            }
+
         }
 
     });
@@ -202,10 +214,20 @@ function loadOrders() {
         },
         success: function (data) {
             var res = data.d;
-            var result = JSON.parse(data.d);
-            alert("PreOrders-הצלחת טעינה");
-            showPreOrdersOnMap(result);
-        }
+            var resOutput = JSON.parse(res);
+            for (var i = 0; i < resOutput.length; i++) {
+                var marker = new google.maps.Marker({
+                    position: { lat: resOutput[i].lat * 1, lng: resOutput[i].long * 1 },
+                    map: map,
+                    animation: google.maps.Animation.DROP
+                });
+         
+                //marker.addListener("click", function () {
+                //    var strpos = this.position.lat() + "+" + (this.position.lng());
+                //    removeUserMarker(strpos);
+                //    window.location = window.location;
+                //});
+            } }
     });
 }
 
@@ -227,6 +249,6 @@ function showPreOrdersOnMap(hazards) {
     //        icon: img,
     //        animation: google.maps.Animation.DROP
     //    });
-     
+
     //}
 }

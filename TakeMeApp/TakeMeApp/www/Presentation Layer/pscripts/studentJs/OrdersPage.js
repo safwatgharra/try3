@@ -1,4 +1,5 @@
 ﻿$(document).ready(function myfunction() {
+    LoadRequests();
 
     $(this).click(function (e) {
         var removeid = "";
@@ -33,10 +34,6 @@
         //    }
         //});
 
-    });
-
-    $("#btn").click(function () {
-        LoadRequests();
     });
 
     $("#backOrders").click(function () {

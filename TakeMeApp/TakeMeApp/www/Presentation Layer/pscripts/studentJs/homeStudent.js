@@ -110,7 +110,6 @@ $(document).ready(function myfunction() {
                     success: function (data) {
                         alert("ההזמנה נשלחה");
                         var res = data.d;
-                       
                         window.location.replace("mapStudent.html");
                     }
                 });
