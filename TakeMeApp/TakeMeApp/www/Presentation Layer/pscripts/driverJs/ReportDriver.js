@@ -6,10 +6,10 @@
     $('#ReportDateTimeTXT').val(today);
 
     $('#btnCamera').click(function () {
-        navigator.camera.getPicture(onCameraSuccess, onCameraFail, {
-            quality: 50,
-            destinationType: Camera.DestinationType.FILE_URI
-        });
+        //navigator.camera.getPicture(onCameraSuccess, onCameraFail, {
+        //    quality: 50,
+        //    destinationType: Camera.DestinationType.FILE_URI
+        //});
     });
 
     $(".addReport").click(function () {
@@ -17,13 +17,13 @@
         ReportSelector = $('#ReportSelector').val();
         ReportDescription = $('#ReportDescription').val();
    
-          var hazard = {
-        userID: localStorage.userid,
-        date: today,
-        type: ReportSelector,
-        description: ReportDescription,
-      path:
-    };
+    //      var hazard = {
+    //    userID: localStorage.userid,
+    //    date: today,
+    //    type: ReportSelector,
+    //    description: ReportDescription,
+    //  path:
+    //};
 
         //$.ajax({
         //    url: WebServiceURL + "/HazardReport",

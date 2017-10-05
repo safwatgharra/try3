@@ -89,9 +89,8 @@ body {
         
     }
 
- #ReportImage {
- max-width: 35%;
- height: auto;
- margin-top: 2%;
-
+#btnCamera {
+    max-width: 35%;
+    height: auto;
+    margin-top: 2%;
 }

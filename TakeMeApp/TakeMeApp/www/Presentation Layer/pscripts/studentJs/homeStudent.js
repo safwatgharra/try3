@@ -43,15 +43,11 @@ $(document).ready(function myfunction() {
         var time = $("#OrderTimeTXT").val();
         var dateTime = fullDate + " " + time;
 
-
-        
-
         var order = {
             date: dateTime,
             locationID: street,
             userID: localStorage.userid
         };
-
 
         $.ajax({
             url: WebServiceURL + "/InsertRequest",
@@ -99,8 +95,6 @@ $(document).ready(function myfunction() {
         if (navigator.geolocation)
         {
             navigator.geolocation.getCurrentPosition(function (pos) {
-                alert(pos.coords.latitude);
-                alert(pos.coords.longitude);
                 TakeMe.longi = pos.coords.longitude;
                 TakeMe.lati = pos.coords.latitude;
                 TakeMe.date = DateTime;
@@ -114,6 +108,7 @@ $(document).ready(function myfunction() {
                         alert(formatErrorMessage(jqXHR, exception));
                     },
                     success: function (data) {
+                        alert("ההזמנה נשלחה");
                         var res = data.d;
                        
                         window.location.replace("mapStudent.html");
