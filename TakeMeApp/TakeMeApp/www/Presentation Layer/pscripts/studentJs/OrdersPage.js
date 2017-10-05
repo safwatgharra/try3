@@ -1,11 +1,39 @@
 ﻿$(document).ready(function myfunction() {
 
-    //$(this).click(function (e) {
-    //    alert(e.target.id);
-    //    alert(e.currentTarget.id);
-    //    alert($(this).html(this.value));
+    $(this).click(function (e) {
+        var removeid = "";
+        var str = (e.target.id.toString());
+        for (var i = 0; i < str.length - 1; i++) {
+            removeid += str[i];
+        }
+        if (removeid == "removeRow") {
+            var index = str[str.length - 1];
+            $(".td" + index).remove();
+        }
+        var date = $('#td' + index).text();
 
-    //});
+        //var Remove =
+        //    {
+        //        date: date,
+        //        userID: localStorage.userid
+        //    };
+
+        //$.ajax({
+        //    url: WebServiceURL + "/UpdateRequest",
+        //    dataType: "json",
+        //    type: "POST",
+        //    data: JSON.stringify(Remove),
+        //    contentType: "application/json; charset=utf-8",
+        //    error: function (jqXHR, exception) {
+        //        alert(formatErrorMessage(jqXHR, exception));
+        //    },
+        //    success: function (data) {
+        //        var res = data.d;
+        //        alert("the row us removed"); 
+        //    }
+        //});
+
+    });
 
     $("#btn").click(function () {
         LoadRequests();
@@ -85,7 +113,7 @@ function LoadRequests() {
             var result = JSON.parse(res);
             var i = 0;
             for (var i = 0; result[i] != null; i++) {
-                $('#table').append('<tr class="td' + i + '"><td><img src="../images/minus.png" class="removeRow' + i + '" /></td><td class="td' + i + '">' + result[i].RequestDate + '</td><td>' + result[i].LocationName + '</td></tr>');
+                $('#table').append('<tr class="td' + i + '"><td><img src="../images/minus.png" id="removeRow' + i + '" /></td><td id="td' + i + '">' + result[i].RequestDate + '</td><td>' + result[i].LocationName + '</td></tr>');
             }
         }
     });

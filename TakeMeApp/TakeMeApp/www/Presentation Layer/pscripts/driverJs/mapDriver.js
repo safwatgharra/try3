@@ -64,7 +64,9 @@ function showError(error) {
 
 $(document).ready(function () {
 
-    //loadOrders();
+    $("#btn").click(function () {
+        loadOrders();
+    });
 
     $("#MenuOpen").click(function () {
 
@@ -79,7 +81,7 @@ $(document).ready(function () {
     });
 
     $("#StartBreak").click(function () {
- 
+
         UserSB =
             {
                 userID: localStorage.userid,
@@ -107,8 +109,8 @@ $(document).ready(function () {
 
         UserEB =
             {
-            userID: localStorage.userid,
-            date: date
+                userID: localStorage.userid,
+                date: date
             };
 
         $.ajax({
@@ -137,7 +139,7 @@ $(document).ready(function () {
     });
 
     $("#EndtWorking").click(function () {
-   
+
         var dt = new Date();
         var time = (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() + ":" + (dt.getSeconds() < 10 ? '0' : '') + dt.getSeconds();
 
@@ -173,47 +175,43 @@ $(document).ready(function () {
 });
 
 function loadOrders() {
+    var todaydate = { todaydate:date };
+    $.ajax({
+        url: WebServiceURL + "/LoadImmediateOrders",
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        error: function (jqXHR, exception) {
+            alert(formatErrorMessage(jqXHR, exception));
+        },
+        success: function (data) {
+            var res = data.d;
+            alert("ImmediateOrders-הצלחת טעינה");
+        }
 
-    UserOR =
-        {
-        todaydate: date
-        };
+    });
 
-    //$.ajax({
-    //    url: WebServiceURL + "/LoadImmediateOrders",
-    //    dataType: "json",
-    //    type: "POST",
-    //    contentType: "application/json; charset=utf-8",
-    //    error: function (jqXHR, exception) {
-    //        alert(formatErrorMessage(jqXHR, exception));
-    //    },
-    //    success: function (data) {
-    //        var res = data.d;
-    //        alert("res-הצלחת טעינה" + res);
-    //    }
-
-    //});
-
-    //$.ajax({
-    //    url: WebServiceURL + "/LoadPreOrders",
-    //    dataType: "json",
-    //    type: "POST",
-    //    data: JSON.stringify(UserOR),
-    //    contentType: "application/json; charset=utf-8",
-    //    error: function (jqXHR, exception) {
-    //        alert(formatErrorMessage(jqXHR, exception));
-    //    },
-    //    success: function (data) {
-    //        var res = data.d;
-    //        alert("res-" + res);
-    //    }
-
-    //});
-    
-
+    $.ajax({
+        url: WebServiceURL + "/LoadPreOrders",
+        dataType: "json",
+        type: "POST",
+        data: JSON.stringify(todaydate),
+        contentType: "application/json; charset=utf-8",
+        error: function (jqXHR, exception) {
+            alert(formatErrorMessage(jqXHR, exception));
+        },
+        success: function (data) {
+            var res = data.d;
+            var result = JSON.parse(data.d);
+            alert("PreOrders-הצלחת טעינה");
+            showPreOrdersOnMap(result);
+        }
+    });
 }
 
-function showOrdersOnMap(Orders) {
+function showPreOrdersOnMap(hazards) {
+
+    //navigator.geolocation.clearWatch(watchId);
     var img = {
         url: "../images/marker-green.png", // url
         scaledSize: new google.maps.Size(60, 60), // scaled size
@@ -222,16 +220,13 @@ function showOrdersOnMap(Orders) {
     };
 
     //navigator.geolocation.clearWatch(watchId);
-    for (var i = 0; i < Orders.length; i++) {
-        //var imgSTR = Orders[i].Hazard_Image;
-        //imgSTR = imgSTR.substring(23);
-        alert(Orders[i]);
-        var marker = new google.maps.Marker({
-            position: { lat: Orders[i].lat, lng: Orders[i].long },
-            map: map,
-            icon: img,
-            animation: google.maps.Animation.DROP
-        });
-
-    }
+    //for (var i = 0; i < hazards.length; i++) {
+    //    marker = new google.maps.Marker({
+    //        position: { lat: hazards[i].lat, lng: hazards[i].long },
+    //        map: map,
+    //        icon: img,
+    //        animation: google.maps.Animation.DROP
+    //    });
+     
+    //}
 }
