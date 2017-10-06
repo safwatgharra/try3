@@ -43,10 +43,10 @@ public class UsersWS : System.Web.Services.WebService
         return reqBAL.InsertRequest(date, locationID, userID);
     }
     [WebMethod]
-    public string UpdateRequest(string date, int locationID, int userID)
+    public string UpdateRequest(string datetime,  int userID)
     {
         StudentBAL reqBAL = new StudentBAL();
-        return reqBAL.UpdateRequest(date, locationID, userID);
+        return reqBAL.UpdateRequest(datetime, userID);
     }
 
 

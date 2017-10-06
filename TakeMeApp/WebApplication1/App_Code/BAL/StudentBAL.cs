@@ -30,9 +30,9 @@ namespace WebApplication1.App_Code.BAL
                 return msg;
 
         }
-        public string UpdateRequest(string date, int locationID, int userID)
+        public string UpdateRequest(string datetime,  int userID)
         {
-            string msg = studentdb.RemoveReqDB(date, locationID, userID);
+            string msg = studentdb.RemoveReqDB(datetime, userID);
             if (msg == "your requset removed")
                 return studentdb.RequestUser(userID);
             else

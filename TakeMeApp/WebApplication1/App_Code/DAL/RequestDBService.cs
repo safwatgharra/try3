@@ -105,10 +105,10 @@ namespace WebApplication1.App_Code.DAL
 
         }
 
-        public string  RemoveReqDB(string date, int locationID, int userID)
+        public string  RemoveReqDB(string datetime, int userID)
         {
             string query = "DELETE FROM [dbo].[RequestTB]" +
-                           " WHERE UserID =" + userID + " and LocationID =" + locationID +   "and RequestDate='" + date + "'";
+                           " WHERE UserID =" + userID + "and RequestDate='" + datetime + "'";
             string msg = "your requset removed";
             return Execute(query, msg);
            
