@@ -1,38 +1,44 @@
-﻿$(document).ready(function myfunction() {
+﻿var removeid;
+var str;
+var date;
+var index
+var Remove;
+$(document).ready(function myfunction() {
+
     LoadRequests();
 
     $(this).click(function (e) {
-        var removeid = "";
-        var str = (e.target.id.toString());
+        removeid = "";
+        str = (e.target.id.toString());
         for (var i = 0; i < str.length - 1; i++) {
             removeid += str[i];
         }
         if (removeid == "removeRow") {
-            var index = str[str.length - 1];
+         index = str[str.length - 1];
+           date = $('#td' + index).text();
+
+       Remove =
+                {
+                    datetime: date,
+                    userID: localStorage.userid
+                };
+
+            $.ajax({
+                url: WebServiceURL + "/UpdateRequest",
+                dataType: "json",
+                type: "POST",
+                data: JSON.stringify(Remove),
+                contentType: "application/json; charset=utf-8",
+                error: function (jqXHR, exception) {
+                    alert(formatErrorMessage(jqXHR, exception));
+                },
+                success: function (data) {
+                    var res = data.d;
+                    alert("ההזמנה נמחקה");
+                }
+            });
             $(".td" + index).remove();
         }
-        var date = $('#td' + index).text();
-
-        //var Remove =
-        //    {
-        //        date: date,
-        //        userID: localStorage.userid
-        //    };
-
-        //$.ajax({
-        //    url: WebServiceURL + "/UpdateRequest",
-        //    dataType: "json",
-        //    type: "POST",
-        //    data: JSON.stringify(Remove),
-        //    contentType: "application/json; charset=utf-8",
-        //    error: function (jqXHR, exception) {
-        //        alert(formatErrorMessage(jqXHR, exception));
-        //    },
-        //    success: function (data) {
-        //        var res = data.d;
-        //        alert("the row us removed"); 
-        //    }
-        //});
 
     });
 
@@ -48,7 +54,7 @@
     $(".btnPlus").click(function () {
         fillStreetLocationSelect();
         $("#divOrder").addClass('borderOrder');
-        $("#divOrder").css({ "height": "63%", "width": "78%" });
+        $("#divOrder").css({ "height": "66%", "width": "78%" });
     });
 
     $(".addOrder").click(function () {
