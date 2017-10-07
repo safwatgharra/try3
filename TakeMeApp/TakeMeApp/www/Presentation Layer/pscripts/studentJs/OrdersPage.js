@@ -7,6 +7,10 @@ $(document).ready(function myfunction() {
 
     LoadRequests();
 
+    //$(this).click(function (e) {
+
+    //    alert(e.target.id.toString());
+    //});
     $(this).click(function (e) {
         removeid = "";
         str = (e.target.id.toString());

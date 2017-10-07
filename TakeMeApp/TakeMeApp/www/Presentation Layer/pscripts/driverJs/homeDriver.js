@@ -44,11 +44,12 @@
             success: function (data) {
                 var res = data.d;
                 alert("res-" + res);
+                window.location.replace("mapDriver.html");
             }
 
         });
         
-        window.location.replace("mapDriver.html");
+     
     });
 
     $("#logoutBtn").click(function () {

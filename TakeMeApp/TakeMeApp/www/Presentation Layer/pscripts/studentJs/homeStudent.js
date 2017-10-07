@@ -9,10 +9,8 @@ var TakeMe = {
     lati: coordsLat
 };
 
-
-
 $(document).ready(function myfunction() {
-   
+
     //____________________menu view______________________
     $("#MenuOpen").click(function () {
         $("#divMenu").addClass('borderMenu');
@@ -27,14 +25,14 @@ $(document).ready(function myfunction() {
 
     //__________________order view____________________
     $(".BtnOrder").click(function () {
-  $("#divOrder").addClass('borderOrder');
-        $("#divOrder").css({ "height": "65%", "width": "78%" });
+        $("#divOrder").addClass('borderOrder');
+        $("#divOrder").css({ "height": "70%", "width": "78%" });
         fillStreetLocationSelect();
     });
 
     $(".addOrder").click(function () {
-        var street = $("#streetSelector").val()*1+1;
-      
+        var street = $("#streetSelector").val() * 1 + 1;
+
         var date = new Date($('#OrderDateTXT').val());
         day = date.getDate();
         month = date.getMonth() + 1;
@@ -81,8 +79,6 @@ $(document).ready(function myfunction() {
 
     //______________________Take me___________________
     $("#divImagCir").click(function () {
-        
-
         var dt = new Date();
         var Time = (dt.getHours() < 10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes() + ":" + (dt.getSeconds() < 10 ? '0' : '') + dt.getSeconds();
         var d = new Date();
@@ -92,34 +88,38 @@ $(document).ready(function myfunction() {
         var DateTime = date + " " + Time;
         TakeMe.date = DateTime;
 
-        if (navigator.geolocation)
-        {
-            navigator.geolocation.getCurrentPosition(function (pos) {
-                TakeMe.longi = pos.coords.longitude;
-                TakeMe.lati = pos.coords.latitude;
-                TakeMe.date = DateTime;
-                $.ajax({
-                    url: WebServiceURL + "/TakeMe",
-                    data: JSON.stringify(TakeMe),
-                    dataType: "json",
-                    type: "POST",
-                    contentType: "application/json; charset=utf-8",
-                    error: function (jqXHR, exception) {
-                        alert(formatErrorMessage(jqXHR, exception));
-                    },
-                    success: function (data) {
-                        alert("ההזמנה נשלחה");
-                        var res = data.d;
-                        window.location.replace("mapStudent.html");
-                    }
-                });
-            },
-                function (error) {
-                alert("Error");
+        if (navigator.geolocation) {
+            alert("navigator.geolocation");
+            navigator.geolocation.getCurrentPosition(
+                function (pos) {
+                    alert("get current postition");
+                    TakeMe.longi = pos.coords.longitude;
+                    TakeMe.lati = pos.coords.latitude;
+                    TakeMe.date = DateTime;
+                    $.ajax({
+                        url: WebServiceURL + "/TakeMe",
+                        dataType: "json",
+                        type: "POST",
+                        data: JSON.stringify(TakeMe),
+                        contentType: "application/json; charset=utf-8",
+                        error: function (jqXHR, exception) {
+                            alert(formatErrorMessage(jqXHR, exception));
+                        },
+                        success: function (data) {
+                            alert("ההזמנה נשלחה");
+                            var res = data.d;
+                            window.location.replace("mapStudent.html");
+                        }
+                    });
                 },
-            {});
+
+                function (error) {
+                    alert("Error");
+                },
+
+                {}
+            );
         }
-       
     });
 
     //_____________________________log out____________

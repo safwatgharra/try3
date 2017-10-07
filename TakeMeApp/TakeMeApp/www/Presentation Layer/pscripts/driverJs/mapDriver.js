@@ -1,10 +1,21 @@
 ﻿var workerPosition = { lat: 32.341441920300006, lng: 34.9123955 };
 var map;
 var marker;
+var markers = [];
+var Img;
 var d = new Date();
 var month = d.getMonth() + 1;
 var day = d.getDate();
 var date = month + '/' + (day < 10 ? '0' : '') + day + '/' + d.getFullYear();
+var loadloadOrdersCall = window.setInterval(function () {
+    loadOrders();
+}, 60000);
+
+//var showMeOnMap = window.setInterval(function () {
+//    if (navigator.geolocation) {
+//        navigator.geolocation.getCurrentPosition(changePosition, showError, {});
+//    }
+//}, 7000);
 
 function initMap() {
 
@@ -16,9 +27,18 @@ function initMap() {
         disableDefaultUI: true
     });
 
+    var img = {
+        url: "../images/police-car.png",
+        scaledSize: new google.maps.Size(60, 60),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 0)
+    };
+
     marker = new google.maps.Marker({
         position: workerPosition,
-        map: map
+        map: map,
+        icon: img,
+        animation: google.maps.Animation.DROP
     });
 
     //if (navigator.geolocation) {
@@ -27,6 +47,7 @@ function initMap() {
 }
 
 function changePosition(position) {
+
     if (marker !== null) {
         marker.setMap(null);
     }
@@ -175,7 +196,10 @@ $(document).ready(function () {
 });
 
 function loadOrders() {
+    setMapOnAll(null);
+
     var todaydate = { todaydate: date };
+
     $.ajax({
         url: WebServiceURL + "/LoadImmediateOrders",
         dataType: "json",
@@ -185,22 +209,11 @@ function loadOrders() {
             alert(formatErrorMessage(jqXHR, exception));
         },
         success: function (data) {
-            var res = data.d;
-            var resOutput = JSON.parse(res);
-            for (var i = 0; i < resOutput.length; i++) {
-                var marker = new google.maps.Marker({
-                    position: { lat: resOutput[i].lat * 1, lng: resOutput[i].long * 1 },
-                    map: map,
-                });
-                //marker.addListener("click", function () {
-                //    var strpos = this.position.lat() + "+" + (this.position.lng());
-                //    removeUserMarker(strpos);
-                //    window.location = window.location;
-                //});
-            }
-
+            var result = JSON.parse(data.d);
+           
+            Img = "../images/marker-green.png";
+            showOrdersOnMap(result, Img);
         }
-
     });
 
     $.ajax({
@@ -213,42 +226,47 @@ function loadOrders() {
             alert(formatErrorMessage(jqXHR, exception));
         },
         success: function (data) {
-            var res = data.d;
-            var resOutput = JSON.parse(res);
-            for (var i = 0; i < resOutput.length; i++) {
-                var marker = new google.maps.Marker({
-                    position: { lat: resOutput[i].lat * 1, lng: resOutput[i].long * 1 },
-                    map: map,
-                    animation: google.maps.Animation.DROP
-                });
-         
-                //marker.addListener("click", function () {
-                //    var strpos = this.position.lat() + "+" + (this.position.lng());
-                //    removeUserMarker(strpos);
-                //    window.location = window.location;
-                //});
-            } }
+            var result = JSON.parse(data.d);
+            
+            Img = "../images/marker-blue.png";
+            showOrdersOnMap(result, Img);
+        }
     });
+
 }
 
-function showPreOrdersOnMap(hazards) {
+function showOrdersOnMap(resOutput, Img) {
 
-    //navigator.geolocation.clearWatch(watchId);
+
     var img = {
-        url: "../images/marker-green.png", // url
-        scaledSize: new google.maps.Size(60, 60), // scaled size
-        origin: new google.maps.Point(0, 0), // origin
+        url: Img,
+        scaledSize: new google.maps.Size(60, 60),
+        origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(0, 0)
     };
+    var marker;
 
-    //navigator.geolocation.clearWatch(watchId);
-    //for (var i = 0; i < hazards.length; i++) {
-    //    marker = new google.maps.Marker({
-    //        position: { lat: hazards[i].lat, lng: hazards[i].long },
-    //        map: map,
-    //        icon: img,
-    //        animation: google.maps.Animation.DROP
-    //    });
+    for (var i = 0; i < resOutput.length; i++) {
 
-    //}
+        marker = new google.maps.Marker({
+            position: { lat: resOutput[i].lat * 1, lng: resOutput[i].long * 1 },
+            map: map,
+            icon: img,
+            animation: google.maps.Animation.DROP
+        });
+        markers.push(marker);
+        addMarkerListner(marker, resOutput[i]);
+    }
+
+}
+
+function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+}//Delete all markers + events
+function addMarkerListner(marker, details) {
+    marker.addListener('click', function () {   
+        marker.setMap(null);
+    });
 }
