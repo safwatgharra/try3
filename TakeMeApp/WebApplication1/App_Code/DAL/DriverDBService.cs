@@ -77,20 +77,31 @@ namespace WebApplication1.App_Code.DAL
         //    string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
         //    return json;
         //}
-
+        public string ChangeReqStatus(string datetime,int userID)
+        {
+            string query = "UPDATE [dbo].[RequestTB]" +
+                           " SET [RequestStatus] = 0" +
+                           " WHERE[UserID] = " + userID + "and [RequestDate] = '" + datetime + "'";
+            string msg = "driver on his way";
+            return Execute(query, msg);
+        }
+        
         public string LoadPreOrders(string todaydate)
         {
-            string query = "SELECT  dbo.RequestTB.UserID, dbo.LocationTB.long, dbo.LocationTB.lat " +
-                          "FROM    dbo.LocationTB INNER JOIN dbo.RequestTB ON dbo.LocationTB.LocationID = dbo.RequestTB.LocationID " +
-                          "WHERE(dbo.RequestTB.RequestTypeID = '2' and [RequestStatus]=1 and cast([RequestDate] as date)='" + todaydate + "')";
+            string query = "SELECT dbo.LocationTB.long, dbo.LocationTB.lat, dbo.NewUsersTB.UserID, dbo.NewUsersTB.UserFName, dbo.NewUsersTB.UDID, dbo.RequestTB.RequestDate" +
+                            " FROM dbo.RequestTB INNER JOIN dbo.LocationTB ON dbo.LocationTB.LocationID = dbo.RequestTB.LocationID" +
+                            " INNER JOIN dbo.NewUsersTB ON  dbo.NewUsersTB.UserID = dbo.RequestTB.UserID" +
+                            " WHERE(dbo.RequestTB.RequestTypeID = '2' and [RequestStatus]=1 and cast([RequestDate] as date)='" + todaydate + "')";
             string tblname = "preOrder";
             return Table(query, tblname);
         }
 
         public string LoadImmediateOrders()
         {
-            string query = "SELECT [UserID],[long],[lat] FROM [RequestTB] " +
-                           "where[RequestTypeID] = 1 and [RequestStatus]=1";
+            string query =  " SELECT dbo.RequestTB.RequestDate, dbo.RequestTB.UserID, dbo.RequestTB.long, dbo.RequestTB.lat, dbo.NewUsersTB.UserFName, dbo.NewUsersTB.UDID"+
+                            " FROM dbo.RequestTB INNER JOIN dbo.NewUsersTB ON dbo.RequestTB.UserID = dbo.NewUsersTB.UserID"+
+                            " where[RequestTypeID] = 1 and[RequestStatus] = 1";
+
             string tblname = "immidiate";
             return Table(query, tblname);
            

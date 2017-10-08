@@ -125,6 +125,12 @@ public class UsersWS : System.Web.Services.WebService
         return loadPre.LoadPreOrders(todaydate);
     }
     [WebMethod]
+    public string ChangeReqStatus(string datetime,int userID)
+    {
+        DriverBAL chng = new DriverBAL();
+        return chng.ChangeReqStatus(datetime, userID);
+    }
+    [WebMethod]
     public string helloWorld()
     {
         return "hi";

@@ -44,6 +44,10 @@ namespace WebApplication1.App_Code.BAL
         {
             return driverdb.LoadPreOrders(todaydate);
         }
+        public string ChangeReqStatus(string datetime,int userID)
+        {
+            return driverdb.ChangeReqStatus(datetime, userID);
+        }
         public string NextHazard()
         {
             return driverdb.NextHazard();
