@@ -9,7 +9,7 @@ var day = d.getDate();
 var date = month + '/' + (day < 10 ? '0' : '') + day + '/' + d.getFullYear();
 var loadloadOrdersCall = window.setInterval(function () {
     loadOrders();
-}, 60000);
+}, 40000);
 
 //var showMeOnMap = window.setInterval(function () {
 //    if (navigator.geolocation) {
@@ -193,9 +193,6 @@ $(document).ready(function () {
         window.location.replace("../pageLogin/LoginPage.html");
     });
 
-    $("#backInfo").click(function () {
-        $("#orderInfo").fadeOut(1000);
-    });
 });
 
 function loadOrders() {
@@ -213,7 +210,6 @@ function loadOrders() {
         },
         success: function (data) {
             var result = JSON.parse(data.d);
-           
             Img = "../images/marker-green.png";
             showOrdersOnMap(result, Img);
         }
@@ -230,7 +226,6 @@ function loadOrders() {
         },
         success: function (data) {
             var result = JSON.parse(data.d);
-            
             Img = "../images/marker-blue.png";
             showOrdersOnMap(result, Img);
         }
@@ -264,17 +259,46 @@ function showOrdersOnMap(resOutput, Img) {
 
 function addMarkerListner(marker, details) {
     marker.addListener('click', function () {
-        showOrderDetails(marker,details);
+        showOrderDetails(marker, details);
     });
 }
 
-function showOrderDetails(marker,details)
-{
+function showOrderDetails(marker, details) {
+   
+    $("#orderUserName").html(details.UserFName);
+    $("#orderDateTime").html(details.RequestDate);
     $("#orderInfo").fadeIn(2000);
     $("#TakeMe").click(function () {
+        removeRequestFromDb(marker, details);
         $("#orderInfo").fadeOut(1000);
-        marker.setMap(null);
     });
+    $("#backInfo").click(function () {
+        $("#orderInfo").fadeOut(1000);
+    });
+}
+
+function removeRequestFromDb(marker,details) {
+
+    var removeRequestUser =
+        {
+            userID :details.UserID,
+        datetime:details.RequestDate
+        };
+
+    $.ajax({
+        url: WebServiceURL + "/ChangeReqStatus",
+        dataType: "json",
+        type: "POST",
+        data: JSON.stringify(removeRequestUser),
+        contentType: "application/json; charset=utf-8",
+        error: function (jqXHR, exception) {
+            alert(formatErrorMessage(jqXHR, exception));
+        },
+        success: function (data) {
+            marker.setMap(null);
+        }
+    });
+
 }
 
 function setMapOnAll(map) {
