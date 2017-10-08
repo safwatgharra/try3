@@ -193,6 +193,9 @@ $(document).ready(function () {
         window.location.replace("../pageLogin/LoginPage.html");
     });
 
+    $("#backInfo").click(function () {
+        $("#orderInfo").fadeOut(1000);
+    });
 });
 
 function loadOrders() {
@@ -237,7 +240,6 @@ function loadOrders() {
 
 function showOrdersOnMap(resOutput, Img) {
 
-
     var img = {
         url: Img,
         scaledSize: new google.maps.Size(60, 60),
@@ -260,13 +262,23 @@ function showOrdersOnMap(resOutput, Img) {
 
 }
 
+function addMarkerListner(marker, details) {
+    marker.addListener('click', function () {
+        showOrderDetails(marker,details);
+    });
+}
+
+function showOrderDetails(marker,details)
+{
+    $("#orderInfo").fadeIn(2000);
+    $("#TakeMe").click(function () {
+        $("#orderInfo").fadeOut(1000);
+        marker.setMap(null);
+    });
+}
+
 function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(map);
     }
 }//Delete all markers + events
-function addMarkerListner(marker, details) {
-    marker.addListener('click', function () {   
-        marker.setMap(null);
-    });
-}

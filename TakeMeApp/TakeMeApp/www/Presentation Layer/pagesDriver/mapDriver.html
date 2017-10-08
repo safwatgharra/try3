@@ -7,16 +7,16 @@
     <script src="../libraries/jquery-3.1.1.min.js"></script>
     <script src="../../cordova.js"></script>
     <!-- css link -->
-  <link href="../pcss/driverCss/mapDriver.css" rel="stylesheet" />
+    <link href="../pcss/driverCss/mapDriver.css" rel="stylesheet" />
 </head>
 
 <body>
 
-  
+
     <img src="../images/Menu.png" id="MenuOpen" />
-   
+
     <div id="divMenu">
-        <img src="../images/close-circular.png" id="MenuClose"/>
+        <img src="../images/close-circular.png" id="MenuClose" />
 
         <ul>
             <li id="PchangeStatus">:שינוי סטטוס</li>
@@ -27,7 +27,7 @@
         <hr />
         <ul>
             <li class="active" id="BtnReport">דווח על תקלה</li>
-            <li class="active" id="EndtWorking" >יציאה מעבודה</li>
+            <li class="active" id="EndtWorking">יציאה מעבודה</li>
             <li class="active" id="logoutBtn">התנתק</li>
         </ul>
 
@@ -36,14 +36,24 @@
     <div id="map">
     </div>
     <button id="btn" style="position:fixed; width:30px; height:30px; z-index:1009; bottom:0;left:0;"></button>
-   
-    
+
+    <div id="orderInfo">
+     
+            <img src="../images/Backbutton.png" id="backInfo" />
+        <center>
+            <p id="orderUserName">ayoub</p>
+            <p id="orderDateTime">10/8/2017</p>
+            <p id="orderLocation">שער1</p>
+            <p id="TakeMe">קח אותי</p>
+        </center>
+    </div>
+
 
     <!-- js link -->
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCH3PdXAhWMYBCXp4pyLgEIeaEyrFbcdk&callback=initMap" async defer></script>
 
-  
+
     <script src="../pscripts/Globals.js"></script>
     <script src="../pscripts/driverJs/mapDriver.js"></script>
 
