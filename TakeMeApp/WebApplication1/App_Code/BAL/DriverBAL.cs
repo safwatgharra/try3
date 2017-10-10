@@ -56,6 +56,10 @@ namespace WebApplication1.App_Code.BAL
         {
             return driverdb.HazardReport(userID, date, type, description, path);
         }
+        public string UpdateWayPoint(int userID, string lat, string longi)
+        {
+            return driverdb.UpdateWayPoint(userID, lat, longi);
+        }
 
     }
 }

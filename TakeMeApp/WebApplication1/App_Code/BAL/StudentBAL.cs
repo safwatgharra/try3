@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using WebApplication1.App_Code.DAL;
+using System;
 
 namespace WebApplication1.App_Code.BAL
 {
@@ -41,6 +42,11 @@ namespace WebApplication1.App_Code.BAL
         public string TakeMe(string date, int userID, string longi, string lati)
         {
             return studentdb.TakeMe(date, userID, longi, lati);
+        }
+
+        public string LoadDriverWP(int driverUserID)
+        {
+            return studentdb.LoadDriverWP(driverUserID);
         }
     }
 }

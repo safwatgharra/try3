@@ -131,6 +131,18 @@ public class UsersWS : System.Web.Services.WebService
         return chng.ChangeReqStatus(datetime, userID);
     }
     [WebMethod]
+    public string UpdateWayPoint(int userID, string lat, string longi)
+    {
+        DriverBAL update = new DriverBAL();
+        return update.UpdateWayPoint(userID, lat, longi);
+    }
+    [WebMethod]
+    public string LoadDriverWP(int DriverUserID)
+    {
+        StudentBAL load = new StudentBAL();
+        return load.LoadDriverWP(DriverUserID);
+    }
+    [WebMethod]
     public string helloWorld()
     {
         return "hi";

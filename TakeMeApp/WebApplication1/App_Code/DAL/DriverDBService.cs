@@ -172,5 +172,13 @@ namespace WebApplication1.App_Code.DAL
             string msg = "End woeking";
             return Execute(query, msg);
         }
+        public string UpdateWayPoint(int userID,string lat,string longi)
+        {
+            string query = "UPDATE [dbo].[NewUsersTB]" +
+                           " SET [CurrentLong] =" + longi + ", [Currentlat] = " + lat +
+                           " WHERE[UserID] = " + userID;
+            string msg = "succefully updated";
+            return Execute(query, msg);
+        }
     }
 }

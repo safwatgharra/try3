@@ -65,6 +65,15 @@ namespace WebApplication1.App_Code.DAL
             }
         }
 
+        public string LoadDriverWP(int driverUserID)
+        {
+            string query = "  SELECT [CurrentLong],[Currentlat] " +
+                           " FROM [NewUsersTB] " +
+                           " WHERE UserID = " + driverUserID ;
+            string tblname = "driver current location";
+            return Table(query, tblname);
+        }
+
         public string RequestUser(int UserID)
         {
             string query = "  SELECT dbo.RequestTB.RequestDate, dbo.LocationTB.LocationName " +
