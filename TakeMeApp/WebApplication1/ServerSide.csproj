@@ -72,6 +72,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\PushSharp.Android.dll" />
+    <Content Include="bin\PushSharp.Android.pdb" />
+    <Content Include="bin\PushSharp.Core.dll" />
+    <Content Include="bin\PushSharp.Core.pdb" />
     <Content Include="packages.config" />
     <Content Include="bin\Newtonsoft.Json.dll.refresh" />
     <Content Include="images\ReturnValue.ashx" />

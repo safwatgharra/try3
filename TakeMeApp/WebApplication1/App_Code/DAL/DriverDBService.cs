@@ -77,13 +77,19 @@ namespace WebApplication1.App_Code.DAL
         //    string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
         //    return json;
         //}
-        public string ChangeReqStatus(string datetime,int userID)
+        public string ChangeReqStatus(string datetime,int userID,int DriverID)
         {
             string query = "UPDATE [dbo].[RequestTB]" +
                            " SET [RequestStatus] = 0" +
                            " WHERE[UserID] = " + userID + "and [RequestDate] = '" + datetime + "'";
             string msg = "driver on his way";
+             Execute(query, msg);
+
+             query = "INSERT INTO [dbo].[RidesTB]" +
+                           "([Date] ,[UserID] ,[DriverID] ,[RideStatus]) " +
+                           " VALUES(cast([RequestDate] as date)= '" + datetime + "' , " + userID + "," + DriverID + ", [RideStatus] = 1";
             return Execute(query, msg);
+
         }
         
         public string LoadPreOrders(string todaydate)
