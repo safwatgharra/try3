@@ -84,7 +84,7 @@ function onDeviceReady() {
         };
 
         $.ajax({
-            url: WebServiceURL + "/insertRegIdFromUser",
+            url: WebServiceURL + "/InsertRegIdFromUser",
             dataType: "json",
             type: "POST",
             data: JSON.stringify(regId),

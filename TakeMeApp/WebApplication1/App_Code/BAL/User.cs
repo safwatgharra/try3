@@ -13,17 +13,17 @@ public class User
     public string UserFName { get; set; }
     public string UserLName { get; set; }
     public string PhoneNumber { get; set; }
-    public string UDID { get; set; }
+    public string RegID { get; set; }
     public string CurrentLong { get; set; }
     public string CurrentLat { get; set; }
     public char TypeCode { get; set; }
-    public User(int UserID, string UserFName, string UserLName, string PhoneNumber, string UDID, string CurrentLong, string CurrentLat, char TypeCode)
+    public User(int UserID, string UserFName, string UserLName, string PhoneNumber, string RegID, string CurrentLong, string CurrentLat, char TypeCode)
     {
         this.UserID = UserID;
         this.UserFName = UserFName;
         this.UserLName = UserLName;
         this.PhoneNumber = PhoneNumber;
-        this.UDID = UDID;
+        this.RegID = RegID;
         this.CurrentLong = CurrentLong;
         this.CurrentLat = CurrentLat;
         this.TypeCode = TypeCode;
