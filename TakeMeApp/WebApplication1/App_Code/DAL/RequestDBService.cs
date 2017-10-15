@@ -65,9 +65,10 @@ namespace WebApplication1.App_Code.DAL
             }
         }
 
-        public string insertRegIdFromUser(string regId,int userId)
+        public string InsertRegIdFromUser(string regId,int userId)
         {
-            string query = " UPDATE[dbo].[NewUsersTB] SET [UDID] ='"+regId+"' WHERE UserID = "+ userId;
+            string query = " UPDATE[dbo].[NewUsersTB]"+
+                            "SET [RegID] ='" + regId +"' WHERE UserID = "+ userId;
             string msg = "reg id inserted";
             return Execute(query, msg);
 

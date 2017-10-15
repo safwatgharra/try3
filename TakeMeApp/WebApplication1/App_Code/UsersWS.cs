@@ -152,10 +152,10 @@ public class UsersWS : System.Web.Services.WebService
         return "hi";
     }
     [WebMethod]
-    public string insertRegIdFromUser(string regId,int userId)
+    public string InsertRegIdFromUser(string regId,int userId)
     {
         StudentBAL send = new StudentBAL();
-        return send.insertRegIdFromUser(regId,userId);
+        return send.InsertRegIdFromUser(regId,userId);
     }
 
     [WebMethod]

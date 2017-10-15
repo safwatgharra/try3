@@ -49,9 +49,9 @@ namespace WebApplication1.App_Code.BAL
             return studentdb.LoadDriverWP(driverUserID);
         }
 
-        internal string insertRegIdFromUser(string regId,int userId)
+        public string InsertRegIdFromUser(string regId,int userId)
         {
-            return studentdb.insertRegIdFromUser(regId,userId);
+            return studentdb.InsertRegIdFromUser(regId,userId);
         }
     }
 }
