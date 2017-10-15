@@ -59,6 +59,8 @@ public class UsersWS : System.Web.Services.WebService
     {
 
         LoginBAL loginBal = new LoginBAL();
+        string reg = "epcaLMIdamI:APA91bHQjQEGKNyaznmSUea_vN0UwSa7OF-bkwq6zTEG1JC9r8ML-3i31Fqy1UYAUEyAdlEEWd0UHyDsvBnSSSYAURPdEhU1C_OXMEMC9b_IjnIJKrjd1lTW0CdUJucBUqApz9qHZLZK";
+        RunPushNotification(reg);
         return loginBal.LoginUserUsingClass(userid, userpass);
     }
     [WebMethod]
@@ -159,7 +161,7 @@ public class UsersWS : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void RunPushNotification()
+    public void RunPushNotification(string RegID)
     {
         //Create our push services broker
         var push = new PushBroker();
@@ -232,7 +234,7 @@ public class UsersWS : System.Web.Services.WebService
 
         string message = "sivan";
         //push.QueueNotification(new GcmNotification().ForDeviceRegistrationId("APA91bFjDMStGxVADWRXrPNSTRfb4A3p__lAVf5VtU2nsyeTYuCbNDQ1lK8p0dYQLxNaMbr5FeVOQf9c5yJ_1KkYNndZntmRS-JYP4mM21RVW8FQZD96X5ShusgnX-Wajq9UKD6P5UCHQqhlsEl5toiJPgoj3A")
-        push.QueueNotification(new GcmNotification().ForDeviceRegistrationId("YOUR_REG_ID_HERE")
+        push.QueueNotification(new GcmNotification().ForDeviceRegistrationId(RegID)
                               .WithJson("{\"message\": \" " + message + " \", \"title\": \" my title\", \"msgcnt\": \"1\", \"alert\":\"Hello World!\",\"badge\":7,\"sound\":\"sound.caf\"}"));
         //{\"message\": \" my message\", \"title\": \" my title\", \"msgcnt\": \"1\" - FOR the BACKGROUND!!!
         // \"alert\":\"Hello World!\",\"badge\":7,\"sound\":\"sound.caf\"}" - FOR the FOREGROUND!!!
