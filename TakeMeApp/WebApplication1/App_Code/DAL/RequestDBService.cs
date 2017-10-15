@@ -40,7 +40,7 @@ namespace WebApplication1.App_Code.DAL
                 return e.Message;
             }
         }
-        public string Execute(string query,string msg)
+        public string Execute(string query, string msg)
         {
             try
             {
@@ -65,11 +65,20 @@ namespace WebApplication1.App_Code.DAL
             }
         }
 
+        public string insertRegIdFromUser(string regId,int userId)
+        {
+            string query = " UPDATE[dbo].[NewUsersTB] SET [UDID] ='"+regId+"' WHERE UserID = "+ userId;
+            string msg = "reg id inserted";
+            return Execute(query, msg);
+
+
+        }
+
         public string LoadDriverWP(int driverUserID)
         {
             string query = "  SELECT [CurrentLong],[Currentlat] " +
                            " FROM [NewUsersTB] " +
-                           " WHERE UserID = " + driverUserID ;
+                           " WHERE UserID = " + driverUserID;
             string tblname = "driver current location";
             return Table(query, tblname);
         }
@@ -81,7 +90,7 @@ namespace WebApplication1.App_Code.DAL
                     " WHERE UserID = '" + UserID + "' and RequestTypeID = 2 and [RequestStatus]=1";
             string tblname = "Requests";
             return Table(query, tblname);
-            
+
         }
 
         public string LoadLocatins()
@@ -89,7 +98,7 @@ namespace WebApplication1.App_Code.DAL
             string query = "SELECT * FROM[LocationTB]";
             string tblname = "locations";
             return Table(query, tblname);
-            
+
             //SqlConnection con = new SqlConnection(strCon);
             //List<Location> loc = new List<Location>();
             //SqlCommand com = new SqlCommand(" SELECT * FROM [LocationTB]", con);
@@ -114,13 +123,13 @@ namespace WebApplication1.App_Code.DAL
 
         }
 
-        public string  RemoveReqDB(string datetime, int userID)
+        public string RemoveReqDB(string datetime, int userID)
         {
             string query = "DELETE FROM [dbo].[RequestTB]" +
                            " WHERE UserID =" + userID + "and RequestDate='" + datetime + "'";
             string msg = "your requset removed";
             return Execute(query, msg);
-           
+
         }
 
         public string InsertReqDB(string date, int locationID, int userID)//type : 1- immediatly , 2- pre-order
@@ -130,7 +139,7 @@ namespace WebApplication1.App_Code.DAL
                            "VALUES ('" + date + "'," + locationID + ",2," + userID + ",1)";
             string msg = "Your request has been received";
             return Execute(query, msg);
-         
+
         }
 
         public string TakeMe(string date, int userID, string longi, string lati)

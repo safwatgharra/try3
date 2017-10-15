@@ -106,4 +106,9 @@
   <plugin name="cordova-plugin-geolocation" spec="~2.4.3" />
   <plugin name="cordova-plugin-compat" spec="~1.1.0" />
   <plugin name="cordova-plugin-camera" spec="~2.4.1" />
+  <plugin name="cordova-plugin-file-transfer" spec="~1.6.3" />
+  <plugin name="cordova-plugin-file" spec="~4.3.3" />
+  <plugin name="phonegap-plugin-push" spec="~1.8.0">
+    <variable name="SENDER_ID" value="655974645932" />
+  </plugin>
 </widget>

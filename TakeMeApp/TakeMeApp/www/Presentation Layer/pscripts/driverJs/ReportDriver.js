@@ -8,7 +8,7 @@ $(document).ready(function myfunction() {
 
     $('#ReportDateTimeTXT').val(today);
 
-    $('#btnCamera').click(function () {
+    $('#imgFromServer').click(function () {
         navigator.camera.getPicture(onCameraSuccess, onCameraFail, {
             quality: 50,
             destinationType: Camera.DestinationType.FILE_URI
@@ -41,7 +41,6 @@ $(document).ready(function myfunction() {
                 alert("הדיווח נשלח");
                 var res = data.d;
                 var resOutput = JSON.parse(res);
-                uploadPhoto(imageURI);
                 window.location.replace("ReportDriver.html");
             }
         });
@@ -73,41 +72,20 @@ function getNextIndex() {
 }
 
 function onCameraSuccess(imageURI) {
-    $('#btnCamera').attr('src', imageURI);
-    sendFile(imageURI);
+ //   $('#imgFromServer').attr('src', imageURI);
+    uploadPhoto(imageURI);
 }
 
-function sendFile(imageURI) {
-
-    var formData = new FormData();
-    formData.append('file', imageURI);
-    $.ajax({
-        type: 'post',
-        url: 'http://ruppinmobile.ac.il.preview26.livedns.co.il/site11/images/ReturnValue.ashx',
-        data: formData,
-        success: function (status) {
-            var my_path = "http://ruppinmobile.ac.il.preview26.livedns.co.il/site11/images/ReturnValue.ashx" + "hazard" + NextHazard+".jpg";
-            $("#btnCamera").attr("src", my_path);
-            alert(message);
-        },
-        processData: false,
-        contentType: false,
-        error: function () {
-            alert("Whoops something went wrong!");
-        }
-    });
-}
 
 function uploadPhoto(imageURI) {
     //   Load(); // Start the spinning "working" animation
     var options = new FileUploadOptions(); // PhoneGap object to allow server upload
     options.fileKey = "file";
-    options.fileName = "hazard" + NextHazard + ".jpg"; // file name
+    options.fileName = "hazard" + NextHazard ; // file name
     options.mimeType = "image/jpeg"; // file type
     var params = {}; // Optional parameters
     params.value1 = "test";
     params.value2 = "param";
-
     options.params = params; // add parameters to the FileUploadOptions object
     var ft = new FileTransfer();
     ft.upload(imageURI, encodeURI("http://ruppinmobile.ac.il.preview26.livedns.co.il/site11/images/ReturnValue.ashx"), win, fail, options); // Upload
@@ -115,7 +93,9 @@ function uploadPhoto(imageURI) {
 
 function win(r) {
     var path = r.response;
-    $('#btnCamera').attr("src", "http://ruppinmobile.ac.il.preview26.livedns.co.il/site11/images/ReturnValue.ashx" + "hazard" + NextHazard + ".jpg");
+    $("#imgFromServer").addClass("imagRotate");
+    $('#imgFromServer').attr("src", "http://ruppinmobile.ac.il.preview26.livedns.co.il/site11/images/" + "hazard" + NextHazard + ".jpg");
+    
     // UnLoad(); // Stop "working" animation
 } // win (upload success)
 

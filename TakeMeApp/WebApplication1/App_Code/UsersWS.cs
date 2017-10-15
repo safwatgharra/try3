@@ -129,10 +129,10 @@ public class UsersWS : System.Web.Services.WebService
         return loadPre.LoadPreOrders(todaydate);
     }
     [WebMethod]
-    public string ChangeReqStatus(string datetime,int userID)
+    public string ChangeReqStatus(string datetime,int userID,int driverID)
     {
         DriverBAL chng = new DriverBAL();
-        return chng.ChangeReqStatus(datetime, userID);
+        return chng.ChangeReqStatus(datetime, userID,driverID);
     }
     [WebMethod]
     public string UpdateWayPoint(int userID, string lat, string longi)
@@ -150,6 +150,12 @@ public class UsersWS : System.Web.Services.WebService
     public string helloWorld()
     {
         return "hi";
+    }
+    [WebMethod]
+    public string insertRegIdFromUser(string regId,int userId)
+    {
+        StudentBAL send = new StudentBAL();
+        return send.insertRegIdFromUser(regId,userId);
     }
 
     [WebMethod]
@@ -220,7 +226,7 @@ public class UsersWS : System.Web.Services.WebService
         //  by choosing 'Create new Server key...'
         //  You must ensure the 'Google Cloud Messaging for Android' service is enabled in your APIs Console
         //push.RegisterGcmService(new GcmPushChannelSettings("YOUR Google API's Console API Access  API KEY for Server Apps HERE"));
-        push.RegisterGcmService(new GcmPushChannelSettings("[YOUR_API_KEY_HERE]"));
+        push.RegisterGcmService(new GcmPushChannelSettings("AAAAmLsiwKw:APA91bGaElWDPvYOw5F3Mv9MbGROUltZlqZ_MKOooTlPidAcrDFCbOiFlZtGb835MYZ_EOjhKD4_LBHxg71ZYnbRF5bsfeyS6o3YyGGGZez4dd-MRywHWtuQOfeGvS0XmDKvmMg_Erlu"));
         //Fluent construction of an Android GCM Notification
         //IMPORTANT: For Android you MUST use your own RegistrationId here that gets generated within your Android app itself!
 
