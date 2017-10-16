@@ -33,16 +33,16 @@ public class UsersWS : System.Web.Services.WebService
         //push notifacation to all drivers that there is a new request
         StudentBAL req = new StudentBAL();
 
-        string query = "SELECT        dbo.NewUsersTB.RegID"+
-                       " FROM dbo.AttindanceReportDB INNER JOIN"+
-                        " dbo.NewUsersTB ON dbo.AttindanceReportDB.UserID = dbo.NewUsersTB.UserID"+
-                        " WHERE(dbo.AttindanceReportDB.IsAvaible = 1)";
-        string tblname = "regID";
-        DataTable tb = req.Table(query, tblname);
-        for (int i = 0; i < tb.Rows.Count ; i++)
-        {
-            RunPushNotification(tb.Rows[i]["RegID"].ToString(),"בקשה חדשה נכנסה למערכת");
-        }
+        //string query = "SELECT        dbo.NewUsersTB.RegID"+
+        //               " FROM dbo.AttindanceReportDB INNER JOIN"+
+        //                " dbo.NewUsersTB ON dbo.AttindanceReportDB.UserID = dbo.NewUsersTB.UserID"+
+        //                " WHERE(dbo.AttindanceReportDB.IsAvaible = 1)";
+        //string tblname = "regID";
+        //DataTable tb = req.Table(query, tblname);
+        //for (int i = 0; i < tb.Rows.Count ; i++)
+        //{
+        //    RunPushNotification(tb.Rows[i]["RegID"].ToString(),"בקשה חדשה נכנסה למערכת");
+        //}
         return req.TakeMe(datetime, userID, longi, lati);
     }
 
