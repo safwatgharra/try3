@@ -3,7 +3,7 @@ var coordsLat = 1;
 var coordsLng = 1;
 
 var TakeMe = {
-    date: 0,
+    datetime: 0,
     userID: localStorage.userid,
     longi: coordsLng,
     lati: coordsLat
@@ -86,7 +86,7 @@ $(document).ready(function myfunction() {
         var day = d.getDate();
         var date = month + "/" + day + "/" + d.getFullYear();
         var DateTime = date + " " + Time;
-        TakeMe.date = DateTime;
+        TakeMe.datetime = DateTime;
 
         if (navigator.geolocation) {
             alert("navigator.geolocation");
@@ -95,7 +95,7 @@ $(document).ready(function myfunction() {
                     alert("get current postition");
                     TakeMe.longi = pos.coords.longitude;
                     TakeMe.lati = pos.coords.latitude;
-                    TakeMe.date = DateTime;
+                    TakeMe.datetime = DateTime;
                     $.ajax({
                         url: WebServiceURL + "/TakeMe",
                         dataType: "json",
