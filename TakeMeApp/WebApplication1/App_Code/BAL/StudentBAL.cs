@@ -39,9 +39,9 @@ namespace WebApplication1.App_Code.BAL
             else
                 return msg;
         }
-        public string TakeMe(string date, int userID, string longi, string lati)
+        public string TakeMe(string datetime, int userID, string longi, string lati)
         {
-            return studentdb.TakeMe(date, userID, longi, lati);
+            return studentdb.TakeMe(datetime, userID, longi, lati);
         }
 
         public string LoadDriverWP(int driverUserID)

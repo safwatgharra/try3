@@ -60,6 +60,10 @@ namespace WebApplication1.App_Code.BAL
         {
             return driverdb.UpdateWayPoint(userID, lat, longi);
         }
+        public string FinishRide(int driverID)
+        {
+            return driverdb.FinishRide(driverID);
+        }
 
     }
 }

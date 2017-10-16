@@ -79,17 +79,30 @@ namespace WebApplication1.App_Code.DAL
         //}
         public string ChangeReqStatus(string datetime,int userID,int DriverID)
         {
+            //add push to student driver on his way
+
             string query = "UPDATE [dbo].[RequestTB]" +
                            " SET [RequestStatus] = 0" +
                            " WHERE[UserID] = " + userID + "and [RequestDate] = '" + datetime + "'";
             string msg = "driver on his way";
-             Execute(query, msg);
+            Execute(query, msg);
 
-             query = "INSERT INTO [dbo].[RidesTB]" +
-                           "([Date] ,[UserID] ,[DriverID] ,[RideStatus]) " +
-                           " VALUES(cast([RequestDate] as date)= '" + datetime + "' , " + userID + "," + DriverID + ", [RideStatus] = 1";
+            query = "INSERT INTO [dbo].[RidesTB]" +
+                           " ([Date] ,[UserID] ,[DriverID] ,[RideStatus]) " +
+                           " VALUES(cast('"+ datetime + "' as date)  , " + userID + "," + DriverID + ", 1)";
+
             return Execute(query, msg);
 
+    
+
+        }
+        public string FinishRide(int driverID)
+        {
+            string query = "UPDATE [dbo].[RidesTB]" +
+                          "set [RideStatus] = 0" +
+                          "where [DriverID]=" + driverID;
+            string msg = "ride done";
+            return Execute(query, msg);
         }
         
         public string LoadPreOrders(string todaydate)

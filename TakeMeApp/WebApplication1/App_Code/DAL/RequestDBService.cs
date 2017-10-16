@@ -75,11 +75,27 @@ namespace WebApplication1.App_Code.DAL
 
         }
 
-        public string LoadDriverWP(int driverUserID)
+        private int GetMyDriverID(int UserID)
         {
-            string query = "  SELECT [CurrentLong],[Currentlat] " +
+            
+            SqlCommand com = new SqlCommand("select [DriverID] from [RidesTB] where UserID =" + UserID + " and [RideStatus] =1" , con);
+            con.Open();
+            object x = com.ExecuteScalar();
+            if (x != null)
+                return Convert.ToInt32(x.ToString());
+            else
+                return 0;
+             
+        }
+
+        public string LoadDriverWP(int userID)
+        {
+            int driverID = GetMyDriverID(userID);
+            if (driverID == 0)
+                return "NULL";
+            string query = " SELECT [CurrentLong],[Currentlat] " +
                            " FROM [NewUsersTB] " +
-                           " WHERE UserID = " + driverUserID;
+                           " WHERE UserID = " + driverID;
             string tblname = "driver current location";
             return Table(query, tblname);
         }
@@ -143,12 +159,13 @@ namespace WebApplication1.App_Code.DAL
 
         }
 
-        public string TakeMe(string date, int userID, string longi, string lati)
+        public string TakeMe(string datetime, int userID, string longi, string lati)
         {
             string query = "INSERT INTO [dbo].[RequestTB]" +
                                  "([RequestDate],[LocationID],[RequestTypeID],[UserID],[RequestStatus],[long],[lat])" +
-                                    "VALUES ('" + date + "' ,'99', 1 ," + userID + ",'1','" + longi + "','" + lati + "')";
+                                    "VALUES ('" + datetime + "' ,'99', 1 ," + userID + ",'1','" + longi + "','" + lati + "')";
             string msg = "Your request has been received";
+
             return Execute(query, msg);
         }
     }

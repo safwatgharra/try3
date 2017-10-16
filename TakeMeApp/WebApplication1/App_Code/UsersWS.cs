@@ -28,10 +28,11 @@ public class UsersWS : System.Web.Services.WebService
     {
     }
     [WebMethod]
-    public string TakeMe(string date, int userID, string longi, string lati)
+    public string TakeMe(string datetime, int userID, string longi, string lati)
     {
+        //push notifacation to all drivers that there is a new request
         StudentBAL req = new StudentBAL();
-        return req.TakeMe(date, userID, longi, lati);
+        return req.TakeMe(datetime, userID, longi, lati);
     }
 
     [WebMethod]
@@ -133,6 +134,7 @@ public class UsersWS : System.Web.Services.WebService
     [WebMethod]
     public string ChangeReqStatus(string datetime,int userID,int driverID)
     {
+        //push notifacation to the user
         DriverBAL chng = new DriverBAL();
         return chng.ChangeReqStatus(datetime, userID,driverID);
     }
@@ -143,10 +145,10 @@ public class UsersWS : System.Web.Services.WebService
         return update.UpdateWayPoint(userID, lat, longi);
     }
     [WebMethod]
-    public string LoadDriverWP(int DriverUserID)
+    public string LoadDriverWP(int UserID)
     {
         StudentBAL load = new StudentBAL();
-        return load.LoadDriverWP(DriverUserID);
+        return load.LoadDriverWP(UserID);
     }
     [WebMethod]
     public string helloWorld()
@@ -159,9 +161,15 @@ public class UsersWS : System.Web.Services.WebService
         StudentBAL send = new StudentBAL();
         return send.InsertRegIdFromUser(regId,userId);
     }
+    [WebMethod]
+    public string FinishRide(int driverID)
+    {
+        DriverBAL d = new DriverBAL();
+        return d.FinishRide(driverID);
+    }
 
     [WebMethod]
-    public void RunPushNotification()
+    public void RunPushNotification(string regID,string message)
     {
         //Create our push services broker
         var push = new PushBroker();
@@ -232,9 +240,10 @@ public class UsersWS : System.Web.Services.WebService
         //Fluent construction of an Android GCM Notification
         //IMPORTANT: For Android you MUST use your own RegistrationId here that gets generated within your Android app itself!
 
-        string message = "sivan";
+        ////////////////////string message = "sivan";
+
         //push.QueueNotification(new GcmNotification().ForDeviceRegistrationId("APA91bFjDMStGxVADWRXrPNSTRfb4A3p__lAVf5VtU2nsyeTYuCbNDQ1lK8p0dYQLxNaMbr5FeVOQf9c5yJ_1KkYNndZntmRS-JYP4mM21RVW8FQZD96X5ShusgnX-Wajq9UKD6P5UCHQqhlsEl5toiJPgoj3A")
-        push.QueueNotification(new GcmNotification().ForDeviceRegistrationId("epcaLMIdamI:APA91bHQjQEGKNyaznmSUea_vN0UwSa7OF-bkwq6zTEG1JC9r8ML-3i31Fqy1UYAUEyAdlEEWd0UHyDsvBnSSSYAURPdEhU1C_OXMEMC9b_IjnIJKrjd1lTW0CdUJucBUqApz9qHZLZK")
+        push.QueueNotification(new GcmNotification().ForDeviceRegistrationId(regID)
                               .WithJson("{\"message\": \" " + message + " \", \"title\": \" my title\", \"msgcnt\": \"1\", \"alert\":\"Hello World!\",\"badge\":7,\"sound\":\"sound.caf\"}"));
         
         push.StopAllServices();
