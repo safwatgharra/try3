@@ -19,6 +19,7 @@ namespace WebApplication1.App_Code.DAL
             con = new SqlConnection(strCon);
         }
 
+        
         public string Table(string query, string TableName)
         {
             try
@@ -107,7 +108,7 @@ namespace WebApplication1.App_Code.DAL
         
         public string LoadPreOrders(string todaydate)
         {
-            string query = "SELECT dbo.LocationTB.long, dbo.LocationTB.lat, dbo.NewUsersTB.UserID, dbo.NewUsersTB.UserFName, dbo.NewUsersTB.UDID, dbo.RequestTB.RequestDate" +
+            string query = "SELECT dbo.LocationTB.long, dbo.LocationTB.lat, dbo.NewUsersTB.UserID, dbo.NewUsersTB.UserFName, dbo.NewUsersTB.RegID, dbo.RequestTB.RequestDate" +
                             " FROM dbo.RequestTB INNER JOIN dbo.LocationTB ON dbo.LocationTB.LocationID = dbo.RequestTB.LocationID" +
                             " INNER JOIN dbo.NewUsersTB ON  dbo.NewUsersTB.UserID = dbo.RequestTB.UserID" +
                             " WHERE(dbo.RequestTB.RequestTypeID = '2' and [RequestStatus]=1 and cast([RequestDate] as date)='" + todaydate + "')";
@@ -117,7 +118,7 @@ namespace WebApplication1.App_Code.DAL
 
         public string LoadImmediateOrders()
         {
-            string query =  " SELECT dbo.RequestTB.RequestDate, dbo.RequestTB.UserID, dbo.RequestTB.long, dbo.RequestTB.lat, dbo.NewUsersTB.UserFName, dbo.NewUsersTB.UDID"+
+            string query =  " SELECT dbo.RequestTB.RequestDate, dbo.RequestTB.UserID, dbo.RequestTB.long, dbo.RequestTB.lat, dbo.NewUsersTB.UserFName, dbo.NewUsersTB.RegID"+
                             " FROM dbo.RequestTB INNER JOIN dbo.NewUsersTB ON dbo.RequestTB.UserID = dbo.NewUsersTB.UserID"+
                             " where[RequestTypeID] = 1 and[RequestStatus] = 1";
 
@@ -198,6 +199,14 @@ namespace WebApplication1.App_Code.DAL
                            " WHERE[UserID] = " + userID;
             string msg = "succefully updated";
             return Execute(query, msg);
+        }
+        public string GetRegID(int UserID)
+        {
+
+            SqlCommand com = new SqlCommand("select [RegID] from [NewUsersTB] where UserID =" + UserID , con);
+            con.Open();
+            return com.ExecuteScalar().ToString();
+            
         }
     }
 }

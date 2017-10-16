@@ -21,7 +21,13 @@ namespace WebApplication1.App_Code.DAL
             con = new SqlConnection(strCon);
         }
 
-
+        public DataTable RegIDTable(string query, string TableName)
+        {
+            SqlDataAdapter adptr = new SqlDataAdapter(query, con);
+            DataSet ds = new DataSet();
+            adptr.Fill(ds, TableName);
+            return ds.Tables[TableName];
+        }
         public string Table(string query, string TableName)
         {
             try
@@ -99,6 +105,7 @@ namespace WebApplication1.App_Code.DAL
             string tblname = "driver current location";
             return Table(query, tblname);
         }
+        
 
         public string RequestUser(int UserID)
         {
@@ -167,6 +174,15 @@ namespace WebApplication1.App_Code.DAL
             string msg = "Your request has been received";
 
             return Execute(query, msg);
+        }
+
+        public string GetRegID(int UserID)
+        {
+
+            SqlCommand com = new SqlCommand("select [RegID] from [NewUsersTB] where UserID =" + UserID, con);
+            con.Open();
+            return com.ExecuteScalar().ToString();
+
         }
     }
 }

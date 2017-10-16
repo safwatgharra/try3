@@ -53,5 +53,9 @@ namespace WebApplication1.App_Code.BAL
         {
             return studentdb.InsertRegIdFromUser(regId,userId);
         }
+        public DataTable Table(string query,string name)
+        {
+            return studentdb.RegIDTable(query,name);
+        }
     }
 }
