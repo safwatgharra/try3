@@ -7,10 +7,6 @@ $(document).ready(function myfunction() {
 
     LoadRequests();
 
-    //$(this).click(function (e) {
-
-    //    alert(e.target.id.toString());
-    //});
     $(this).click(function (e) {
         removeid = "";
         str = (e.target.id.toString());
@@ -38,7 +34,7 @@ $(document).ready(function myfunction() {
                 },
                 success: function (data) {
                     var res = data.d;
-                    alert("ההזמנה נמחקה");
+                  
                 }
             });
             $(".td" + index).remove();
@@ -90,7 +86,7 @@ $(document).ready(function myfunction() {
             success: function (data) {
                 var res = data.d;
                 var resOutput = JSON.parse(res);
-                alert("ההזמנה נשלחה");
+              
             }
         });
         $("#divOrder").css({ "height": "0%", "width": "0%" });

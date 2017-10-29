@@ -17,14 +17,12 @@ body {
  height: auto;
  margin-top: 2%;
  margin-left: 81%;
-
 }
 
  .ReportBack:active {
  position: relative;
  top: 4px;
-
-    }
+}
 
  #ReportDateTimeTXT {
  display: block;
@@ -33,7 +31,6 @@ body {
  font-size: 18px;
  text-align: center;
  width: 80%;
- margin-top: 3%;
  height: 15%;
  padding: 2%;
 
@@ -46,7 +43,7 @@ body {
      font-size: 18px;
      text-align: center;
      width: 85%;
-     margin-top: 15%;
+     margin-top: 8%;
      height: 15%;
      padding: 2%;
     
@@ -57,7 +54,7 @@ body {
      font-size: 18px;
      text-align: center;
      width: 77%;
-     margin-top: 15%;
+     margin-top: 12%;
      height: 60%;
      padding: 4%;
     
@@ -92,7 +89,7 @@ body {
 #imgFromServer {
     max-width: 35%;
     height: auto;
-    margin-top: 2%;
+   
 }
 
 .imagRotate {

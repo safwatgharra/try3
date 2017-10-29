@@ -15,17 +15,18 @@
     <script src="../../cordova.js"></script>
 </head>
 
-
 <body>
-    <button id="btn"></button>
 
     <div id="divReport">
         <img src="../images/Backbutton.png" class="ReportBack" />
-        <br />
-
+    
         <center>
-            <img src="../images/camera.png" id="imgFromServer" />
-
+            <div>
+                <img src="../images/camera.png" id="imgFromServer" />
+            </div>
+            <br />
+            <br />
+            <br />
             <input type="date" id="ReportDateTimeTXT" readonly />
 
             <select id="ReportSelector">
@@ -36,15 +37,13 @@
             <textarea id="ReportDescription"></textarea>
 
             <p class="addReport">שלח דיווח</p>
+       
         </center>
-
     </div>
  
     <!-- js link -->
     <script src="../pscripts/Globals.js"></script>
     <script src="../pscripts/driverJs/ReportDriver.js"></script>
-
-
 
 </body>
 

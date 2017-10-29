@@ -69,7 +69,7 @@ function changePosition(position) {
 function showError(error) {
     switch (error.code) {
         case error.PERMISSION_DENIED:
-            alert("נא לשאר את השימוש בשירות המיקום.");
+            alert("נא לאשר את השימוש בשירות המיקום.");
             break;
         case error.POSITION_UNAVAILABLE:
             alert("Location information is unavailable.");
@@ -121,7 +121,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 var res = data.d;
-                alert("res-" + res);
+               
             }
 
         });
@@ -146,7 +146,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 var res = data.d;
-                alert("res-" + res);
+               
             }
 
         });
@@ -183,7 +183,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 var res = data.d;
-                alert("res-" + res);
+            
             }
 
         });
@@ -204,7 +204,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $(".EndRide").addClass('hideER');
-                alert("סיום נסיעה");
+              
             }
         });
 

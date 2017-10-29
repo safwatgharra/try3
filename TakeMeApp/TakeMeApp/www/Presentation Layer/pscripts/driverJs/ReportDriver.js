@@ -38,7 +38,6 @@ $(document).ready(function myfunction() {
                 alert(formatErrorMessage(jqXHR, exception));
             },
             success: function (data) {
-                alert("הדיווח נשלח");
                 var res = data.d;
                 var resOutput = JSON.parse(res);
                 window.location.replace("ReportDriver.html");
@@ -64,7 +63,7 @@ function getNextIndex() {
         },
         success: function (data) {
             var res = data.d;
-            alert(res);
+           
             NextHazard = res;
         }
     });

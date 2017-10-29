@@ -59,7 +59,7 @@ $(document).ready(function myfunction() {
             success: function (data) {
                 var res = data.d;
                 var resOutput = JSON.parse(res);
-                alert("ההזמנה נשלחה");
+              
             }
         });
 
@@ -104,7 +104,7 @@ $(document).ready(function myfunction() {
                             alert(formatErrorMessage(jqXHR, exception));
                         },
                         success: function (data) {
-                            alert("ההזמנה נשלחה");
+                           
                             var res = data.d;
                             window.location.replace("mapStudent.html");
                         }
