@@ -149,6 +149,7 @@ public class UsersWS : System.Web.Services.WebService
         string message = "הנהג בדרך אליך";
         DriverBAL chng = new DriverBAL();
         string regID = chng.GetRegID(userID);
+
         RunPushNotification(regID, message);
         return chng.ChangeReqStatus(datetime, userID,driverID);
     }
@@ -187,6 +188,7 @@ public class UsersWS : System.Web.Services.WebService
     {
         //Create our push services broker
         var push = new PushBroker();
+        
 
         //Wire up the events for all the services that the broker registers
         push.OnNotificationSent += NotificationSent;
@@ -258,7 +260,7 @@ public class UsersWS : System.Web.Services.WebService
 
         //push.QueueNotification(new GcmNotification().ForDeviceRegistrationId("APA91bFjDMStGxVADWRXrPNSTRfb4A3p__lAVf5VtU2nsyeTYuCbNDQ1lK8p0dYQLxNaMbr5FeVOQf9c5yJ_1KkYNndZntmRS-JYP4mM21RVW8FQZD96X5ShusgnX-Wajq9UKD6P5UCHQqhlsEl5toiJPgoj3A")
         push.QueueNotification(new GcmNotification().ForDeviceRegistrationId(regID)
-                              .WithJson("{\"message\": \" " + message + " \", \"title\": \" my title\", \"msgcnt\": \"1\", \"alert\":\"Hello World!\",\"badge\":7,\"sound\":\"sound.caf\"}"));
+                              .WithJson("{\"message\": \" " + message + " \", \"title\": \" TAKE ME\", \"msgcnt\": \"1\", \"alert\":\"Hello World!\",\"badge\":7,\"sound\":\"sound.caf\"}"));
         
         push.StopAllServices();
 

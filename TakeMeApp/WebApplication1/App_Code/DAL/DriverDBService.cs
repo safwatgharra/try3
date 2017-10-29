@@ -202,11 +202,19 @@ namespace WebApplication1.App_Code.DAL
         }
         public string GetRegID(int UserID)
         {
+            try
+            {
+                con.Open();
+                SqlCommand com = new SqlCommand("select [RegID] from [NewUsersTB] where UserID =" + UserID, con);
 
-            SqlCommand com = new SqlCommand("select [RegID] from [NewUsersTB] where UserID =" + UserID , con);
-            con.Open();
-            return com.ExecuteScalar().ToString();
-            
+                return com.ExecuteScalar().ToString();
+            }
+            catch (Exception e)
+            {
+                con.Close();
+                return e.Message;
+            }
+
         }
     }
 }
