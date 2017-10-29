@@ -22,8 +22,26 @@ body {
     margin-left: 84%;
     position: fixed;
     z-index: 1006;
+  
 }
 
+.EndRide {
+    position: fixed;
+    width: 25%;
+    bottom: 5%;
+    right: 0;
+    display: none;
+}
+
+.showER {
+    display: block;
+}
+
+.hideER {
+    display: none;
+
+}
+    
 #MenuClose {
     max-width: 35%;
     height: auto;

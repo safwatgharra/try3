@@ -88,12 +88,10 @@ function showError(error) {
 
 $(document).ready(function () {
 
-    $("#btn").click(function () {
-        loadOrders();
-    });
+    loadOrders();
 
     $("#MenuOpen").click(function () {
-
+      
         $("#divMenu").addClass('borderMenu');
         $("#divMenu").css({ "width": "60%", "z-index": "1012" });
     });
@@ -191,6 +189,27 @@ $(document).ready(function () {
         });
     });
 
+    $(".EndRide").click(function () {
+
+        var driverID = { driverID: localStorage.userid };
+
+        $.ajax({
+            url: WebServiceURL + "/FinishRide",
+            dataType: "json",
+            type: "POST",
+            data: JSON.stringify(driverID),
+            contentType: "application/json; charset=utf-8",
+            error: function (jqXHR, exception) {
+                alert(formatErrorMessage(jqXHR, exception));
+            },
+            success: function (data) {
+                $(".EndRide").addClass('hideER');
+                alert("סיום נסיעה");
+            }
+        });
+
+    });
+  
     $("#logoutBtn").click(function () {
         localStorage.clear();
         window.location.replace("../pageLogin/LoginPage.html");
@@ -301,6 +320,7 @@ function removeRequestFromDb(marker,details) {
         success: function (data) {
             marker.setMap(null);
             updateLatLongDriverInDB();
+            $(".EndRide").addClass('showER');
         }
     });
 
