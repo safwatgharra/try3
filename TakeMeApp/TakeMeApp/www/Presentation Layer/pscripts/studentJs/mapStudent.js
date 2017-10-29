@@ -1,12 +1,65 @@
-﻿var workerPosition = { lat: 43.47836101344629, lng: -80.53074049212657 };
-var map;
+﻿var workerPosition = { lat: 32.341441920300006, lng: 34.9123955 };
+var map; 
 var marker;
+var markers = [];
+
+var loadDriverWP = window.setInterval(function () {
+    setMapOnAll(null);
+    var UserRide = {
+        UserID: localStorage.userid
+    };
+
+    $.ajax({
+        url: WebServiceURL + "/LoadDriverWP",
+        dataType: "json",
+        type: "POST",
+        data: JSON.stringify(UserRide),
+        contentType: "application/json; charset=utf-8",
+        error: function (jqXHR, exception) {
+            alert(formatErrorMessage(jqXHR, exception));
+        },
+        success: function (data) {
+           
+            var res = data.d;
+            var result = JSON.parse(res);
+        
+            if (res !== "NULL") {
+
+                for (var i = 0; i < result.length; i++) {
+                 
+                    var img = {
+                        url: "../images/police-car.png",
+                        scaledSize: new google.maps.Size(60, 60),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(0, 0)
+                    };
+
+                    marker = new google.maps.Marker({
+                        position: { lat: result[i].Currentlat    * 1, lng: result[i].CurrentLong * 1 },
+                        map: map,
+                        icon: img,
+                        animation: google.maps.Animation.DROP
+                    });
+                    markers.push(marker);
+                }
+            }
+            else {
+                alert("ההזמנה בטיפול");
+            }
+        }
+    });
+
+}, 5000);
+
+function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+}
 
 $(document).ready(function () {
-   
-    
-    $("#MenuOpen").click(function () {
 
+    $("#MenuOpen").click(function () {
         $("#divMenu").addClass('borderMenu');
         $("#divMenu").css({ "width": "60%", "z-index": "1012" });
     });
@@ -14,17 +67,20 @@ $(document).ready(function () {
     $("#MenuClose").click(function () {
         $("#divMenu").removeClass('borderMenu');
         $("#divMenu").css("width", "0%");
-
     });
 
     $("#myOrders").click(function () {
-
         window.location.replace("OrdersPage.html");
     });
 
+    $("#logoutBtn").click(function () {
+        localStorage.clear();
+        window.location.replace("../pageLogin/LoginPage.html");
+    });
 });
 
 function initMap() {
+
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 20,
         center: workerPosition,
@@ -33,50 +89,19 @@ function initMap() {
         disableDefaultUI: true
     });
 
-    marker = new google.maps.Marker({
+    var img = {
+        url: "../images/marker-green.png",
+        scaledSize: new google.maps.Size(60, 60),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 0)
+    };
+
+    var marker = new google.maps.Marker({
         position: workerPosition,
-        map: map
+        map: map,
+        icon: img,
+        animation: google.maps.Animation.DROP
     });
 
-    if (navigator.geolocation) {
-        watchId = navigator.geolocation.watchPosition(changePosition, showError, {});
-    }
-}
-
-function changePosition(position) {
-    if (marker !== null) {
-        marker.setMap(null);
-    }
-
-    workerPosition.lat = position.coords.latitude;
-    workerPosition.lng = position.coords.longitude;
-
-    map.setCenter(workerPosition);
-
-    marker = new google.maps.Marker({
-        position: workerPosition,
-        map: map
-    });
-}
-
-function showError(error) {
-    switch (error.code) {
-        case error.PERMISSION_DENIED:
-            alert("נא לשאר את השימוש בשירות המיקום.");
-            break;
-        case error.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.");
-            break;
-        case error.TIMEOUT:
-            alert("The request to get user location timed out.");
-            break;
-        case error.UNKNOWN_ERROR:
-            alert("An unknown error occurred.");
-            break;
-        default:
-            alert("An unknown error occurred.(default)");
-            break;
-    }
 
 }
-

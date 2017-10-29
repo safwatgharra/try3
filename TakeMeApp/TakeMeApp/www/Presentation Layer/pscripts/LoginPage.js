@@ -47,19 +47,6 @@ function changePages(result) {
     }
 
     else if (result.TypeCode == '2') {
-        $.ajax({
-            url: WebServiceURL + "/RunPushNotification",
-            dataType: "json",
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            error: function (jqXHR, exception) {
-                alert(formatErrorMessage(jqXHR, exception));
-            },
-            success: function (data) {
-                var res = data.d;
-                alert(res);
-            }
-        });
         window.location.replace("../pagesDriver/homeDriver.html");
     }
 }

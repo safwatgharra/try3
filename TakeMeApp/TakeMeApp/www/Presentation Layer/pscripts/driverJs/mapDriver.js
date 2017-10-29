@@ -10,12 +10,15 @@ var date = month + '/' + (day < 10 ? '0' : '') + day + '/' + d.getFullYear();
 var loadloadOrdersCall = window.setInterval(function () {
     loadOrders();
 }, 40000);
+var coordsLat = 1;
+var coordsLng = 1;
 
-//var showMeOnMap = window.setInterval(function () {
-//    if (navigator.geolocation) {
-//        navigator.geolocation.getCurrentPosition(changePosition, showError, {});
-//    }
-//}, 7000);
+var UpdateWayPointDriver = {
+
+    userID: localStorage.userid,
+    lat: coordsLat,
+    longi: coordsLng
+};
 
 function initMap() {
 
@@ -281,8 +284,9 @@ function removeRequestFromDb(marker,details) {
 
     var removeRequestUser =
         {
-            userID :details.UserID,
-        datetime:details.RequestDate
+            datetime: details.RequestDate,
+            userID: details.UserID,
+            driverID:localStorage.userid
         };
 
     $.ajax({
@@ -296,9 +300,42 @@ function removeRequestFromDb(marker,details) {
         },
         success: function (data) {
             marker.setMap(null);
+            updateLatLongDriverInDB();
         }
     });
 
+}
+
+function updateLatLongDriverInDB() {
+    window.setInterval(function () {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function (pos) {
+                UpdateWayPointDriver.longi = pos.coords.longitude;
+                UpdateWayPointDriver.lat = pos.coords.latitude;
+
+                $.ajax({
+                    url: WebServiceURL + "/UpdateWayPoint",
+                    dataType: "json",
+                    type: "POST",
+                    data: JSON.stringify(UpdateWayPointDriver),
+                    contentType: "application/json; charset=utf-8",
+                    error: function (jqXHR, exception) {
+                        alert(formatErrorMessage(jqXHR, exception));
+                    },
+                    success: function (data) {
+                    }
+                });
+            },
+
+            function (error) {
+                alert("Error");
+            },
+
+            {}
+        );
+        }
+    }, 2000);
 }
 
 function setMapOnAll(map) {

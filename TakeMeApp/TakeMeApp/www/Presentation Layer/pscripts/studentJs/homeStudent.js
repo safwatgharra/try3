@@ -89,10 +89,8 @@ $(document).ready(function myfunction() {
         TakeMe.datetime = DateTime;
 
         if (navigator.geolocation) {
-            alert("navigator.geolocation");
             navigator.geolocation.getCurrentPosition(
                 function (pos) {
-                    alert("get current postition");
                     TakeMe.longi = pos.coords.longitude;
                     TakeMe.lati = pos.coords.latitude;
                     TakeMe.datetime = DateTime;
