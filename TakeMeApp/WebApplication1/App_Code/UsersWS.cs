@@ -146,10 +146,10 @@ public class UsersWS : System.Web.Services.WebService
     public string ChangeReqStatus(string datetime,int userID,int driverID)
     {
         //push notifacation to the user
-        //string message = "הנהג בדרך אליך";
+        string message = "הנהג בדרך אליך";
         DriverBAL chng = new DriverBAL();
-        //string regID = chng.GetRegID(userID);
-        //RunPushNotification(regID, message);
+        string regID = chng.GetRegID(userID);
+        RunPushNotification(regID, message);
         return chng.ChangeReqStatus(datetime, userID,driverID);
     }
     [WebMethod]
