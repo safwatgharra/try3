@@ -76,7 +76,7 @@ function onDeviceReady() {
     });
 
     push.on('registration', function (data) {
-       alert(data.registrationId);
+       //alert(data.registrationId);
 
         var regId = {
             regId: data.registrationId,
@@ -135,7 +135,7 @@ function onDeviceReady() {
     }, IconBadgeNumber);
 
     push.on('error', function (e) {
-        alert(e.message);
+        //alert(e.message);
     });
 }
 
