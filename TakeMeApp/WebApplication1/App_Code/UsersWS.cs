@@ -33,15 +33,15 @@ public class UsersWS : System.Web.Services.WebService
         //push notifacation to all drivers that there is a new request
         StudentBAL req = new StudentBAL();
 
-        //string query = "SELECT        dbo.NewUsersTB.RegID"+
-        //               " FROM dbo.AttindanceReportDB INNER JOIN"+
-        //                " dbo.NewUsersTB ON dbo.AttindanceReportDB.UserID = dbo.NewUsersTB.UserID"+
+        //string query = "SELECT        dbo.NewUsersTB.RegID" +
+        //               " FROM dbo.AttindanceReportDB INNER JOIN" +
+        //                " dbo.NewUsersTB ON dbo.AttindanceReportDB.UserID = dbo.NewUsersTB.UserID" +
         //                " WHERE(dbo.AttindanceReportDB.IsAvaible = 1)";
         //string tblname = "regID";
         //DataTable tb = req.Table(query, tblname);
-        //for (int i = 0; i < tb.Rows.Count ; i++)
+        //for (int i = 0; i < tb.Rows.Count; i++)
         //{
-        //    RunPushNotification(tb.Rows[i]["RegID"].ToString(),"בקשה חדשה נכנסה למערכת");
+        //    RunPushNotification(tb.Rows[i]["RegID"].ToString(), "בקשה חדשה נכנסה למערכת");
         //}
         return req.TakeMe(datetime, userID, longi, lati);
     }
@@ -71,8 +71,6 @@ public class UsersWS : System.Web.Services.WebService
     {
 
         LoginBAL loginBal = new LoginBAL();
-        
-        //RunPushNotification();
         return loginBal.LoginUserUsingClass(userid, userpass);
     }
     [WebMethod]
@@ -145,12 +143,12 @@ public class UsersWS : System.Web.Services.WebService
     [WebMethod]
     public string ChangeReqStatus(string datetime,int userID,int driverID)
     {
-        //push notifacation to the user
-        string message = "הנהג בדרך אליך";
         DriverBAL chng = new DriverBAL();
-        string regID = chng.GetRegID(userID);
 
-        RunPushNotification(regID, message);
+        //push notifacation to the user
+        //string message = "הנהג בדרך אליך";
+        //string regID = chng.GetRegID(userID);
+        //RunPushNotification(regID, message);
         return chng.ChangeReqStatus(datetime, userID,driverID);
     }
     [WebMethod]
