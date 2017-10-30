@@ -183,7 +183,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 var res = data.d;
-            
+                window.location.replace("../pagesDriver/homeDriver.html");
             }
 
         });

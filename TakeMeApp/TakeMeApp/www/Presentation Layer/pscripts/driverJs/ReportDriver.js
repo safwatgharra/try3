@@ -48,7 +48,7 @@ $(document).ready(function myfunction() {
     });
 
     $(".ReportBack").click(function () {
-        window.location.replace("homeDriver.html");
+        window.location.replace("mapDriver.html");
     });
 });
 
@@ -74,7 +74,6 @@ function onCameraSuccess(imageURI) {
  //   $('#imgFromServer').attr('src', imageURI);
     uploadPhoto(imageURI);
 }
-
 
 function uploadPhoto(imageURI) {
     //   Load(); // Start the spinning "working" animation
